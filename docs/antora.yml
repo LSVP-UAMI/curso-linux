@@ -1,0 +1,5 @@
+name: curso_linux
+title: Curso GNU/Linux
+version: develop
+nav:
+- modules/ROOT/nav.adoc
