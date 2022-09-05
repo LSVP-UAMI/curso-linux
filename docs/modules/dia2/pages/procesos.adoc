@@ -1,0 +1,63 @@
+= Control de procesos
+
+== Proceso
+Un proceso representa un programa en ejecución. Es una abstracción con  la 
+cual podemos administrar y monitorear la memoria, tiempo de ejecución y 
+recursos de entrada y salida.
+
+== Elementos de un proceso
+Un proceso consiste en  un espacio de memoria y un conjunto de estructuras 
+de datos dentro del kernel. Este espacio de memoria contiene el codigo y 
+librerias que el proceso ejecuta. Asi como sus variables, pila e información 
+extra que el kernel mientras el proceso esta corriendo.
+
+Internamente el kernel guarda algunas piezas de información de cada proceso.
+Estas son algunas de las mas importantes:
+
+* Un mapa del espacio de memoria del proceso.
+* El estado actual del proceso (dormido, detenido, en ejecución, etc).
+* La prioridad de ejecución del proceso.
+* Información sobre los recursos usados por el proceso (CPU, memoria, etc).
+* Información sobre los archivos y puertos de red abiertos por el proceso.
+* El dueño del proceso.
+
+=== PID: ID de proceso
+El kernel asigna un identificador unico a cada proceso. Los PID son asignados 
+deacuerdo al orden en el que los proceos fueron creados. La mayoria de los 
+comandos que manipulan procesos requieren que se indique un PID para identificar 
+al objetivo de la operacion.
+
+=== PPID: ID del proceso padre
+En linux cuando un proceso crea un nuevo proceso, al proceso recien creado se 
+le llama hijo y al proceso que lo lanzo padre. El PPID es el PID del proceso padre.
+
+=== UID: ID de propietario
+EL UID de un proceso es el ID del usuario que es propietario del proceso, 
+solo el propietario y el superusuario pueden manipular el proceso.
+
+== Comando ps
+El comando ps es la herramienta principal para monitorear procesos. Con ps podemos listar los procesos en ejecución asi como su información.
+
+
+Ejemplo.
+[source,shell]
+ps aux
+
+* a - muestra todos los procesos.
+* u - hace que la salida sea legible para usuarios. 
+* x - muestra los procesos que no tienen una terminal.
+
+Ejemplo con mas informacóon.
+[source,shell]
+ps lax
+
+ps solo muestra la información de los procesos en el momento en el que se ejecuto. No muestra información en tiempo real.
+
+== Comando htop
+El comando ps esta limitadado ya que no refleja la información de los procesos en tiempo real, lo cual puede llegar a ser necesario. Para resolver esta problematica podemos usar el comando htop, el cual nos muestra una lista de los procesos con la información que muestra ps, pero actualiza la información cada pocos segundos. Ademas muestra el uso total de recursos de todos los procesos.
+
+
+== El directorio /proc
+En el directorio /proc el kernel expone parte de la información que tiene 
+sobre los procesos. Dentro se encuentra un directorio para cada PID y dentro 
+se encuentra la información del proceso correspondiente.
