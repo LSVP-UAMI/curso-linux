@@ -1,0 +1,20 @@
+= Bootstrapping
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#bios]
+== BIOS
+
+
+[#grub]
+== GRUB
+
+
+[#systemd]
+== systemd
+
+
+[#servicios]
+=== Servicios

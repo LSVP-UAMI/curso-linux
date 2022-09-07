@@ -1,0 +1,24 @@
+= Bash
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#filosofía]
+== Filosofía
+
+
+[#pipes]
+== Pipes
+
+
+[#variables]
+== Variables
+
+
+[#comandos_filtrado]
+== Comandos de filtrado
+
+
+[#estructuras_control]
+== Estructuras de control

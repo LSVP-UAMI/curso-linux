@@ -1,0 +1,24 @@
+= Permisos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#bits]
+== Bits
+
+
+[#comandos]
+== Comandos
+
+
+[#ls]
+=== ls
+
+
+[#chmod]
+=== chmod
+
+
+[#chown]
+=== chown

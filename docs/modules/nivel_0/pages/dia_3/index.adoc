@@ -1,0 +1,14 @@
+= Día 3
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#temario]
+== Temario
+
+. Filosofía
+. Pipes
+. Variables
+. Comandos de filtrado
+. Estructuras de control
