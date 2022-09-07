@@ -1,0 +1,20 @@
+= Procesos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#definicion]
+== Definición
+
+
+[#permisos]
+== Permisos
+
+
+[#creacion]
+== Creación
+
+
+[#eliminacion]
+== Eliminación

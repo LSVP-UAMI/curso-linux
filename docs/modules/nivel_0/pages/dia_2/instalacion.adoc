@@ -1,0 +1,20 @@
+= Instalación
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#manejador_paquetes]
+== Manejador de paquetes
+
+
+[#diferencias_distros]
+== Diferencias entre distros
+
+
+[#compilación]
+== Compilación con GNU Tools
+
+
+[#repositorios]
+== Repositorios

@@ -1,0 +1,25 @@
+= Día 1
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#temario]
+== Temario
+
+. Historia
+** Unix
+** GNU
+** Linux
+** Distros
+. Bootstrapping
+** BIOS
+** GRUB
+** systemd
+*** Servicios
+. Sistema de archivos
+** Filosofía Unix
+** Pathnames
+** Árbol de archivos
+** Tipos de archivos
+** Comandos de navegación

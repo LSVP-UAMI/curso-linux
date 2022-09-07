@@ -1,0 +1,31 @@
+= Día 2
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#temario]
+== Temario
+
+. Usuarios
+** Filosofía multiusuario
+** Usuarios
+** Grupos
+** Crear usuarios
+** Archivos de usuarios
+. Permisos
+** Bits
+** Comandos
+*** ls
+*** chmod
+*** chown
+. Procesos
+** Definición
+** Permisos
+** Creación
+** Eliminación
+. Instalación
+** Manejador de paquetes
+** Diferencias entre distros
+** Compilación con GNU Tools
+** Repositorios

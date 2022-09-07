@@ -1,0 +1,24 @@
+= Sistema de archivos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#filosofia_unix]
+== Filosofía Unix
+
+
+[#pathnames]
+== Pathnames
+
+
+[#arbol_archivos]
+== Árbol de archivos
+
+
+[#tipos_archivos]
+== Tipos de archivos
+
+
+[#comandos_navegacion]
+== Comandos de navegación

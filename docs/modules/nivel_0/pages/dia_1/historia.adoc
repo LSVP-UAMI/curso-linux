@@ -1,0 +1,20 @@
+= Historia
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#unix]
+== Unix
+
+
+[#gnu]
+== GNU
+
+
+[#linux]
+== Linux
+
+
+[#distros]
+== Distros
