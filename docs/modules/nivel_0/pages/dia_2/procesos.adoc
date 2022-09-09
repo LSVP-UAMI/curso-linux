@@ -51,7 +51,37 @@ Ejemplo con mas informacóon.
 [source,shell]
 ps lax
 
-ps solo muestra la información de los procesos en el momento en el que se ejecuto. No muestra información en tiempo real.
+ps solo muestra la información de los procesos en el momento en el que se ejecuto. 
+No muestra información en tiempo real.
+
+== Señales
+Las señales son solicitudes de interrupción a nivel de procesos. En linux hay al 
+rededor de treinta tipos diferentes y son usadas de difernetes formas.
+
+* Pueden ser enviadas entre procesos como medio de comunicación.
+* Pueden ser enviadas por la terminal cuando se presiona alguna combinación 
+de teclas específica.
+* Pueden ser enviada por el administrador del sistema (con el comando kill).
+* Pueden ser enviadas por el kernel cuando un procesos comete alguna infracción 
+como dividir entre cero.
+* Pueden ser enviadas por el kernel para notificar a un proceso sobre una condicion 
+de interes por ejemplo cuando un proceso hijo termina.
+
+Cuando una señal es recibida puede ocurrir una de las siguientes cosas. Si el proceso definio 
+un comportamiento para la señal, entonces es manejada por el proceso. En otro caso 
+el kernel toma una accion por defecto. El comportamiento por defecto cambia dependiendo del tipo de señal.
+
+=== Señal INT
+Esta señal es enviada por la terminal cuando el usuario presiona Ctrl-c. 
+Es una solicitud de terminar la ejecución actual. 
+
+=== Señal TERM 
+Esta señal es una solicitud de terminar completamente la ejecución. 
+Se espera que el proceso que recibe la señal haga la limpieza necesaria y termine.
+
+=== Señal KILL
+Esta señal detiene por completo la ejecución del proceso. No puede cachada, 
+bloqueada o ignorada por el proceso, el kernel es el encargado terminar el proceso.
 
 == Comando htop
 El comando ps esta limitadado ya que no refleja la información de los procesos en tiempo real, lo cual puede llegar a ser necesario. Para resolver esta problematica podemos usar el comando htop, el cual nos muestra una lista de los procesos con la información que muestra ps, pero actualiza la información cada pocos segundos. Ademas muestra el uso total de recursos de todos los procesos.
