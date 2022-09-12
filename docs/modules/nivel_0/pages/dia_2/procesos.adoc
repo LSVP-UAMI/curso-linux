@@ -6,11 +6,12 @@ cual podemos administrar y monitorear la memoria, tiempo de ejecución y
 recursos de entrada y salida.
 
 == Elementos de un proceso
+////
 Un proceso consiste en  un espacio de memoria y un conjunto de estructuras 
 de datos dentro del kernel. Este espacio de memoria contiene el codigo y 
 librerias que el proceso ejecuta. Asi como sus variables, pila e información 
 extra que el kernel mientras el proceso esta corriendo.
-
+////
 Internamente el kernel guarda algunas piezas de información de cada proceso.
 Estas son algunas de las mas importantes:
 
@@ -36,8 +37,8 @@ EL UID de un proceso es el ID del usuario que es propietario del proceso,
 solo el propietario y el superusuario pueden manipular el proceso.
 
 == Comando ps
-El comando ps es la herramienta principal para monitorear procesos. Con ps podemos listar los procesos en ejecución asi como su información.
-
+El comando ps es la herramienta principal para monitorear procesos. Con ps podemos 
+listar los procesos en ejecución asi como su información.
 
 Ejemplo.
 [source,shell]
@@ -80,14 +81,43 @@ Esta señal es una solicitud de terminar completamente la ejecución.
 Se espera que el proceso que recibe la señal haga la limpieza necesaria y termine.
 
 === Señal KILL
-Esta señal detiene por completo la ejecución del proceso. No puede cachada, 
+Esta señal detiene por completo la ejecución del proceso. No puede ser cachada, 
 bloqueada o ignorada por el proceso, el kernel es el encargado terminar el proceso.
 
-== Comando htop
-El comando ps esta limitadado ya que no refleja la información de los procesos en tiempo real, lo cual puede llegar a ser necesario. Para resolver esta problematica podemos usar el comando htop, el cual nos muestra una lista de los procesos con la información que muestra ps, pero actualiza la información cada pocos segundos. Ademas muestra el uso total de recursos de todos los procesos.
+== Comando kill
+El comado kill nos sirve para terminar la ejecución de un proceso, 
+por defecto envia la señal TERM, aunque tambien nos ayuda a enviar otras señales.
 
+Ejemplos
+[source,shell]
+kill PID
+
+[source,shell]
+kill -s TERM PID
+
+[source,shell]
+kill -s KILL PID
+
+== Comando htop
+El comando ps esta limitadado ya que no refleja la información de los procesos 
+en tiempo real, lo cual puede llegar a ser necesario. Para resolver esta 
+problematica podemos usar el comando htop, el cual nos muestra una lista de los 
+procesos con la información que muestra ps, pero actualiza la información cada 
+pocos segundos. Ademas muestra el uso total de recursos de todos los procesos.
 
 == El directorio /proc
 En el directorio /proc el kernel expone parte de la información que tiene 
 sobre los procesos. Dentro se encuentra un directorio para cada PID y dentro 
 se encuentra la información del proceso correspondiente.
+
+Algunos archivos importantes en /proc son 
+[cols="2,5"]
+|===
+|cmdline|Contiene el comando completo usado para la ejecución
+|exe|Es un link al ejecutable usado.
+|cwd |Es un link al directorio desde el cual se ejecuto.
+|environ| Contiene todas las varables de entorno del proceso
+|fd | Es un subdirectorio, contiene un link por cada descriptor de archivo abierto
+|status| Contiene el estado del proceso
+|===
+
