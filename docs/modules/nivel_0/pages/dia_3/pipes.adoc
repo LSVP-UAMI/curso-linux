@@ -1,0 +1,9 @@
+= Pipes y re-direccionamiento
+
+Cada proceso tiene al menos tres canales de comunicación.
+
+* Entrada estándar (STDIN)
+* Salida estándar (STDOUT)
+* Error estándar (STDERR)
+
+
