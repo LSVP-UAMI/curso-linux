@@ -3,7 +3,11 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
+Si puedes escribir comandos en un shell, entonces puedes escribir scripts.
+Un script de shell es una serie de comandos escritos en un archivo. El  shell
+leé los comandos desde el archivo tal como si fueran escritos dentro de la terminal
 
+////
 [#filosofía]
 == Filosofía
 
@@ -22,3 +26,4 @@
 
 [#estructuras_control]
 == Estructuras de control
+////
