@@ -101,9 +101,9 @@ una / (barra oblicua) en las rutas.
 
 Ejemplo:
 
----
+----
 /home/gerardo/archivo1
----
+----
 
 === Ruta absoluta
 
@@ -366,3 +366,5 @@ Se divide en tres secciones:
 * No puede contener el carácter /
 
 * No se debe utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` Espacios
+
+
