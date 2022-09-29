@@ -115,16 +115,19 @@ Una ruta absoluta se basa en la raíz del árbol de Linux. Toda ruta absoluta em
 Las rutas relativas dependen del directorio actual en el que se encuentra el usuario. Para definir una ruta, se usan los simbolos:
 
 |===
-`/`    | Hace referencia al directorio raiz
+| Simbolo       | Descripción
 
-`.`  | Hace referencia al directorio actual
+| `/`    | Hace referencia al directorio raiz
 
-`..` | Hace referencia al directorio padre del directorio actual
+| `.`  | Hace referencia al directorio actual
+
+| `..` | Hace referencia al directorio padre del directorio actual
+            
 |===
 
----
+----
 ../willy/colores/azul
----
+----
 
 
 [#tipos_archivos]
@@ -209,18 +212,19 @@ Visualiza o muestra la ruta donde el usuario se encuentra trabajando. Este coman
 ls (list directory): El comando lista el contenido que hay en la ruta especificada.
 
 |===
+| Comando       | Descripción
 
-ls 			| En el caso que ls se ejecute sin parámetros, despliega el contenido del directorio donde se encuentre. 
+| ls 			| En el caso que ls se ejecute sin parámetros, despliega el contenido del directorio donde se encuentre. 
 
-ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
+| ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
 
-ls -l		| Utiliza formato de lista larga.
+| ls -l		    | Utiliza formato de lista larga.
 
-ls -a		| No ignora entradas que empiecen con .
+| ls -a		    | No ignora entradas que empiecen con .
 
-ls -t		| Ordenar por tiempo de modificación, la más reciente primero.
+| ls -t		    | Ordenar por tiempo de modificación, la más reciente primero.
 
-ls -S		| Ordena por tamaño el archivo
+| ls -S		    | Ordena por tamaño el archivo
 
 |===
 
@@ -232,18 +236,19 @@ es su directorio personal.  Desde ahí uno puede moverse a los diferentes direct
 
 
 |===
+| Comando       | Descripción
 
-cd              | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
+| cd            | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
 
-cd /etc/apt/	| Ir a la ruta especificada, tenga en cuenta que es una ruta absoluta.
+| cd /etc/apt/	| Ir a la ruta especificada, tenga en cuenta que es una ruta absoluta.
 
-cd .			| Directorio actual.
+| cd .			| Directorio actual.
 
-cd ..			| Cambiar a directorio actual. 
+| cd ..			| Cambiar a directorio actual. 
 
-cd /			| Cambia al directorio raíz
+| cd /			| Cambia al directorio raíz
 
-cd -			| Cambia al directorio donde estaba anteriormente
+| cd -			| Cambia al directorio donde estaba anteriormente
 
 |===
 
@@ -252,12 +257,13 @@ cd -			| Cambia al directorio donde estaba anteriormente
 mkdir (make directory) : Este comando permite crear un nuevo directorio en la ruta donde se especifique
 
 |===
+| Comando                   | Descripción
 
-mkdir NAME	| Crea el directorio NAME en la ruta actual
+| mkdir NAME	            | Crea el directorio NAME en la ruta actual
 
-mkdir /home/frodo/NAME2	| Crea el directorio NAME2 en la ruta especificada 
+| mkdir /home/frodo/NAME2	| Crea el directorio NAME2 en la ruta especificada 
 
-mkdir -p Documentos/NAME# | Crea el directorio NAME3
+| mkdir -p Documentos/NAME3 | Crea el directorio NAME3
 
 |===
 
@@ -267,12 +273,13 @@ cp (copy) : Este comando sirve para hacer una copia de archivos y/o directorios.
 
 
 |===
+| Comando           | Descripción
 
-cp file1 file2		| Realiza copia idéntica de file1 y le llama file1
+| cp file1 file2	| Realiza copia idéntica de file1 y le llama file1
 
-cp /etc/passwd . 	| Copia el archivo passwd al directorio actual
+| cp /etc/passwd . 	| Copia el archivo passwd al directorio actual
 
-cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
+| cp file1 /tmp/    | Copia el archivo fil1 al directorio /tmp
 
 |===
 
@@ -282,12 +289,13 @@ mv (move) : Este comando realiza la misma función que cp pero además destruye 
 Se puede decir que mueve el archivo. 
 
 |===
+| Comando           | Descripción
 
-mv file1 file2		| "Mueve" el archivo file1 a file. Se puede interpretar como un cambio de nombre.
+| mv file1 file2		| "Mueve" el archivo file1 a file. Se puede interpretar como un cambio de nombre.
 
-mv  . 	| Copia el archivo passwd al directorio actual
+| mv  . 	| Copia el archivo passwd al directorio actual
 
-cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
+| cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
 
 |===
 
@@ -296,10 +304,11 @@ cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
 Elimina archivos o directorios. 
 
 |===
+| Comando           | Descripción
 
-rm file1    | Borra archivo file1
+| rm file1          | Borra archivo file1
 
-rm -r Directorio | Borra directorio de forma recursiva (el directorio y su contenido)
+| rm -r Directorio  | Borra directorio de forma recursiva (el directorio y su contenido)
 
 |===
 
