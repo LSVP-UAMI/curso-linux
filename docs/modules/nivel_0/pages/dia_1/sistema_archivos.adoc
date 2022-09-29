@@ -154,7 +154,7 @@ El sistema de archivos UNIX contiene varios tipos diferentes de archivos:
 Estructura general de un comando
 
 ----
-[ usuario@maquina directorio_actual ]$ comando [opciones]  [argumentos] | [archivos]
+$ comando [opciones]  [argumentos] | [archivos]
 ----
 
 Entrada, salida y error estándar.
@@ -193,6 +193,7 @@ DESCRIPCIÓN
        sección  del  manual.   La  acción  predeterminada es buscar en todas las secciones disponibles siguiendo un orden predefinido (véase DEFAULTS), y
        mostrar solo la primera página encontrada, incluso si la página existe en varias secciones.
 ...
+
 ----
 
 Puede navegar a través de estas paginas con las flechas del teclado, para salir presione `q`.
@@ -341,24 +342,26 @@ Si el archivo existe, se modifica la hora y fecha de modificación.
 image::dia_1/filesystem/atributos.png["Ejemplo de atributos de un archivo"]
 
 1. Tipo de arhivo 
-
++
 image::dia_1/filesystem/tipo.png["Tipo de archivos"]
 
 2. Permisos del archivo
 
-    * Lectura (r)
+* Lectura (r)
 
-    * Escritura (w)
+* Escritura (w)
 
-    * Ejecución (x)
+* Ejecución (x)
 
++
 Se divide en tres secciones: 
 
-    * Usuario (u)
+- Usuario (u)
 
-    * Grupo (g)
+- Grupo (g)
 
-    * otros (o)
+- Otros (o)
+
 
 3. Numero de enlaces del archivo
 
@@ -375,5 +378,6 @@ Se divide en tres secciones:
 * No puede contener el carácter /
 
 * No se debe utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` Espacios
+
 
 
