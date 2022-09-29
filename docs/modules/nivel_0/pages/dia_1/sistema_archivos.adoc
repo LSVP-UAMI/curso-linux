@@ -112,18 +112,20 @@ Una ruta absoluta se basa en la raíz del árbol de Linux. Toda ruta absoluta em
 
 === Ruta relativa
 
-Las rutas relativas dependen del directorio actual en el que se encuentra el usuario. Para definir una ruta, se usan los simbolos:
+Las rutas relativas dependen del directorio actual en el que se encuentra el usuario. Para definir una ruta, se usan los símbolos:
 
 |===
-| Simbolo       | Descripción
+| Símbolo       | Descripción
 
-| `/`    | Hace referencia al directorio raiz
+| `/`    | Hace referencia al directorio raíz
 
 | `.`  | Hace referencia al directorio actual
 
 | `..` | Hace referencia al directorio padre del directorio actual
             
 |===
+
+Ejemplos:
 
 ----
 ../willy/colores/azul
@@ -165,7 +167,7 @@ image::dia_1/filesystem/estandar.png["Entrada,salida y error estándar"]
 *man*
 
 Como habrá notado GNU/Linux está dotado de una gran colección de comandos, los cuales nos ayudan a
-interactuar con el sistema a diferentes niveles. La tarea de momorizar todo es complicado, si en algun momento 
+interactuar con el sistema a diferentes niveles. La tarea de memorizar todo es complicado, si en algún momento 
 desea recordar o aprender el funcionamiento de algún comando en especial basta con revisar los manuales.
 
 Ejemplo: 
@@ -264,7 +266,7 @@ mkdir (make directory) : Este comando permite crear un nuevo directorio en la ru
 
 | mkdir /home/frodo/NAME2	| Crea el directorio NAME2 en la ruta especificada 
 
-| mkdir -p Documentos/NAME3 | Crea el directorio NAME3
+| mkdir -p Documentos/NAME3 | Crea el directorio NAME3 y directorios padres especificados en el pathname si no existen.
 
 |===
 
@@ -296,7 +298,7 @@ Se puede decir que mueve el archivo.
 
 | mv  . 	| Copia el archivo passwd al directorio actual
 
-| cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
+| mv file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
 
 |===
 
@@ -380,4 +382,95 @@ Se divide en tres secciones:
 * No se debe utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` Espacios
 
 
+== Practica
 
+[source, bash]
+----
+frodo@casa1:~$ pwd
+/home/frodo
+frodo@casa1:~$ mkdir -m 700 Curso_0
+frodo@casa1:~$ ls -ld Curso_0/
+drwx------ 2 frodo frodo 6 Sep 29 23:24 Curso_0/
+frodo@casa1:~$ cd Curso_0/
+frodo@casa1:~/Curso_0$ pwd
+/home/frodo/Curso_0
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 0
+drwxr-xr-x 1 frodo frodo 89 Sep 29 23:24 ..
+drwx------ 2 frodo frodo  6 Sep 29 23:24 .
+frodo@casa1:~/Curso_0$ cp /etc/passwd passwords
+frodo@casa1:~/Curso_0$ cat passwords 
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:100:102:systemd Time Synchronization,,,:/run/systemd:/bin/false
+systemd-network:x:101:103:systemd Network Management,,,:/run/systemd/netif:/bin/false
+systemd-resolve:x:102:104:systemd Resolver,,,:/run/systemd/resolve:/bin/false
+systemd-bus-proxy:x:103:105:systemd Bus Proxy,,,:/run/systemd:/bin/false
+_apt:x:104:65534::/nonexistent:/bin/false
+sshd:x:105:65534::/var/run/sshd:/usr/sbin/nologin
+frodo:x:1000:1000::/home/frodo:/bin/bash
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 4.0K
+drwxr-xr-x 1 frodo frodo   89 Sep 29 23:24 ..
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:25 passwords
+drwx------ 2 frodo frodo   23 Sep 29 23:25 .
+frodo@casa1:~/Curso_0$ cp -r /etc/init.d/ .
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 8.0K
+drwxr-xr-x 1 frodo frodo   89 Sep 29 23:24 ..
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:25 passwords
+drwx------ 3 frodo frodo   37 Sep 29 23:27 .
+drwxr-xr-x 2 frodo frodo 4.0K Sep 29 23:27 init.d
+frodo@casa1:~/Curso_0$ mkdir subdir
+frodo@casa1:~/Curso_0$ cp passwords archivo_passwords
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 12K
+drwxr-xr-x 1 frodo frodo   89 Sep 29 23:24 ..
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:25 passwords
+drwxr-xr-x 2 frodo frodo 4.0K Sep 29 23:27 init.d
+drwxrwxr-x 2 frodo frodo    6 Sep 29 23:27 subdir
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:27 archivo_passwords
+drwx------ 4 frodo frodo   76 Sep 29 23:27 .
+frodo@casa1:~/Curso_0$ mv archivo_passwords subdir/passwords
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 8.0K
+drwxr-xr-x 1 frodo frodo   89 Sep 29 23:24 ..
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:25 passwords
+drwxr-xr-x 2 frodo frodo 4.0K Sep 29 23:27 init.d
+drwxrwxr-x 2 frodo frodo   23 Sep 29 23:28 subdir
+drwx------ 4 frodo frodo   51 Sep 29 23:28 .
+frodo@casa1:~/Curso_0$ ls -ltrha subdir/
+total 4.0K
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:27 passwords
+drwx------ 4 frodo frodo   51 Sep 29 23:28 ..
+drwxrwxr-x 2 frodo frodo   23 Sep 29 23:28 .
+frodo@casa1:~/Curso_0$ rmdir subdir/
+rmdir: failed to remove 'subdir/': Directory not empty
+frodo@casa1:~/Curso_0$ rm subdir/passwords 
+frodo@casa1:~/Curso_0$ rmdir subdir/
+frodo@casa1:~/Curso_0$ rm -rf init.d/
+frodo@casa1:~/Curso_0$ ls -ltrha subdir/
+ls: cannot access 'subdir/': No such file or directory
+frodo@casa1:~/Curso_0$ ls -ltrha
+total 4.0K
+drwxr-xr-x 1 frodo frodo   89 Sep 29 23:24 ..
+-rw-r--r-- 1 frodo frodo 1.3K Sep 29 23:25 passwords
+drwx------ 2 frodo frodo   23 Sep 29 23:29 .
+frodo@casa1:~/Curso_0$
+----
