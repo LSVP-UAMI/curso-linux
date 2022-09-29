@@ -3,22 +3,366 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
+Un sistema de archivos o sistema de ficheros, (file system: fs), en informática, es un elemento que
+controla cómo se almacenan y recuperan los datos.
+
+Los sistemas de archivos se utilizan para estructurar la información que se guarda en las unidad de
+almacenamiento disponibles para un sistema de computo.
+
+El propósito básico de un sistema de archivos es representar y organizar los recursos de almacenamiento
+del sistema.
 
 [#filosofia_unix]
 == Filosofía Unix
 
+"Everything is a file" (Todo es un archivo) describe una de las principales características
+de Unix y sus derivados,
 
-[#pathnames]
-== Pathnames
+=== ¿Qué es un archivo?
+
+Un archivo o fichero informático es una secuencia de bytes que son almacenados en un dispositivo.
+
+=== ¿por qué todo es un archivo en UNIX?
+
+Hay tres ventajas principales en el enfoque de "todo es un archivo":
+
+
+1. Archivos y dispositivos de Entrada/Salida (teclado,pantalla, etc.) son tan similares como es posible.
+
+2. Los nombres de archivo y dispositivo tienen la misma sintaxis y significado, por lo que un programa
+que espera un nombre de archivo como parámetro puede pasar un nombre de dispositivo
+
+3. Los archivos especiales están sujetos al mismo mecanismo de protección que los archivos normales
+
+
+Esto significa que consiste en que casi todos los recursos del sistema, como documentos, directorios,
+unidades de disco, módems, teclados, impresoras, e incluso algunas comunicaciones de red y de procesos
+son simples flujos de bits expuestos a través del sistema de archivos Unix.
+
+Dado que cada "archivo" se expone a través de la misma interfaz, puede usar el mismo conjunto de comandos
+básicos para manipularlos.
 
 
 [#arbol_archivos]
 == Árbol de archivos
 
 
+image::dia_1/filesystem/arbol.png["Jerarquia de archivos"]
+
+
+* / : El carácter de barra inclinada / por sí solo denota la raíz del árbol del sistema de archivos.
+
+* /bin : Significa "binarios" y contiene comandos fundamentales, como ls o cp, que generalmente necesitan todos los usuarios.
+
+* /boot: Contiene todos los archivos necesarios para un proceso de arranque exitoso.
+
+* /dev : Significa "dispositivos". Contiene representaciones de archivos de dispositivos periféricos y pseudodispositivos.
+
+* /etc: contiene archivos de configuración de todo el sistema y bases de datos del sistema.
+
+* /sbin : Comandos para la administración del sistema. 
+
+* /home: contiene los directorios de inicio de los usuarios.
+
+* /lib: contiene bibliotecas del sistema y algunos archivos críticos, como módulos del kernel o controladores de dispositivos.
+
+* /media : punto de montaje predeterminado para dispositivos extraíbles, como memorias USB, reproductores multimedia, etc.
+
+* /mnt: significa "montar". Contiene puntos de montaje del sistema de archivos.
+
+* /proc: sistema de archivos virtual que muestra información sobre los procesos como archivos.
+
+* /root: el directorio de inicio del superusuario "root", es decir, el administrador del sistema.
+
+* /tmp : Un lugar para archivos temporales.
+
+* /usr: contiene ejecutables, bibliotecas y recursos compartidos que no son críticos para el sistema
+
+* /usr/bin: este directorio almacena todos los programas binarios distribuidos con el sistema operativo que no residen en /bin, /sbin o (raramente) /etc.
+
+* /usr/lib: almacena las bibliotecas y los archivos de datos necesarios para los programas almacenados en /usr o en otro lugar.
+
+* /var: una abreviatura de "variable". Un lugar para archivos que pueden cambiar con frecuencia, especialmente en tamaño
+
+
+[#pathnames]
+== Pathnames
+
+Los archivos en un sistema tipo Unix están organizados en una estructura jerárquica de varios niveles
+conocida como árbol de directorios. En la parte superior del sistema de archivos hay un directorio
+llamado "raíz" que se representa con "/". Todos los demás archivos son "descendientes" de la raíz.
+
+
+image::dia_1/filesystem/pathname.png["Ejemplo de Pathname"]
+
+La lista de directorios que se deben recorrer para localizar un archivo en particular más el nombre de
+ese archivo forman un pathname o ruta. Los nombres de directorios y de archivos van separados por
+una / (barra oblicua) en las rutas.
+
+Ejemplo:
+
+---
+/home/gerardo/archivo1
+---
+
+=== Ruta absoluta
+
+Una ruta absoluta se basa en la raíz del árbol de Linux. Toda ruta absoluta empieza, por /.
+
+
+=== Ruta relativa
+
+Las rutas relativas dependen del directorio actual en el que se encuentra el usuario. Para definir una ruta, se usan los simbolos:
+
+|===
+`/`    | Hace referencia al directorio raiz
+
+`.`  | Hace referencia al directorio actual
+
+`..` | Hace referencia al directorio padre del directorio actual
+|===
+
+---
+../willy/colores/azul
+---
+
+
 [#tipos_archivos]
 == Tipos de archivos
+
+El sistema de archivos UNIX contiene varios tipos diferentes de archivos:
+
+1. Archivos ordinarios: un archivo ordinario es un archivo en el sistema que contiene datos, texto o instrucciones de programa.
+
+2. Directorios: archivos que son listas de otros archivos.
+
+3. Archivos especiales: se utilizan para representar un dispositivo físico real, como una impresora
+
+4. Pipes (Tuberías): UNIX le permite vincular comandos mediante una tubería. La tubería actúa como un archivo temporal que solo existe para contener datos de un comando hasta que los lea otro.
+
+5. Sockets: un socket Unix (o socket de comunicación entre procesos) es un archivo especial que permite una comunicación avanzada entre procesos.
+
+6. Enlace simbólico: el enlace simbólico se utiliza para hacer referencia a algún otro archivo del sistema de archivos. 
 
 
 [#comandos_navegacion]
 == Comandos de navegación
+
+Estructura general de un comando
+
+----
+[ usuario@maquina directorio_actual ]$ comando [opciones]  [argumentos] | [archivos]
+----
+
+Entrada, salida y error estándar.
+
+image::dia_1/filesystem/estandar.png["Entrada,salida y error estándar"]
+
+
+*man*
+
+Como habrá notado GNU/Linux está dotado de una gran colección de comandos, los cuales nos ayudan a
+interactuar con el sistema a diferentes niveles. La tarea de momorizar todo es complicado, si en algun momento 
+desea recordar o aprender el funcionamiento de algún comando en especial basta con revisar los manuales.
+
+Ejemplo: 
+
+----
+[frodo@comarca1 ~]$ man man
+
+
+MAN(1)                                                      Utilidades de paginador del manual                                                     MAN(1)
+
+NOMBRE
+       man - interfaz de los manuales de referencia del sistema
+
+SINOPSIS
+       man [opciones de man] [[sección] página ...] ...
+       man -k [opciones de apropos] regexp ...
+       man -K [opciones de man] [sección] term ...
+       man -f [whatis opciones] página ...
+       man -l [opciones de man] archivo ...
+       man -w|-W [opciones de man] página ...
+
+DESCRIPCIÓN
+       man  es el paginador de manuales del sistema.  Cada argumento de página dado a man normalmente es el nombre de un programa, utilidad o función. La
+       página de manual asociada con cada uno de estos argumentos es, pues, encontrada y mostrada.  Si se proporciona una sección, man mirará solo en esa
+       sección  del  manual.   La  acción  predeterminada es buscar en todas las secciones disponibles siguiendo un orden predefinido (véase DEFAULTS), y
+       mostrar solo la primera página encontrada, incluso si la página existe en varias secciones.
+...
+----
+
+Puede navegar a través de estas paginas con las flechas del teclado, para salir presione `q`.
+
+*pwd*
+
+Visualiza o muestra la ruta donde el usuario se encuentra trabajando. Este comando es uno de los pocos que no tiene opciones.
+
+----
+[frodo@comarca1 ~]$ pwd
+
+/home/frodo/
+----
+
+*ls*
+
+ls (list directory): El comando lista el contenido que hay en la ruta especificada.
+
+|===
+
+ls 			| En el caso que ls se ejecute sin parámetros, despliega el contenido del directorio donde se encuentre. 
+
+ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
+
+ls -l		| Utiliza formato de lista larga.
+
+ls -a		| No ignora entradas que empiecen con .
+
+ls -t		| Ordenar por tiempo de modificación, la más reciente primero.
+
+ls -S		| Ordena por tamaño el archivo
+
+|===
+
+
+*cd*
+
+cd (change directory) : Generalmente cuando el usuario inicia una sesión, el directorio donde comienza
+es su directorio personal.  Desde ahí uno puede moverse a los diferentes directorios donde se tenga acceso usando este comando.
+
+
+|===
+
+cd              | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
+
+cd /etc/apt/	| Ir a la ruta especificada, tenga en cuenta que es una ruta absoluta.
+
+cd .			| Directorio actual.
+
+cd ..			| Cambiar a directorio actual. 
+
+cd /			| Cambia al directorio raíz
+
+cd -			| Cambia al directorio donde estaba anteriormente
+
+|===
+
+*mkdir*
+
+mkdir (make directory) : Este comando permite crear un nuevo directorio en la ruta donde se especifique
+
+|===
+
+mkdir NAME	| Crea el directorio NAME en la ruta actual
+
+mkdir /home/frodo/NAME2	| Crea el directorio NAME2 en la ruta especificada 
+
+mkdir -p Documentos/NAME# | Crea el directorio NAME3
+
+|===
+
+*cp*
+
+cp (copy) : Este comando sirve para hacer una copia de archivos y/o directorios. 
+
+
+|===
+
+cp file1 file2		| Realiza copia idéntica de file1 y le llama file1
+
+cp /etc/passwd . 	| Copia el archivo passwd al directorio actual
+
+cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
+
+|===
+
+*mv*
+
+mv (move) : Este comando realiza la misma función que cp pero además destruye el archivo original. 
+Se puede decir que mueve el archivo. 
+
+|===
+
+mv file1 file2		| "Mueve" el archivo file1 a file. Se puede interpretar como un cambio de nombre.
+
+mv  . 	| Copia el archivo passwd al directorio actual
+
+cp file1 /tmp/      | Copia el archivo fil1 al directorio /tmp
+
+|===
+
+*rm*
+
+Elimina archivos o directorios. 
+
+|===
+
+rm file1    | Borra archivo file1
+
+rm -r Directorio | Borra directorio de forma recursiva (el directorio y su contenido)
+
+|===
+
+
+*cat*
+
+Se utiliza para listar el contenido de un archivo en la salida estándar
+
+Ejemplo
+
+----
+cat archivo.txt
+----
+
+*touch*
+
+El comando touch te permite crear un nuevo archivo en blanco.
+
+Ejemplo
+
+----
+touch new_file.txt
+----
+
+Si el archivo existe, se modifica la hora y fecha de modificación.
+
+== Atributos de un archivo
+
+
+image::dia_1/filesystem/atributos.png["Ejemplo de atributos de un archivo"]
+
+1. Tipo de arhivo 
+
+image::dia_1/filesystem/tipo.png["Tipo de archivos"]
+
+2. Permisos del archivo
+
+    * Lectura (r)
+
+    * Escritura (w)
+
+    * Ejecución (x)
+
+Se divide en tres secciones: 
+
+    * Usuario (u)
+
+    * Grupo (g)
+
+    * otros (o)
+
+3. Numero de enlaces del archivo
+
+4. Nombre del propietario del archivo
+
+5. Grupo al que pertenece el archivo
+
+6. Tamaño del archivo en bytes
+
+7. Fecha de la ultima modificación del archivo
+
+8. Nombre del archivo
+
+* No puede contener el carácter /
+
+* No se debe utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` Espacios
