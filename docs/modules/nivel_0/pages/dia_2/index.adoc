@@ -8,11 +8,14 @@
 == Temario
 
 . Usuarios
-** Filosofía multiusuario
-** Usuarios
-** Grupos
-** Crear usuarios
-** Archivos de usuarios
+* Grupos
+* Archivos de usuarios
+** passwd
+** group
+** shadow
+* Comandos
+** useradd
+** passwd
 . Permisos
 ** Bits
 ** Comandos

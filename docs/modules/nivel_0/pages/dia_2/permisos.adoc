@@ -3,22 +3,231 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
+Cada archivo tiene nueve permisos que determinan qué operaciones se pueden realizar sobre el y por quién.
+
+----
+$ ls -l tarea.txt 
+-rw-r--r-- 1 lain experiments 174 Sep 13 06:54 wired.txt
+----
+
+Estos permisos están agrupados en tres conjuntos:
+
+* Permisos para el propietario del archivo
+* Permisos para grupo de propietarios del archivo
+* Permisos para el resto de usuarios
+
+.Permisos de archivo
+image::dia_2/permisos/permisos.png["Permisos de archivo"]
 
 [#bits]
 == Bits
+
+Cada conjunto de permisos tiene tres bits: 
+
+* Un bit de lectura
+* Un bit de escritura
+* Un bit de ejecución.
+
+.Efecto de los permisos en archivos y directorios
+[cols="^.^1,^.^1,^.^1,.^1,.^1", options="autowidth, header"]
+|===
+|Permiso
+|Octal
+|Binario
+|Archivo
+|Directorio
+
+|`r`
+|4
+|100
+|Leer el contenido del archivo.
+|Listar el contenido del directorio.
+
+|`w`
+|2
+|010
+|Modificar/eliminar el archivo. 
+|Crear/eliminar archivos.
+
+|`x`
+|1
+|001
+|Ejecutar el archivo.
+|Acceder al directorio.
+|===
 
 
 [#comandos]
 == Comandos
 
-
 [#ls]
 === ls
+
+Lista el contenido de un directorio.
+
+----
+ls [OPCIONES] [ARCHIVO]
+----
+
+[cols=".^1,.^1", options="autowidth, header"]
+|===
+|Opcion
+|Descripción
+
+|`-a` +
+`--all`
+|Lista todos los archivos, incluyendo los ocultos.
+
+|`-d` +
+`--directory`
+|Muestra información del directorio, no de su contenido.
+
+|`-h` +
+`--human-readable`
+|Muestra el tamaño de los archivos en formato legible para los humanos.
+
+|`-l`
+|Utiliza el formato de listado largo.
+
+|`-S`
+|Lista los archivos por tamaño, en orden descendente.
+
+|`-t`
+|Lista los archivos por fecha de modificación, en orden descendente.
+|===
+
+[#actividades_ls]
+==== *Actividades*
+
+* Listar el contenido del directorio _/etc_
+* Mostrar los permisos del archivo _/etc/passwd_
+* Mostrar los permisos del directorio _/etc_
 
 
 [#chmod]
 === chmod
 
+Modifica los permisos de un archivo. 
+
+----
+chmod [OPCIONES]... MODO ARCHIVO
+----
+
+[WARNING, caption=IMPORTANTE]
+====
+Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un archivo.
+====
+
+[cols=".^1,.^1", options="autowidth, header"]
+|===
+|Opcion
+|Descripción
+
+|`-R` +
+`--recursive`
+|Cambia los permisos de archivos y directorios recursivamente.
+|===
+
+.Codificación de permisos
+[cols="^.^1,^.^1,^.^1", options="autowidth, header"]
+|===
+|Permiso
+|Octal
+|Binario
+
+|`---`
+|0
+|000
+
+|`--x`
+|1
+|001
+
+|`-w-`
+|2
+|010
+
+|`-wx`
+|3
+|011
+
+|`r--`
+|4
+|100
+
+|`r-x`
+|5
+|101
+
+|`rw-`
+|6
+|110
+
+|`rwx`
+|7
+|111
+|===
+
+
+[#actividades_chmod]
+==== *Actividades*
+
+* Crear el siguiente arbol de directorios: 
++
+----
+animales/
+├── escarabajo
+│   ├── hercules
+│   └── verde
+├── gato
+│   ├── bengali
+│   └── siames
+├── tortuga
+│   ├── caguama
+│   └── leopardo
+└── zorro
+    ├── artico
+    └── rojo
+----
+* Cambiar los permisos del archivo _animales/gato/siames_ a:
++
+---- 
+-r--------
+----
+* Cambiar los permisos del directorio _tortuga_ a:
++
+---- 
+-r--------
+----
+* Cambiar los permisos de todos los archivos en el directorio _zorro_ a:
++
+---- 
+----------
+----
+
 
 [#chown]
 === chown
+
+Cambia el usuario y grupo propietarios de un archivo.
+
+----
+chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
+----
+
+[cols=".^1,.^1", options="autowidth, header"]
+|===
+|Opcion
+|Descripción
+
+|`-R` +
+`--recursive`
+|El comando se ejecuta recursivamente.
+|===
+
+
+[#actividades_chown]
+==== *Actividades*
+
+* Cambia el grupo del directorio _animales_ de `alumno` a `root`.
+* Cambia el propietario y grupo del directorio _animales/escarabajo_ de `piloto:alumno` a `root:root`.
