@@ -9,6 +9,15 @@
 
 . Filosofía
 . Pipes
-. Variables
 . Comandos de filtrado
-. Estructuras de control
+. Scripts
+* Variables
+** Asignación
+** Valor
+* Variables especiales
+** Códigos de salida
+* Condicionales
+** Operadores lógicos
+* Ciclos
+** For
+** While
