@@ -543,16 +543,19 @@ ya los ha expandido antes de ejecutar el comando. Intente familiarizarse con los
 $ touch gcutError_recon-all.log s{10,1,6,8}_recon-all.log  s3-recon-all.log
 
 $ ls
-gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log  s3-recon-all.log  s6_recon-all.log  s8_recon-all.log
+gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log
+s3-recon-all.log  s6_recon-all.log  s8_recon-all.log
 
 $ ls *recon-all.log
-gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log  s6_recon-all.log      s8_recon-all.log
+gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log
+s6_recon-all.log      s8_recon-all.log
 
 $ ls gcut*
 gcutError_recon-all.log
 
 $ ls s[0-9]*
-s10_recon-all.log  s1_recon-all.log  s3-recon-all.log  s6_recon-all.log  s8_recon-all.log
+s10_recon-all.log  s1_recon-all.log  s3-recon-all.log
+s6_recon-all.log  s8_recon-all.log
 
 $ ls s[0-9]_*
 s1_recon-all.log  s6_recon-all.log  s8_recon-all.log
@@ -569,8 +572,10 @@ s1_recon-all.log  s6_recon-all.log  s8_recon-all.log
 $ touch subject_{1..5}.dat
 
 $ ls
-gcutError_recon-all.log  s1_recon-all.log  s6_recon-all.log  subject_1.dat  subject_3.dat  subject_5.dat
-s10_recon-all.log        s3-recon-all.log  s8_recon-all.log  subject_2.dat  subject_4.dat
+gcutError_recon-all.log  s1_recon-all.log  s6_recon-all.log
+subject_1.dat  subject_3.dat  subject_5.dat
+s10_recon-all.log        s3-recon-all.log  s8_recon-all.log
+subject_2.dat  subject_4.dat
 ----
 
 ¿Entiendes todos los patrones y cómo devolvieron lo que hicieron?
