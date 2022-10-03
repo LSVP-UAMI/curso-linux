@@ -514,7 +514,7 @@ Los comodines (también conocidos como metacaracteres) son símbolos o caractere
 a otros caracteres. Puede usarlos con cualquier comando, como el comando `ls` o el comando `rm`, para enumerar
 o eliminar archivos que coincidan con un criterio dado
 
-=== Descripciones de metacaracteres
+=== Descripción de metacaracteres
 
 |===
 | Metacaracter | Descripción | Ejemplo
@@ -540,7 +540,10 @@ los comodines. Esto significa que los comandos generalmente no ven estos caracte
 ya los ha expandido antes de ejecutar el comando. Intente familiarizarse con los comodines con los siguientes ejemplos:
 
 ----
-$ touch gcutError_recon-all.log s10_recon-all.log s1_recon-all.log s6_recon-all.log s8_recon-all.log s3-recon-all.log
+$ touch gcutError_recon-all.log s{10,1,6,8}_recon-all.log  s3-recon-all.log
+
+$ ls
+gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log  s3-recon-all.log  s6_recon-all.log  s8_recon-all.log
 
 $ ls *recon-all.log
 gcutError_recon-all.log  s10_recon-all.log  s1_recon-all.log  s6_recon-all.log      s8_recon-all.log
