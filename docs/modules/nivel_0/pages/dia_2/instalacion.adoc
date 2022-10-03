@@ -3,6 +3,23 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
+[#compilación]
+== Compilación con GNU Tools
+En linux la mayor parte de los programas son de software libre,
+esto significa que podemos obtener el código fuente lo que nos 
+permite modificar los programas y compilarlos para nuestro hardware.
+
+=== GCC (Gnu Compilers Collection)
+*GCC* fue desarrollado como un compilador de lenguaje C para el proyecto 
+GNU, con el tiempo paso a ser una colección de compiladores ya que empezó 
+a dar soporte a mas lenguajes, actualmente en la versión 12.2 *gcc* 
+puede compilar C, C++, Objective-C, Fortran, Ada, Go y D.
+
+=== Make
+Cuando un proyecto se vuelve grande o complejo se hace cada ves mas 
+difícil compilarlo a mano, para estos casos existe *make*. 
+
+
 
 [#manejador_paquetes]
 == Manejador de paquetes
@@ -10,11 +27,6 @@
 
 [#diferencias_distros]
 == Diferencias entre distros
-
-
-[#compilación]
-== Compilación con GNU Tools
-
 
 [#repositorios]
 == Repositorios
