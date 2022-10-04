@@ -3,18 +3,102 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
+[#Prologo]
+== Prologo
+Para entender qué es Linux.
+
+=== Agentes o personajes claves en su desarrollo.
+
+* UNIX
+** Ken Thompson
+** Dennis Ritchie
+** Laboratorios Bell
+** Berkley
+* GNU
+** Richard Stallman
+** GPL
+* LINUX
+** Linus torbalds
 
 [#unix]
 == Unix
-
+* 1964: Multics
+** Un esfuerzo de General Electric y link:https://en.wikipedia.org/wiki/Bell_Labs[laboratorios Bell] link:https://www.youtube.com/watch?v=OJsKgiGGzzs[(La fabrica de ideas)]
+** Ideas que se utilizaron para UNIX:
+*** Sistema de archivos en árbol
+*** Archivos como flujo de bytes
+*** Shell
+* 1969: Primera implementación de UNIX
+  ** Por link:https://en.wikipedia.org/wiki/Ken_Thompson[Ken Thompson] y link:https://en.wikipedia.org/wiki/Dennis_Ritchie[Dennis Ritchie]
+     *** Que trabajaba en el  videojuego link:https://web.archive.org/web/20151210211809/http://sites.fas.harvard.edu/~lib215/reference/history/spacetravel.html[space travel]
+  ** Para link:https://www.youtube.com/watch?v=pvaPaWyiuLA&t=1s[PDP-7]
+* 1970: Unix fue implementado PDP-11
+  ** En ensamblador
+* 1971: primera edición de UNIX
+  ** Ya tenía
+    *** compilador de FORTRAN
+    *** ar, cat, chmod, chown,cp,dc,ed,find,ln,ls,mail,mkdir,mv,rm,sh,su,who
+* 1975: sexta edición de UNIX
+  ** La primera edición que se uso ampliamente fuera de AT&T
+  ** licenciada para universidades a cambio de una cuota nominal por distribución.
+  ** contenía:
+   *** Documentación
+   *** Código fuente del Kernel
+* 1977 UNIX corría ya en
+  ** ~500 sites
+  ** ~125 universidades en Estados Unidos y otros países
+* 1979: séptima edición de UNIX
+  ** awk,make,sed,tar,uucp,bourne shell, fortran 77
+* 1979: 3BSD(Berkeley software distribution)
+  ** c shell, vi, sendmail, pascal
+* 1982: ruptura del sistema Bell link:https://www.youtube.com/watch?v=XvDZLjaCJuw&t=187s[ATT]
+* 1983: system V
+* 1989: system V release 4 (SVR4)
+  ** incorpora características de BSD
+  ** Se licenció para vendedores privados
+    *** SunOS,Solaris,Ultrix,IBM's AIX,HP-UX,A/UX de Apple y Microsoft...
 
 [#gnu]
 == GNU
+link:https://e00-elmundo.uecdn.es/elmundo/imagenes/2012/05/11/navegante/1336715775_1.jpg[Richard Stallman]
 
+* 1984: link:https://www.youtube.com/watch?v=ihmw5vAWXno[Richard stallman] empieza a trabajar en un sistema UNIX libre
+  ** Inicia el proyecto link:https://www.gnu.org/home.es.html[GNU]
+* 1985: Stallman funda la link:https://www.fsf.org/[FSF]
+  ** desarrollo de la link:https://es.wikipedia.org/wiki/GNU_General_Public_License[licencia GPL]
+* 1990: GNU había producido un sistema casi completo 
+Entre los programas más conocidos producidos por GNU están
+
+* emacs
+* gcc
+* bash
+* glibc
 
 [#linux]
 == Linux
+link:https://en.wikipedia.org/wiki/Linux_kernel[linux]
+link:https://es.wikipedia.org/wiki/Linus_Torvalds[linus torvalds]
 
+- 1991: octubre 5 Linus torvalds solicita ayuda de otros programadores anunciando su kernel 0.02 en comp.os.minix
 
-[#distros]
-== Distros
+mediante un famoso link:https://www.cs.cmu.edu/~awb/linux.history.html[correo]
+
+¿Añoras los buenos días de minix 1.1, cuando los hombres eran hombres y escribían sus propios drivers?
+¿no tienes ningún proyecto y te mueres por hincarle el diente a un sistema operativo que puedas intentar
+modificar para tus necesidades? ¿te empieza a parecer frustrante que todo funcione bien en minix?
+¿no más noches en vela para hacer que un ingenioso programa funcione? Entonces este post podría ser para ti...
+
+- la versión link:https://mirrors.edge.kernel.org/pub/linux/kernel/Historic/old-versions/RELNOTES-0.12[0.12] empieza a utilizar la licencia gpl
+
+Actualmente
+- link:https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/about/[tiene un desarrollo muy activo]
+- link:https://www.top500.org/statistics/details/osfam/1/[se usa ampliamente]
+
+[#GNU/Linux]
+== GNU/Linux
+
+link:https://distrowatch.com/[Distribuciones]
+
+- 1992: primera distribución de linux
+- 1993: surge slackware, Suse, Redhat, Debian link:https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg[Distro_map]
+- 2004: aparece ubuntu
