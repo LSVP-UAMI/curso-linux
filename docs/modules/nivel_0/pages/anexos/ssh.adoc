@@ -1,6 +1,31 @@
 = SSH
-:table-caption: Tabla 
-:figure-caption: Figura 
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+[#terminal_web]
+== Terminal web
+
+. Desde su navegador ingrese a la URL:
++
+----
+https://148.206.50.80:3039
+----
+
+. Pulse en el botón _Advanced..._:
++
+image::anexos/shellinabox/advanced.png["Advanced..."]
+
+. Pulse en el botón _Accept the Risk and Continue_:
++
+image::anexos/shellinabox/accept_the_risk.png["Accept the Risk and Continue"]
+
+. Se mostrará una nueva pantalla en donde se le solicitará su nombre de usuario y su contraseña:
++
+image::anexos/shellinabox/login.png["Login"]
+
+. Si los datos proporcionados son correctos, se mostrará la pantalla de bienvenida.
+
 
 [#ssh_linux_os]
 == SSH GNU/Linux
