@@ -228,7 +228,7 @@ pacman -Su
 Buscar un archivo dentro de los paquetes de los repositorios.
 [source,shell]
 yum provides nombre_del_archivo
-apt-file nombre_del_archivo
+apt-file search nombre_del_archivo
 pacman -F nombre_del_archivo
 
 ==== Práctica
