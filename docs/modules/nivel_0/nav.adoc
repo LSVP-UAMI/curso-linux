@@ -1,14 +1,14 @@
 * Nivel 0
-** xref:dia_1/index.adoc[Día 1]
+** Día 1
 *** xref:dia_1/historia.adoc[Historia]
 *** xref:dia_1/bootstrapping.adoc[Bootstrapping]
 *** xref:dia_1/sistema_archivos.adoc[Sistema de archivos]
-** xref:dia_2/index.adoc[Día 2]
+** Día 2
 *** xref:dia_2/usuarios.adoc[Usuarios]
 *** xref:dia_2/permisos.adoc[Permisos]
 *** xref:dia_2/procesos.adoc[Procesos]
 *** xref:dia_2/instalacion.adoc[Instalación]
-** xref:dia_3/index.adoc[Día 3]
+** Día 3
 *** xref:dia_3/bash.adoc[Bash]
 *** xref:dia_3/scripts.adoc[Scripts]
 ** Anexos
