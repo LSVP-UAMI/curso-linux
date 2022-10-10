@@ -111,7 +111,7 @@ autoreconf -i
 * Se vuelve complicado administrar todos los programas que instalamos 
 de esta forma.
 * Se necesita experiencia para optimizar los programas.
-* Se necesita tener mucho tiempo libre para 
+* Se necesita tener mucho tiempo libre para hacer pruebas.
 
 [#manejador_paquetes]
 == Manejador de paquetes
