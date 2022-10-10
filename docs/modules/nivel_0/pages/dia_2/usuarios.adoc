@@ -3,9 +3,15 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
-Un usuario es una entidad que puede ejecutar procesos y poseer archivos. Un usuario suele asociarse con un nombre de usuario; por ejemplo, un sistema podría tener un usuario llamado _lain_.
+Un usuario es una entidad que puede ejecutar procesos y poseer archivos. Un usuario suele asociarse con un nombre de usuario; por ejemplo, un sistema podría tener un usuario llamado _celeste_.
 
 Sin embargo, el kernel no administra los nombres de usuario; en cambio, identifica a los usuarios mediante identificadores numéricos simples llamados ID de usuario.
+
+Existen tres tipos de usuarios:
+
+. Usuario `root`. El administrador del sistema
+. Usuarios especiales. Cuentas del sistema
+. Usuarios regulares
 
 
 [#grupos]
@@ -17,8 +23,8 @@ Los grupos son conjuntos de usuarios. El objetivo principal de los grupos es per
 [#archivos_usuario]
 == Archivos de usuarios
 
-[#passwd]
-=== passwd
+[#etc_passwd]
+=== /etc/passwd
 
 El archivo _/etc/passwd_ asigna nombres de usuario a IDs de usuario.
 
@@ -46,14 +52,9 @@ Cada línea representa un usuario y tiene siete campos separados por dos puntos.
 .Una entrada del archivo _passwd_
 image::dia_2/usuarios/passwd.png["Una entrada del archivo _passwd_"]
 
-[#actividades_passwd]
-==== *Actividades*
 
-* Consultar el contenido del archivo _/etc/passwd_.
-
-
-[#group]
-=== group
+[#etc_group]
+=== /etc/group
 
 El archivo _/etc/group_ contiene los nombres de los grupos en el sistema y una lista de los miembros de cada grupo.
 
@@ -84,12 +85,6 @@ image::dia_2/usuarios/groups.png["Una entrada del archivo _group_"]
 Para ver los grupos a los que perteneces, utiliza el comando `groups`.
 ====
 
-[#actividades_group]
-==== *Actividades*
-
-* Consultar el contenido del archivo _/etc/group_.
-* Consultar a que grupos pertenece su usuario.
-
 
 [#shadow]
 === shadow
@@ -119,12 +114,6 @@ Cada línea representa un usuario y tiene nueve campos separados por dos puntos:
 . Un campo reservado para uso futuro que actualmente siempre está vacío.
 
 
-[#actividades_shadow]
-==== *Actividades*
-
-* Consultar el contenido del archivo _/etc/shadow_.
-
-
 [#comandos]
 == Comandos
 
@@ -144,21 +133,70 @@ useradd [OPCIONES]... USUARIO
 
 |`-d` +
 `--home-dir`
-|Especifica el directorio de inicio del usuario.
+|Establece el directorio de inicio del usuario.
 
 |`-s` +
 `--shell`
-|Especifica el shell del usuario.
+|Establece el shell del usuario.
 
 |`-u` +
 `--uid`
-|Especifica el ID del usuario (UID).
+|Establece el ID del usuario (UID).
 |===
 
-[#actividades_useradd]
-==== *Actividades*
 
-* Crear un nuevo usuario.
+[#userdel]
+=== userdel
+
+Elimina un usuario.
+
+----
+useradd [OPCIONES]... USUARIO
+----
+
+[cols=".^1,.^1", options="autowidth, header"]
+|===
+|Opcion
+|Descripción
+
+|`-r` +
+`--remove`
+|Elimina el directorio personal del usuario.
+|===
+
+
+[#groupadd]
+=== groupadd
+
+Crea un nuevo grupo.
+
+----
+groupadd [OPCIONES]... GRUPO
+----
+
+[cols=".^1,.^1", options="autowidth, header"]
+|===
+|Opcion
+|Descripción
+
+|`-g` +
+`--gid`
+|Establece el ID del grupo (GID).
+
+|`-U` +
+`--users`
+|Lista de nombres de usuario para agregar como miembros del grupo.
+|===
+
+
+[#groupdel]
+=== groupdel
+
+Elimina un grupo.
+
+----
+groupdel [OPCIONES]... GRUPO
+----
 
 
 [#passwd]
@@ -181,8 +219,23 @@ passwd [OPCIONES]... USUARIO
 |===
 
 
-[#actividades_passwd]
-==== *Actividades*
+[#sudo]
+=== sudo
 
-* Asignar una contraseña al usuario creado.
-* Modificar la contraseña de su usuario.
+Permite ejecutar un comando como superusuario.
+
+----
+sudo [OPCIONES]... COMANDO
+----
+
+
+[#actividades]
+== Actividades
+
+. Crea un nuevo usuario.
+* Asigna una contraseña al usuario creado.
+* Revisa los archivos _/etc/passwd_, _/etc/group_ y _/etc/shadow_.
+. Modifica la contraseña de tu usuario.
+. Crea un nuevo grupo y agrega tu usuario al nuevo grupo.
+* Verifica a que grupos pertenece tu usuario.
+. Elimina el usuario creado.
