@@ -1,10 +1,15 @@
 = Control de procesos
 
+:table-caption: Tabla
+:figure-caption: Figura
+
+[#procesos]
 == Proceso
 Un proceso representa un programa en ejecución. Es una abstracción con  la 
 cual podemos administrar y monitorizar la memoria, tiempo de ejecución y 
 recursos de entrada y salida.
 
+[#elementos]
 == Elementos de un proceso
 ////
 Un proceso consiste en  un espacio de memoria y un conjunto de estructuras 
@@ -36,6 +41,7 @@ le llama hijo y al proceso que lo lanzo padre. El PPID es el PID del proceso pad
 EL UID de un proceso es el ID del usuario que es propietario del proceso, 
 solo el propietario y el superusuario pueden manipular el proceso.
 
+[#ps]
 == Comando ps
 El comando ps es la herramienta principal para monitorizar procesos. Con ps podemos 
 listar los procesos en ejecución así como su información.
@@ -105,6 +111,7 @@ problemática podemos usar el comando htop, el cual nos muestra una lista de los
 procesos con la información que muestra ps, pero actualiza la información cada 
 pocos segundos. Además muestra el uso total de recursos de todos los procesos.
 
+[#proc]
 == El directorio /proc
 En el directorio /proc el kernel expone parte de la información que tiene 
 sobre los procesos. Dentro se encuentra un directorio para cada PID y dentro 
