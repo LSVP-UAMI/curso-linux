@@ -144,6 +144,15 @@ useradd [OPCIONES]... USUARIO
 |Establece el ID del usuario (UID).
 |===
 
+[#ejemplo_useradd]
+==== *Ejemplo*
+
+Para crear el usuario `anquilosaurio`, ejecute el comando:
+
+----
+sudo useradd anquilosaurio
+----
+
 
 [#userdel]
 === userdel
@@ -151,7 +160,7 @@ useradd [OPCIONES]... USUARIO
 Elimina un usuario.
 
 ----
-useradd [OPCIONES]... USUARIO
+userdel [OPCIONES]... USUARIO
 ----
 
 [cols=".^1,.^1", options="autowidth, header"]
@@ -163,6 +172,15 @@ useradd [OPCIONES]... USUARIO
 `--remove`
 |Elimina el directorio personal del usuario.
 |===
+
+[#ejemplo_userdel]
+==== *Ejemplo*
+
+Para eliminar el usuario `anquilosaurio`, ejecute el comando:
+
+----
+sudo userdel anquilosaurio
+----
 
 
 [#groupadd]
@@ -182,11 +200,25 @@ groupadd [OPCIONES]... GRUPO
 |`-g` +
 `--gid`
 |Establece el ID del grupo (GID).
-
-|`-U` +
-`--users`
-|Lista de nombres de usuario para agregar como miembros del grupo.
 |===
+
+[#ejemplo_1_groupadd]
+==== *Ejemplo 1*
+
+Para crear el grupo `dinosaurio`, ejecute el comando:
+
+----
+sudo groupadd dinosaurio
+----
+
+[#ejemplo_2_groupadd]
+==== *Ejemplo 2*
+
+Para agregar al usuario `frodo` al grupo `dinosaurio`, ejecute el comando:
+
+----
+sudo usermod -aG dinosaurio frodo
+----
 
 
 [#groupdel]
@@ -196,6 +228,15 @@ Elimina un grupo.
 
 ----
 groupdel [OPCIONES]... GRUPO
+----
+
+[#ejemplo_groupdel]
+==== *Ejemplo*
+
+Para eliminar el grupo `dinosaurio`, ejecute el comando:
+
+----
+sudo groupdel dinosaurio
 ----
 
 
@@ -218,6 +259,16 @@ passwd [OPCIONES]... USUARIO
 |Elimina la contraseña de la cuenta de un usuario.
 |===
 
+Como pauta general, las contraseñas deben constar de 6 a 8 caracteres, incluyendo uno o más caracteres de los siguientes conjuntos:
+
+* Alfabeto en minúsculas
+* Dígitos del 0 al 9
+* Signos de puntuación
+
+[WARNING, caption=IMPORTANTE]
+====
+`passwd` rechazará cualquier contraseña que no sea lo suficientemente compleja.
+====
 
 [#sudo]
 === sudo
@@ -232,10 +283,61 @@ sudo [OPCIONES]... COMANDO
 [#actividades]
 == Actividades
 
-. Crea un nuevo usuario.
-* Asigna una contraseña al usuario creado.
+. Crea un nuevo usuario llamado `pistache`.
+* Asigna una contraseña al usuario `pistache`.
 * Revisa los archivos _/etc/passwd_, _/etc/group_ y _/etc/shadow_.
+. Crea un nuevo grupo llamado `helado`.
+* Agrega al usuario `pistache` al grupo `helado`.
+* Verifica a que grupos pertenece el usuario `pistache`.
+. Elimina al usuario `pistache`.
 . Modifica la contraseña de tu usuario.
-. Crea un nuevo grupo y agrega tu usuario al nuevo grupo.
-* Verifica a que grupos pertenece tu usuario.
-. Elimina el usuario creado.
+
+
+[#respuestas]
+=== Respuestas
+
+. Crea un nuevo usuario llamado `pistache`.
++
+----
+sudo useradd pistache
+----
+* Asigna una contraseña al usuario `pistache`.
++
+----
+sudo passwd pistache
+----
+* Revisa los archivos _/etc/passwd_, _/etc/group_ y _/etc/shadow_.
++
+----
+cat /etc/passwd
+cat /etc/group
+sudo cat /etc/shadow
+----
+
+. Crea un nuevo grupo llamado `helado`.
++
+----
+sudo groupadd helado
+----
+* Agrega al usuario `pistache` al grupo `helado`.
++
+----
+sudo usermod -aG helado pistache
+----
+* Verifica a que grupos pertenece el usuario `pistache`.
++
+----
+groups pistache
+----
+
+. Elimina al usuario `pistache`.
++
+----
+sudo userdel pistache
+----
+
+. Modifica la contraseña de tu usuario.
++
+----
+passwd
+----

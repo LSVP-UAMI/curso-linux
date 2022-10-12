@@ -122,7 +122,7 @@ Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un a
 |===
 
 .Codificación de permisos
-[cols="^.^1,^.^1,^.^1", options="autowidth, header"]
+[cols="^.^1,^.^1", options="autowidth, header"]
 |===
 |Permiso
 |Octal
@@ -130,36 +130,58 @@ Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un a
 
 |`---`
 |0
-|000
 
 |`--x`
 |1
-|001
 
 |`-w-`
 |2
-|010
 
 |`-wx`
 |3
-|011
 
 |`r--`
 |4
-|100
 
 |`r-x`
 |5
-|101
 
 |`rw-`
 |6
-|110
 
 |`rwx`
 |7
-|111
 |===
+
+[#ejemplo_chmod]
+==== Ejemplo
+
+Para asignarle los siguientes permisos:
+
+----
+rw-r--r--
+----
+
+al archivo `pozole`, siga los siguientes pasos:
+
+. Cree el archivo `pozole`:
++
+----
+touch pozole
+----
+
+. Ejecute el comando:
++
+----
+chmod 644 pozole
+----
+
+. Verifique los permisos del archivo `pozole`:
++
+----
+ls -l pozole
+-rw-r--r-- 1 frodo frodo 0 Oct 12 12:00 pozole
+----
 
 
 [#chown]
@@ -181,6 +203,30 @@ chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
 |El comando se ejecuta recursivamente.
 |===
 
+[#ejemplo_chown]
+==== Ejemplo
+
+Para modificar el usuario y grupo del archivo `mole` de `frodo:frodo` a `root:root`, siga los siguientes pasos:
+
+. Cree el archivo `mole`:
++
+----
+touch mole
+----
+
+. Ejecute el comando:
++
+----
+sudo chown root:root mole
+----
+
+. Verifique el dueño y grupo del archivo `mole`:
++
+----
+ls -l mole
+-rw-rw-r-- 1 root root 0 Oct 12 12:00 mole
+----
+
 
 [#chgrp]
 === chgrp
@@ -201,6 +247,35 @@ chgrp [OPCIONES] GRUPO ARCHIVO
 |El comando se ejecuta recursivamente.
 |===
 
+[#ejemplo_chgrp]
+==== Ejemplo
+
+Para modificar el grupo del archivo `huarache` de `frodo` a `comida`, siga los siguientes pasos:
+
+. Cree el archivo `huarache`:
++
+----
+touch huarache
+----
+
+. Cree el grupo `comida`:
++
+----
+sudo groupadd comida
+----
+
+. Ejecute el comando:
++
+----
+sudo chgrp comida huarache
+----
+
+. Verifique el grupo del archivo `huarache`:
++
+----
+ls -l huarache
+-rw-rw-r-- 1 frodo comida 0 Oct 12 18:52 huarache
+----
 
 
 [#actividades]
@@ -227,7 +302,7 @@ animales/
 . Cambia los permisos del directorio _animales/escarabajo_ a:
 +
 ---- 
-d--x------
+--x------
 ----
 +
 Utiliza el comando _ls_ en este directorio.
@@ -235,7 +310,7 @@ Utiliza el comando _ls_ en este directorio.
 . Cambia los permisos del archivo _animales/gato/siames_ a:
 +
 ---- 
---w-------
+-w-------
 ----
 +
 Utiliza el comando _cat_ en este archivo.
@@ -243,10 +318,108 @@ Utiliza el comando _cat_ en este archivo.
 . Cambia los permisos de todos los archivos en el directorio _animales/tortuga_ a:
 +
 ---- 
-----------
+rwx------
 ----
++
+Utiliza el comando _ls_ en este directorio.
 
 . Crea un nuevo grupo llamado `animalia`.
 * Cambia el grupo del directorio _animales/zorro_ de `frodo` a `animalia`.
 
-. Cambia el propietario y grupo del directorio _animales_ de `frodo:frodo` a `animalia:animalia`.
+. Cambia el propietario y grupo del directorio _animales_ de `frodo:frodo` a `root:root`.
+
+
+[#respuestas]
+=== Respuestas
+
+. Crea el siguiente árbol de directorios: 
++
+----
+animales/
+├── escarabajo
+│   ├── hercules
+│   └── verde
+├── gato
+│   ├── bengali
+│   └── siames
+├── tortuga
+│   ├── caguama
+│   └── leopardo
+└── zorro
+    ├── artico
+    └── rojo
+----
++
+----
+cp -r /tmp/material/animales/ .
+----
+
+. Cambia los permisos del directorio _animales/escarabajo_ a:
++
+---- 
+--x------
+----
++
+----
+chmod 100 animales/escarabajo
+----
++
+Utiliza el comando _ls_ en este directorio.
++
+----
+ls animales/escarabajo
+ls: cannot open directory 'animales/escarabajo': Permission denied
+----
+
+. Cambia los permisos del archivo _animales/gato/siames_ a:
++
+---- 
+-w-------
+----
++
+----
+chmod 200 animales/gato/siames
+----
++
+Utiliza el comando _cat_ en este archivo.
++
+----
+cat animales/gato/siames
+cat: animales/gato/siames: Permission denied
+----
+
+. Cambia los permisos de todos los archivos en el directorio _animales/tortuga_ a:
++
+---- 
+rwx------
+----
++
+----
+chmod -R 700 animales/tortuga
+----
++
+Utiliza el comando _ls_ en este directorio.
++
+----
+ls -l animales/tortuga/
+total 0
+-rwx------ 1 frodo frodo 0 Oct 12 12:0 caguama
+-rwx------ 1 frodo frodo 0 Oct 12 12:0 leopardo
+----
+
+. Crea un nuevo grupo llamado `animalia`.
++
+----
+sudo groupadd animalia
+----
+* Cambia el grupo del directorio _animales/zorro_ de `frodo` a `animalia`.
++
+----
+sudo chgrp animalia animales/zorro
+----
+
+. Cambia el propietario y grupo del directorio _animales_ de `frodo:frodo` a `root:root`.
++
+----
+sudo chown root:root animales
+----
