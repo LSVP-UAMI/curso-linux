@@ -9,7 +9,8 @@
 *** xref:dia_2/procesos.adoc[Procesos]
 *** xref:dia_2/instalacion.adoc[Instalación]
 ** Día 3
-*** xref:dia_3/bash.adoc[Bash]
+*** xref:dia_3/pipes.adoc[Pipes]
+*** xref:dia_3/filtrado.adoc[Filtrado]
 *** xref:dia_3/scripts.adoc[Scripts]
 ** Anexos
 *** xref:anexos/ssh.adoc[SSH]
