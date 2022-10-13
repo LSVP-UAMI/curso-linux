@@ -16,10 +16,10 @@ las entradas desde algún archivo, al igual que las salidas.
 Comportamiento de los operadores <, >, >> y 2>
 [cols="1,3"]
 |===
-|<| Usa el contenido de un archivo como STDIN
-|>| Redirige STDOUT a un archivo, sustituye el contenido previo del archivo
-|>>| Redirige STDOUT a un archivo, escribe al final del contenido previo del archivo
-|2>| Redirige STDERR a un archivo
+|`<`| Usa el contenido de un archivo como STDIN
+|`>`| Redirige STDOUT a un archivo, sustituye el contenido previo del archivo
+|`>>`| Redirige STDOUT a un archivo, escribe al final del contenido previo del archivo
+|`2>`| Redirige STDERR a un archivo
 |===
 
 Uso de los operadores <, >, >>.
@@ -29,14 +29,12 @@ comando > archivo-salida
 comando >> archivo-salida
 comando 2> archivo-error
 
-TIP: Ejercicio.
-Copia el contenido del archivo */etc/passwd* al archivo */tmp/passwd* usando el comando *cat* 
+=== Práctica
+. Copia el contenido del archivo */etc/passwd* al archivo */tmp/passwd* usando el comando *cat*. 
 
-TIP: Ejercicio.
-Copia las primeras 15 lineas del archivo */etc/passwd* al archivo */tmp/passwd2* usando el comando *head* 
+. Usa el comando *ls* con un directorio que no exista, y guarda el mensaje de error en un archivo.
 
-TIP: Ejercicio. 
-Agrega la linea "Esto es una copia de /etc/passwd" al final del archivo */tmp/passwd* usando el comando *echo*
+. Agrega la linea "Esto es una copia de /etc/passwd" al final del archivo */tmp/passwd* usando el comando *echo*.
 
 == Pipes
 Para enviar la salida estándar de un comando como entrada estándar de otro, 
