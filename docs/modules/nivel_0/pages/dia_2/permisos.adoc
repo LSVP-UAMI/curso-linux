@@ -274,7 +274,7 @@ sudo chgrp comida huarache
 +
 ----
 ls -l huarache
--rw-rw-r-- 1 frodo comida 0 Oct 12 18:52 huarache
+-rw-rw-r-- 1 frodo comida 0 Oct 12 12:00 huarache
 ----
 
 
@@ -403,8 +403,8 @@ Utiliza el comando _ls_ en este directorio.
 ----
 ls -l animales/tortuga/
 total 0
--rwx------ 1 frodo frodo 0 Oct 12 12:0 caguama
--rwx------ 1 frodo frodo 0 Oct 12 12:0 leopardo
+-rwx------ 1 frodo frodo 0 Oct 12 12:00 caguama
+-rwx------ 1 frodo frodo 0 Oct 12 12:00 leopardo
 ----
 
 . Crea un nuevo grupo llamado `animalia`.

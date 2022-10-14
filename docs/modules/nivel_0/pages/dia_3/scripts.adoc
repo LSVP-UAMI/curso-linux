@@ -13,10 +13,10 @@ Los scripts de Bash comienzan con la siguiente línea, que indica que el program
 
 .Estructura de un script de Bash
 ----
-#!/bin/sh
+#!/bin/bash
 
-# Soy un comentario 
-# Soy otro comentario 
+# Soy un comentario
+# Soy otro comentario
 
 # Instruccion 1
 # Instruccion 2
@@ -35,10 +35,15 @@ Para ejecutar un script utilice el comando `bash` seguido del nombre del script:
 bash mi_script.sh 
 ----
 
-[#actividades_condicionales]
-==== *Actividades*
+o de forma alternativa:
 
-. Ejecute el script _hello_world.sh_.
+----
+./mi_script.sh 
+----
+
+*Actividades*
+
+* Escriba un script que imprima la frase "Hola, Mundo!".
 
 
 [#variables]
@@ -135,11 +140,10 @@ Son variables que el shell establece internamente y que están disponibles para 
 
 Cuando un programa finaliza, deja un _código de salida_, un valor numérico también conocido como _código de error_ o _valor de salida_. Cuando el código de salida es cero (0), generalmente significa que el programa se ejecutó sin problemas. Sin embargo, si el programa tiene un error, suele salir con un número distinto de 0.
 
-[#actividades_variables]
-==== *Actividades*
+*Actividades*
 
-. Ejecute el script _special_variables.sh_.
-. Imprima el código de salida del script _special_variables.sh_.
+. Ejecuta el script _variables_especiales.sh_.
+. Imprime el código de salida del script _variables_especiales.sh_.
 
 
 [#condicionales]
@@ -161,15 +165,6 @@ fi
 ----
 
 Las palabras _if_, _then_, _elif_, _else_ y _fi_ son palabras reservadas o palabras clave (keywords), es decir, que tiene un significado especial para el shell.
-
-Los condicionales funcionan de la siguiente manera:
-
-. El shell ejecuta el comando después de la palabra clave _if_ y guarda el código de salida de ese comando.
-. Si el código de salida es 0, el shell ejecuta los comandos que se encuentran después de la palabra clave _then_, deteniéndose cuando llega a una palabra clave _elif_, _else_ o _fi_.
-. Si el código de salida no es 0 y hay una cláusula _elif_, el shell ejecuta el comando después de la palabra clave _elif_ y guarda el código de salida de ese comando.
-. Si el código de salida es 0, el shell ejecuta los comandos que se encuentran después de la palabra clave _then_, deteniéndose cuando llega a una palabra clave _else_ o _fi_.
-. Si el código de salida es 0 y hay una cláusula _else_, el shell ejecuta los comandos que se encuentran despues de la palabra clave _else_.
-. El condicional termina con la palabra clave _fi_.
 
 .Operadores de comparación numérica
 [cols="^.^1,.^1", options="autowidth, header"]
@@ -206,7 +201,7 @@ edad=15
 
 if [ $edad -ge $tercera_edad ]
 then
-    echo "Eres un adulto mayor"                                                                                                                                                              
+    echo "Eres un adulto mayor"
 elif [ $edad -ge $mayoria_edad ]
 then
     echo "Eres mayor de edad"
@@ -222,7 +217,7 @@ fi
 [#and]
 ==== *AND*
 
-El operador lógico `&&` (_and_) funciona de la siguiente forma:
+El operador lógico `&&` (and) funciona de la siguiente forma:
 
 ----
 COMANDO_1 && COMANDO_2
@@ -233,28 +228,23 @@ El shell ejecuta el `COMANDO_1`:
 . Si su código de salida es 0, entonces el shell ejecuta el `COMANDO_2`.
 . En caso contrario, el shell no ejecuta el `COMANDO_2`.
 
-En un condicional:
-
-. Si el código de salida del `COMANDO_1` es 0, el shell ejecuta el `COMANDO_2`, y utiliza su código de salida para la instrucción _if_.
-. Si el código de salida del `COMANDO_1` es diferente de 0, el shell utiliza este código de salida para la instrucción _if_.
-
 .Ejemplo de condicional utilizando el operador lógico &&
 ----
 #!/bin/sh
 
 if [ $1 -gt 1 ] && [ $1 -lt 10 ]
 then
-	echo "El número $1 es mayor que 1 y menor que 10"
+	echo "El numero $1 es mayor que 1 y menor que 10"
 fi
 ----
 
 [#or]
 ==== *OR*
 
-El operador lógico `||` (_or_) funciona de la siguiente forma:
+El operador lógico `||` (or) funciona de la siguiente forma:
 
 ----
-	COMANDO_1 || COMANDO_2
+COMANDO_1 || COMANDO_2
 ----
 
 El shell ejecuta el `COMANDO_1`:
@@ -262,26 +252,15 @@ El shell ejecuta el `COMANDO_1`:
 . Si su código de salida es 0, el shell no ejecuta el `COMANDO_2`.
 . En caso contrario, el shell ejecuta el `COMANDO_2`.
 
-En un condicional:
-
-. Si el código de salida del `COMANDO_1` es 0, el shell utiliza este código de salida para la instrucción _if_.
-. Si el código de salida del `COMANDO_1` es diferente de 0, el shell ejecuta el `COMANDO_2`, y utiliza su código de salida para la instrucción _if_.
-
 .Ejemplo de condicional utilizando el operador lógico ||
 ----
 #!/bin/sh
 
 if [ $1 -lt 10 ] || [ $1 -gt 20 ]
 then
-	echo "El número $1 es menor que 10 o mayor que 20"
+	echo "El numero $1 es menor que 10 o mayor que 20"
 fi
 ----
-
-
-[#actividades_condicionales]
-==== *Actividades*
-
-. Realizar un script que determine el mayor de tres números.
 
 
 [#ciclos]
@@ -312,7 +291,8 @@ Las palabras _for_, _in_, _do_ y _done_ son palabras reservadas.
 ----
 #!/bin/bash
 
-for numero in 1 2 3 4 5; do
+for numero in 1 2 3 4 5
+do
 	echo $numero
 done
 ----
@@ -343,3 +323,11 @@ do
 	x=$(( $x + 1 ))
 done
 ----
+
+
+[#actividades]
+== Actividades
+
+. Utilizando el ciclo `for`, escribe un script que imprima los número pares entre el 1 y el 50.
+. Utilizando el ciclo `while`, escribe  un script que imprima los número impares entre el 1 y el 50.
+. Escribe un script que determine el mayor de tres números.
