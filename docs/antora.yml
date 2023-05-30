@@ -1,6 +1,6 @@
 name: curso_linux
 title: Curso GNU/Linux
-version: master
+version: julio-2023
 nav:
 - modules/ROOT/nav.adoc
 - modules/nivel_0/nav.adoc
