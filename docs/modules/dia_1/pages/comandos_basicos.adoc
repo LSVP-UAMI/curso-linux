@@ -1,0 +1,4 @@
+= Comandos básicos
+
+:table-caption: Tabla
+:figure-caption: Figura

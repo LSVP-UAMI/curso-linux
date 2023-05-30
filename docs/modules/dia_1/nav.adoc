@@ -1,0 +1,4 @@
+* Día 1
+** xref:historia.adoc[Historia]
+** xref:sistema_archivos.adoc[Sistema de archivos]
+** xref:comandos_basicos.adoc[Comandos básicos]

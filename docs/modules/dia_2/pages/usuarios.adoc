@@ -50,7 +50,7 @@ Cada línea representa un usuario y tiene siete campos separados por dos puntos.
 . Shell del usuario (el programa que se ejecuta cuando el usuario ejecuta una terminal sesión).
 
 .Una entrada del archivo _passwd_
-image::dia_2/usuarios/passwd.png["Una entrada del archivo _passwd_"]
+image::usuarios/passwd.png["Una entrada del archivo _passwd_"]
 
 
 [#etc_group]
@@ -78,7 +78,7 @@ Cada línea representa un grupo y tiene cuatro campos separados por dos puntos:
 . Lista de miembros del grupo, separados por comas.
 
 .Una entrada del archivo _groups_
-image::dia_2/usuarios/groups.png["Una entrada del archivo _group_"]
+image::usuarios/groups.png["Una entrada del archivo _group_"]
 
 [TIP, caption=TIP]
 ====

@@ -3,4 +3,8 @@ title: Curso GNU/Linux
 version: julio-2023
 nav:
 - modules/ROOT/nav.adoc
-- modules/nivel_0/nav.adoc
+- modules/dia_1/nav.adoc
+- modules/dia_2/nav.adoc
+- modules/dia_3/nav.adoc
+- modules/dia_4/nav.adoc
+- modules/anexos/nav.adoc

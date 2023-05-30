@@ -17,7 +17,7 @@ Estos permisos están agrupados en tres conjuntos:
 * Permisos para el resto de usuarios
 
 .Permisos de archivo
-image::dia_2/permisos/permisos.png["Permisos de archivo"]
+image::permisos/permisos.png["Permisos de archivo"]
 
 [#bits]
 == Bits

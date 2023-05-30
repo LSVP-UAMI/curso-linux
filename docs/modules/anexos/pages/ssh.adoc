@@ -14,15 +14,15 @@ https://148.206.50.80:3039
 
 . Pulse en el botón _Advanced..._:
 +
-image::anexos/shellinabox/advanced.png["Advanced..."]
+image::shellinabox/advanced.png["Advanced..."]
 
 . Pulse en el botón _Accept the Risk and Continue_:
 +
-image::anexos/shellinabox/accept_the_risk.png["Accept the Risk and Continue"]
+image::shellinabox/accept_the_risk.png["Accept the Risk and Continue"]
 
 . Se mostrará una nueva pantalla en donde se le solicitará su nombre de usuario y su contraseña:
 +
-image::anexos/shellinabox/login.png["Login"]
+image::shellinabox/login.png["Login"]
 
 . Si los datos proporcionados son correctos, se mostrará la pantalla de bienvenida.
 
@@ -94,7 +94,7 @@ Las versiones portables de estos clientes no requieren instalación y pueden ser
 === PuTTY: Ejemplo de conexión
 . Ejecute _PuTTY_. Al iniciar el programa se le mostrará la siguiente pantalla:
 +
-image::anexos/putty/pantalla_inicio.png["Pantalla de Inicio"]
+image::putty/pantalla_inicio.png["Pantalla de Inicio"]
 
 . Complete los campos de la ventana _PuTTY Configuration_ con la siguiente información:
 [square]
@@ -104,11 +104,11 @@ image::anexos/putty/pantalla_inicio.png["Pantalla de Inicio"]
 
 . Pulse el botón _Open_:
 +
-image::anexos/putty/configuracion.png["PuTTY Configuration"]
+image::putty/configuracion.png["PuTTY Configuration"]
 
 . Se abrirá una nueva ventana en donde se le solicitará su nombre de usuario y su contraseña:
 +
-image::anexos/putty/login.png["Login"]
+image::putty/login.png["Login"]
 
 . Si los datos proporcionados son correctos, se mostrará la pantalla de bienvenida.
 
@@ -116,7 +116,7 @@ image::anexos/putty/login.png["Login"]
 ====
 Al conectarse por primera vez se le mostrará el siguiente mensaje:
 
-image::anexos/putty/security_alert.png["Putty Security Alert"]
+image::putty/security_alert.png["Putty Security Alert"]
 
 pulse el botón _Accept_ para continuar.
 
@@ -127,13 +127,13 @@ Este mensaje es para indicarle que el servidor al que se desea conectar, necesit
 === SmarTTY: Ejemplo de conexión
 . Ejecute _SmarTTY_. Al iniciar el programa se le mostrará la siguiente pantalla:
 +
-image::anexos/smartty/pantalla_inicio.png["Pantalla de Inicio"]
+image::smartty/pantalla_inicio.png["Pantalla de Inicio"]
 +
 pulse en el texto _Quick SSH conection..._
 
 . Se abrirá la siguiente ventana:
 +
-image::anexos/smartty/quick_ssh_connection.png["Quick SSH Conection"] 
+image::smartty/quick_ssh_connection.png["Quick SSH Conection"] 
 
 . Complete los campos de la ventana _Quick SSH Conection_ con la siguiente información:
 [square]
@@ -142,11 +142,11 @@ image::anexos/smartty/quick_ssh_connection.png["Quick SSH Conection"]
 
 . Pulse el botón _OK_:
 +
-image::anexos/smartty/ok.png[OK]
+image::smartty/ok.png[OK]
 
 . Si los datos proporcionados son correctos, se abrirá la siguiente ventana:
 +
-image::anexos/smartty/virtual_terminals.png["Virtual Terminals"]
+image::smartty/virtual_terminals.png["Virtual Terminals"]
 +
 pulse el botón _Start with a regular Terminal_.
 
@@ -156,7 +156,7 @@ pulse el botón _Start with a regular Terminal_.
 ====
 Al conectarse por primera vez al clúster se le mostrará el siguiente mensaje:
 
-image::anexos/smartty/save_host_key.png[Save host key]
+image::smartty/save_host_key.png[Save host key]
 
 pulse el botón _Save_ para continuar.
 

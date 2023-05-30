@@ -47,7 +47,7 @@ básicos para manipularlos.
 == Árbol de archivos
 
 
-image::dia_1/filesystem/arbol.png["Jerarquia de archivos"]
+image::filesystem/arbol.png["Jerarquia de archivos"]
 
 
 * / : El carácter de barra inclinada / por sí solo denota la raíz del árbol del sistema de archivos.
@@ -93,7 +93,7 @@ conocida como árbol de directorios. En la parte superior del sistema de archivo
 llamado "raíz" que se representa con "/". Todos los demás archivos son "descendientes" de la raíz.
 
 
-image::dia_1/filesystem/pathname.png["Ejemplo de Pathname"]
+image::filesystem/pathname.png["Ejemplo de Pathname"]
 
 La lista de directorios que se deben recorrer para localizar un archivo en particular más el nombre de
 ese archivo forman un pathname o ruta. Los nombres de directorios y de archivos van separados por
@@ -161,7 +161,7 @@ $ comando [opciones]  [argumentos] | [archivos]
 
 Entrada, salida y error estándar.
 
-image::dia_1/filesystem/estandar.png["Entrada,salida y error estándar"]
+image::filesystem/estandar.png["Entrada,salida y error estándar"]
 
 
 *man*
@@ -352,11 +352,11 @@ Si el archivo existe, se modifica la hora y fecha de modificación.
 == Atributos de un archivo
 
 
-image::dia_1/filesystem/atributos.png["Ejemplo de atributos de un archivo"]
+image::filesystem/atributos.png["Ejemplo de atributos de un archivo"]
 
 1. Tipo de arhivo 
 +
-image::dia_1/filesystem/tipo.png["Tipo de archivos"]
+image::filesystem/tipo.png["Tipo de archivos"]
 
 2. Permisos del archivo
 
