@@ -4,12 +4,10 @@
 :figure-caption: Figura
 
 Cada archivo tiene nueve permisos que determinan qué operaciones se pueden realizar sobre el y por quién.
+----
+-rw-r--r-- 1 sophie amundsen 973194 Dec 5 12:00 world.txt
+----
 
-----
-$ ls -l vfd.txt 
--rw-r--r-- 1 violet baudelaire 174 Sep 13 06:54 vfd.txt
-----
-  
 Estos permisos están agrupados en tres conjuntos:
 
 * Permisos para el propietario del archivo
@@ -19,407 +17,298 @@ Estos permisos están agrupados en tres conjuntos:
 .Permisos de archivo
 image::permisos/permisos.png["Permisos de archivo"]
 
-[#bits]
-== Bits
+Cada uno de estos conjuntos tiene tres tipos de permisos:
 
-Cada conjunto de permisos tiene tres bits: 
-
-* Un bit de lectura
-* Un bit de escritura
-* Un bit de ejecución.
+* Lectura (r)
+* Escritura (w)
+* Ejecución (x)
 
 .Efecto de los permisos en archivos y directorios
-[cols="^.^1,^.^1,^.^1,.^1,.^1", options="autowidth, header"]
+[cols="^.^1,.^1,.^1", options="autowidth, header"]
 |===
 |Permiso
-|Octal
-|Binario
 |Archivo
 |Directorio
 
 |`r`
-|4
-|100
 |Leer el contenido del archivo.
 |Listar el contenido del directorio.
 
 |`w`
-|2
-|010
 |Modificar/eliminar el archivo. 
 |Crear/eliminar archivos.
 
 |`x`
-|1
-|001
 |Ejecutar el archivo.
 |Acceder al directorio.
 |===
 
 
-[#comandos]
-== Comandos
+[#mostrar_permisos]
+== ¿Como muestro los permisos de un archivo?
 
-[#ls]
-=== ls
-
-Lista el contenido de un directorio.
+La forma más común de mostrar los permisos de un archivo es utilizando el comando `ls`:
 
 ----
-ls [OPCIONES] [ARCHIVO]
+ls -l [ARCHIVO]
 ----
 
-[cols=".^1,.^1", options="autowidth, header"]
-|===
-|Opcion
-|Descripción
+[#ejemplo_1]
+=== Ejemplo 1
 
-|`-a` +
-`--all`
-|Lista todos los archivos, incluyendo los ocultos.
-
-|`-d` +
-`--directory`
-|Muestra información del directorio, no de su contenido.
-
-|`-h` +
-`--human-readable`
-|Muestra el tamaño de los archivos en formato legible para los humanos.
-
-|`-l`
-|Utiliza el formato de listado largo.
-
-|`-S`
-|Lista los archivos por tamaño, en orden descendente.
-
-|`-t`
-|Lista los archivos por fecha de modificación, en orden descendente.
-|===
-
-
-[#chmod]
-=== chmod
-
-Modifica los permisos de un archivo. 
-
+El directorio `plantas`, contiene los siguientes archivos:
 ----
-chmod [OPCIONES]... MODO ARCHIVO
+plantas
+├── lavanda
+├── menta
+├── oregano
+└── romero
 ----
 
-[WARNING, caption=IMPORTANTE]
+Para mostrar los permisos del archivo `lavanda.txt`, ejecute el comando:
+----
+ls -l lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
+----
+
+[#actividades_1]
+=== Actividades
+
+. ¿Cómo muestro los permisos de todos los archivos en un directorio?
+. ¿Cómo muestro los permisos de un directorio?
+
+.Respuestas
+[%collapsible]
+====
+. `ls -l`
+. `ls -ld`
+====
+
+
+[#modificar_permisos]
+== ¿Como modifico los permisos de un archivo?
+
+El comando `chmod` permite modificar los permisos de un archivo:
+----
+chmod [OPCIONES] MODO ARCHIVO
+----
+
+[WARNING, caption=ADVERTENCIA]
 ====
 Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un archivo.
 ====
 
-[cols=".^1,.^1", options="autowidth, header"]
+[#modo_simbolico]
+=== Modo simbólico
+
+El modo simbólico consta de los siguientes elementos:
+
+----
+USUARIO|OPERADOR|PERMISO
+----
+
+Donde:
+
+. Usuario. A quíen se le aplica la modificación
+. Operador. Tipo de operación que se aplica
+. Permiso. Tipo de permiso a modificar
+
+.Tipos de usuarios
+[cols="^.^1,.^1", options="autowidth, header"]
 |===
-|Opcion
+|Símbolo
 |Descripción
 
-|`-R` +
-`--recursive`
-|Cambia los permisos de archivos y directorios recursivamente.
+|`u`
+|Usuario propietario del archivo
+
+|`g`
+|Grupo propietario del archivo
+
+|`o`
+|Otros usuarios
+
+|`a`
+|Todos los usuarios
 |===
 
-.Codificación de permisos
-[cols="^.^1,^.^1", options="autowidth, header"]
+.Tipos de operadores
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Operador
+|Descripción
+
+|`+`
+|Agregar
+
+|`-`
+|Eliminar
+
+|`=`
+|Asignar
+|===
+
+.Tipos de permisos
+[cols="^.^1,.^1", options="autowidth, header"]
 |===
 |Permiso
-|Octal
-|Binario
+|Descripción
 
-|`---`
-|0
+|`r`
+|Lectura
 
-|`--x`
-|1
+|`w`
+|Escritura
 
-|`-w-`
-|2
-
-|`-wx`
-|3
-
-|`r--`
-|4
-
-|`r-x`
-|5
-
-|`rw-`
-|6
-
-|`rwx`
-|7
+|`x`
+|Ejecución
 |===
 
-[#ejemplo_chmod]
-==== Ejemplo
+[#ejemplo_2]
+=== Ejemplo 2
 
-Para asignarle los siguientes permisos:
-
+Se desea modificar los permisos del archivo `menta.txt`:
 ----
-rw-r--r--
-----
-
-al archivo `pozole`, siga los siguientes pasos:
-
-. Cree el archivo `pozole`:
-+
-----
-touch pozole
+ls -l menta.txt
+-rw-r--r-- 1 lamiaceae plantae 313 Jul 3 12:02 menta.txt
 ----
 
-. Ejecute el comando:
-+
+a los siguientes:
 ----
-chmod 644 pozole
-----
-
-. Verifique los permisos del archivo `pozole`:
-+
-----
-ls -l pozole
--rw-r--r-- 1 frodo frodo 0 Oct 12 12:00 pozole
+rw-rw-r--
 ----
 
+.Respuesta
+[%collapsible]
+====
+Ejecute el comando:
+----
+$ chmod g+w menta.txt
+----
 
-[#chown]
-=== chown
+y verifique los permisos del archivo:
+----
+ls -l menta.txt
+-rw-rw-r-- 1 lamiaceae plantae 313 Jul 3 12:02 romero.txt
+----
+====
 
-Cambia el usuario y grupo propietarios de un archivo.
+[#ejemplo_3]
+=== Ejemplo 3
 
+Se desea modificar los permisos del archivo `oregano.txt`:
+----
+ls -l oregano.txt
+-rw-r--r-- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
+----
+
+a los siguientes:
+----
+rw-r-----
+----
+
+.Respuesta
+[%collapsible]
+====
+Ejecute el comando:
+----
+$ chmod o-r oregano.txt
+----
+
+y verifique los permisos del archivo:
+----
+ls -l oregano.txt
+-rw-r----- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
+----
+====
+
+[#ejemplo_4]
+=== Ejemplo 4
+
+Se desea modificar los permisos del archivo `romero.txt`:
+----
+ls -l romero.txt
+-rw-r--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
+----
+
+a los siguientes:
+----
+-wxr--r--
+----
+
+.Respuesta
+[%collapsible]
+====
+Ejecute el comando:
+----
+$ chmod u=wx romero.txt
+----
+
+y verifique los permisos del archivo:
+----
+ls -l romero.txt
+--wxr--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
+----
+====
+
+[#actividades_2]
+=== Actividades
+
+. ¿Cómo modifico los permisos de todos los archivos en un directorio?
+
+.Respuestas
+[%collapsible]
+====
+. `chmod -R MODO DIRECTORIO`
+====
+
+
+[#modificar_usurio_grupo]
+== ¿Cómo modifico el usuario/grupo de una archivo?
+
+El comando `chown` permite modificar el usuario/grupo propietario de un archivo:
 ----
 chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
 ----
 
-[cols=".^1,.^1", options="autowidth, header"]
-|===
-|Opcion
-|Descripción
 
-|`-R` +
-`--recursive`
-|El comando se ejecuta recursivamente.
-|===
+[#ejemplo_5]
+=== Ejemplo 5
 
-[#ejemplo_chown]
-==== Ejemplo
-
-Para modificar el usuario y grupo del archivo `mole` de `frodo:frodo` a `root:root`, siga los siguientes pasos:
-
-. Cree el archivo `mole`:
-+
+Se desea modificar el usuario (propietario) y grupo del archivo `lavanda.txt`:
 ----
-touch mole
+ls -l lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
 ----
 
-. Ejecute el comando:
-+
+a los siguientes:
 ----
-sudo chown root:root mole
-----
-
-. Verifique el dueño y grupo del archivo `mole`:
-+
-----
-ls -l mole
--rw-rw-r-- 1 root root 0 Oct 12 12:00 mole
+lavandula planta
 ----
 
-
-[#chgrp]
-=== chgrp
-
-Cambia el grupo propietario de un archivo.
-
+.Respuesta
+[%collapsible]
+====
+Ejecute el comando:
 ----
-chgrp [OPCIONES] GRUPO ARCHIVO
+$ chown lavandula:planta lavanda.txt
 ----
 
-[cols=".^1,.^1", options="autowidth, header"]
-|===
-|Opcion
-|Descripción
-
-|`-R` +
-`--recursive`
-|El comando se ejecuta recursivamente.
-|===
-
-[#ejemplo_chgrp]
-==== Ejemplo
-
-Para modificar el grupo del archivo `huarache` de `frodo` a `comida`, siga los siguientes pasos:
-
-. Cree el archivo `huarache`:
-+
+y verifique el usuario y grupo del archivo:
 ----
-touch huarache
+ls -l lavanda.txt
+-rw-r--r-- 1 lavandula planta 279 Jul 3 12:01 lavanda.txt
 ----
-
-. Cree el grupo `comida`:
-+
-----
-sudo groupadd comida
-----
-
-. Ejecute el comando:
-+
-----
-sudo chgrp comida huarache
-----
-
-. Verifique el grupo del archivo `huarache`:
-+
-----
-ls -l huarache
--rw-rw-r-- 1 frodo comida 0 Oct 12 12:00 huarache
-----
+====
 
 
-[#actividades]
-== Actividades
+[#actividades_3]
+=== Actividades
 
-. Crea el siguiente árbol de directorios: 
-+
-----
-animales/
-├── escarabajo
-│   ├── hercules
-│   └── verde
-├── gato
-│   ├── bengali
-│   └── siames
-├── tortuga
-│   ├── caguama
-│   └── leopardo
-└── zorro
-    ├── artico
-    └── rojo
-----
+. ¿Cómo modifico el usuario/grupo de todos los archivos en un directorio?
 
-. Cambia los permisos del directorio _animales/escarabajo_ a:
-+
----- 
---x------
-----
-+
-Utiliza el comando _ls_ en este directorio.
-
-. Cambia los permisos del archivo _animales/gato/siames_ a:
-+
----- 
--w-------
-----
-+
-Utiliza el comando _cat_ en este archivo.
-
-. Cambia los permisos de todos los archivos en el directorio _animales/tortuga_ a:
-+
----- 
-rwx------
-----
-+
-Utiliza el comando _ls_ en este directorio.
-
-. Crea un nuevo grupo llamado `animalia`.
-* Cambia el grupo del directorio _animales/zorro_ de `frodo` a `animalia`.
-
-. Cambia el propietario y grupo del directorio _animales_ de `frodo:frodo` a `root:root`.
-
-
-[#respuestas]
-=== Respuestas
-
-. Crea el siguiente árbol de directorios: 
-+
-----
-animales/
-├── escarabajo
-│   ├── hercules
-│   └── verde
-├── gato
-│   ├── bengali
-│   └── siames
-├── tortuga
-│   ├── caguama
-│   └── leopardo
-└── zorro
-    ├── artico
-    └── rojo
-----
-+
-----
-cp -r /tmp/material/animales/ .
-----
-
-. Cambia los permisos del directorio _animales/escarabajo_ a:
-+
----- 
---x------
-----
-+
-----
-chmod 100 animales/escarabajo
-----
-+
-Utiliza el comando _ls_ en este directorio.
-+
-----
-ls animales/escarabajo
-ls: cannot open directory 'animales/escarabajo': Permission denied
-----
-
-. Cambia los permisos del archivo _animales/gato/siames_ a:
-+
----- 
--w-------
-----
-+
-----
-chmod 200 animales/gato/siames
-----
-+
-Utiliza el comando _cat_ en este archivo.
-+
-----
-cat animales/gato/siames
-cat: animales/gato/siames: Permission denied
-----
-
-. Cambia los permisos de todos los archivos en el directorio _animales/tortuga_ a:
-+
----- 
-rwx------
-----
-+
-----
-chmod -R 700 animales/tortuga
-----
-+
-Utiliza el comando _ls_ en este directorio.
-+
-----
-ls -l animales/tortuga/
-total 0
--rwx------ 1 frodo frodo 0 Oct 12 12:00 caguama
--rwx------ 1 frodo frodo 0 Oct 12 12:00 leopardo
-----
-
-. Crea un nuevo grupo llamado `animalia`.
-+
-----
-sudo groupadd animalia
-----
-* Cambia el grupo del directorio _animales/zorro_ de `frodo` a `animalia`.
-+
-----
-sudo chgrp animalia animales/zorro
-----
-
-. Cambia el propietario y grupo del directorio _animales_ de `frodo:frodo` a `root:root`.
-+
-----
-sudo chown root:root animales
-----
+.Respuestas
+[%collapsible]
+====
+. `chown -R PROPIETARIO:GRUPO DIRECTORIO`
+====
