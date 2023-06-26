@@ -9,18 +9,23 @@ En linux la mayor parte de los programas son de software libre,
 esto significa que podemos obtener el código fuente lo que nos 
 permite modificar los programas y compilarlos para nuestro hardware.
 
-=== GCC (Gnu Compilers Collection)
-*GCC* fue desarrollado como un compilador de lenguaje C para el proyecto 
+=== ¿Cuales son los compiladores de GNU?
+*GNU Compiler Collection* (*GCC*) fue desarrollado como un compilador de lenguaje *C* para el proyecto 
 GNU, con el tiempo paso a ser una colección de compiladores ya que empezó 
 a dar soporte a mas lenguajes, actualmente en la versión 12.2 *gcc* 
-puede compilar C, C++, Objective-C, Fortran, Ada, Go y D.
+puede compilar *C*, *C++*, *Objective-C*, *Fortran*, *Ada*, *Go* y *D*.
 
 ==== Práctica
 * Copia el directorio /tmp/material/hola_mundo a tu directorio home.
 * Entra en tu copia del directorio.
 * Compila el código usando *gcc*.
+
+.Respuesta
+[%collapsible]
+====
 [source,shell]
 gcc hola.cpp main.cpp -o hola_mundo
+====
 
 * Ejecuta el programa.
 [source,shell]
