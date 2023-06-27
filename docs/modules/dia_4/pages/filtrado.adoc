@@ -5,7 +5,7 @@ a nuestra disposición una variedad de comandos que ayudan a filtrar la
 información que se encuentra en este tipo de archivos.
 
 
-== Grep
+== ¿Cómo filtrar información?
 *grep* es un comando de unix que nos permite filtrar lineas de un 
 archivo de texto, *grep* busca patrones de texto en cada linea y solo 
 muestra las lineas en las que encuentra el patrón.
