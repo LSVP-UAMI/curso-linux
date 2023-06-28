@@ -1,130 +1,138 @@
-= Control de procesos
+= Procesos
 
 :table-caption: Tabla
 :figure-caption: Figura
 
-[#procesos]
-== Proceso
-Un proceso representa un programa en ejecución. Es una abstracción con  la 
-cual podemos administrar y monitorizar la memoria, tiempo de ejecución y 
-recursos de entrada y salida.
+Un proceso representa un programa en ejecución. Es la abstracción a través de la cual se pueden administrar y monitorear la memoria, el tiempo de CPU y los recursos de entrada/salida.
+
 
 [#elementos]
-== Elementos de un proceso
-////
-Un proceso consiste en  un espacio de memoria y un conjunto de estructuras 
-de datos dentro del kernel. Este espacio de memoria contiene el código y 
-librerías que el proceso ejecuta. Así como sus variables, pila e información 
-extra que el kernel mientras el proceso esta corriendo.
-////
-Internamente el kernel guarda algunas piezas de información de cada proceso.
-Estas son algunas de las mas importantes:
+== Elementos
 
-* Un mapa del espacio de memoria del proceso.
-* El estado actual del proceso (dormido, detenido, en ejecución, etc).
-* La prioridad de ejecución del proceso.
-* Información sobre los recursos usados por el proceso (CPU, memoria, etc).
-* Información sobre los archivos y puertos de red abiertos por el proceso.
-* El dueño del proceso.
+El kernel registra varias piezas de información sobre cada proceso. Estos son algunas de los más importantes:
 
+* El mapa del espacio de direcciones del proceso
+* El estado actual del proceso (dormido, detenido, en ejecución, etc)
+* La prioridad de ejecución del proceso
+* Información sobre los recursos que ha utilizado el proceso (CPU, memoria, etc.)
+* Información sobre los archivos y puertos de red que ha abierto el proceso
+* El dueño del proceso
+
+[#pid]
 === PID: ID de proceso
-El kernel asigna un identificador único a cada proceso. Los PID son asignados 
-de acuerdo al orden en el que los procesos fueron creados. La mayoría de los 
-comandos que manipulan procesos requieren que se indique un PID para identificar 
-al objetivo de la operación.
 
+El kernel asigna un identificador único a cada proceso. La mayoría de los comandos que manipulan procesos requieren que se especifique un PID para identificar el objetivo de la operación. Los PID se asignan en orden a medida que se crean los procesos.
+
+[#ppid]
 === PPID: ID del proceso padre
-En Linux cuando un proceso crea un nuevo proceso, al proceso recién creado se 
-le llama hijo y al proceso que lo lanzo padre. El PPID es el PID del proceso padre.
 
+En Linux cuando un proceso crea un nuevo proceso, al proceso recién creado se le llama hijo y al proceso que lo lanzó, padre. El PPID es el PID del proceso padre.
+
+[#uid]
 === UID: ID de propietario
-EL UID de un proceso es el ID del usuario que es propietario del proceso, 
-solo el propietario y el superusuario pueden manipular el proceso.
 
-[#ps]
-== Comando ps
-El comando ps es la herramienta principal para monitorizar procesos. Con ps podemos 
-listar los procesos en ejecución así como su información.
+El UID de un proceso es el ID de usuario que lo creó. En general, solo el creador (propietario) y el superusuario pueden manipular el proceso.
 
-Ejemplo.
-[source,shell]
-ps aux
 
-* a - muestra todos los procesos.
-* u - hace que la salida sea legible para usuarios. 
-* x - muestra los procesos que no tienen una terminal.
+[#mostrar_procesos]
+== ¿Cómo muestro los procesos del sistema?
 
-Ejemplo con mas información.
-[source,shell]
-ps lax
+El comando `ps` muestra una _captura_ de los procesos actuales en el sistema:
+----
+ps [OPCIONES]
+----
 
-ps solo muestra la información de los procesos en el momento en el que se ejecuto. 
-No muestra información en tiempo real.
+[#ejemplo_1]
+=== Ejemplo 1
 
+Para mostrar todos los procesos del sistema, ejecute el comando:
+----
+$ ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0 240824 13816 ?        Ss   jun23   0:05 /usr/lib/systemd/...
+root           2  0.0  0.0      0     0 ?        S    jun23   0:00 [kthreadd]
+root           3  0.0  0.0      0     0 ?        I<   jun23   0:00 [rcu_gp]
+root           4  0.0  0.0      0     0 ?        I<   jun23   0:00 [rcu_par_gp]
+root           5  0.0  0.0      0     0 ?        I<   jun23   0:00 [slub_flushwq]
+root           7  0.0  0.0      0     0 ?        I<   jun23   0:00 [kworker/...]
+root           9  0.0  0.0      0     0 ?        I<   jun23   0:00 [mm_percpu_wq]
+root          10  0.0  0.0      0     0 ?        S    jun23   0:00 [rcu_tasks_rude_]
+...
+----
+
+[#actividades_1]
+=== Actividades
+
+. ¿Cómo muestro todos los proceso de un usuario en particular?
+
+.Respuestas
+[%collapsible]
+====
+. `ps uU USUARIO`
+====
+
+[#señales]
 == Señales
-Las señales son solicitudes de interrupción a nivel de procesos. En Linux hay al 
-rededor de treinta tipos diferentes y son usadas de diferentes formas.
 
-* Pueden ser enviadas entre procesos como medio de comunicación.
-* Pueden ser enviadas por la terminal cuando se presiona alguna combinación 
-de teclas específica.
-* Pueden ser enviada por el administrador del sistema (con el comando kill).
-* Pueden ser enviadas por el kernel cuando un procesos comete alguna infracción 
-como dividir entre cero.
-* Pueden ser enviadas por el kernel para notificar a un proceso sobre una condición 
-de interés por ejemplo cuando un proceso hijo termina.
+Las señales son solicitudes de interrupción a nivel de proceso. Se definen alrededor de treinta tipos diferentes, y se utilizan de diversas maneras:
 
-Cuando una señal es recibida puede ocurrir una de las siguientes cosas. Si el proceso definió 
-un comportamiento para la señal, entonces es manejada por el proceso. En otro caso 
-el kernel toma una acción por defecto. El comportamiento por defecto cambia dependiendo del tipo de señal.
+* Se pueden enviar entre procesos como medio de comunicación.
+* Pueden ser enviados por medio de la terminal al presionar ciertas combinaciones de teclas.
+* Pueden ser enviada por el administrador del sistema.
+* Pueden ser enviados por el núcleo cuando un proceso comete una infracción como la división por cero.
+* Pueden ser enviadas por el kernel para notificar a un proceso sobre una condición de interés, por ejemplo, cuando un proceso hijo termina.
 
+Cuando se recibe una señal, puede suceder una de dos cosas. Si el proceso receptor definió un comportamiento para la señal, entonces es manejada por el proceso. De lo contrario, el kernel realiza alguna acción predeterminada en nombre del proceso. El comportamiento por defecto cambia dependiendo del tipo de señal.
+
+[#int]
 === Señal INT
-Esta señal es enviada por la terminal cuando el usuario presiona Ctrl-c. 
-Es una solicitud de terminar la ejecución actual. 
+La señal INT es enviada por medio de la terminal cuando el usuario presiona la combinación de teclas Ctrl-C. Es una solicitud para terminar la ejecución actual.
 
-=== Señal TERM 
-Esta señal es una solicitud de terminar completamente la ejecución. 
-Se espera que el proceso que recibe la señal haga la limpieza necesaria y termine.
+[#term]
+=== Señal TERM
+La señal TERM es una solicitud para terminar la ejecución completamente. Se espera que el proceso de receptor limpie su estado y salga.
 
+[#kill]
 === Señal KILL
-Esta señal detiene por completo la ejecución del proceso. No puede ser cachada, 
-bloqueada o ignorada por el proceso, el kernel es el encargado terminar el proceso.
+La señal KILL finaliza la ejecución de un proceso. Un proceso no puede ignorar, bloquear o manejar esta señal. El kernel es el encargado terminar el proceso.
 
-== Comando kill
-El comando kill nos sirve para terminar la ejecución de un proceso, 
-por defecto envía la señal TERM, aunque también nos ayuda a enviar otras señales.
 
-Ejemplos
-[source,shell]
+[#enviar_señal]
+== ¿Cómo envío una señal?
+
+El comando `kill` puede enviar cualquier señal a un proceso, aunque por defecto envía una señal `TERM`:
+----
 kill PID
+kill -s SEÑAL PID
+----
 
-[source,shell]
-kill -s TERM PID
+Este comando puede ser utilizado por cualquier usuario en sus propios procesos o por el superusuario en cualquier proceso.
 
-[source,shell]
-kill -s KILL PID
+[#actividades]
+=== Actividades
 
-== Comando htop
-El comando ps esta limitado ya que no refleja la información de los procesos 
-en tiempo real, lo cual puede llegar a ser necesario. Para resolver esta 
-problemática podemos usar el comando htop, el cual nos muestra una lista de los 
-procesos con la información que muestra ps, pero actualiza la información cada 
-pocos segundos. Además muestra el uso total de recursos de todos los procesos.
+. Ejecute el siguiente comando:
++
+----
+$ watch uptime &
+----
++
+para crear un nuevo proceso.
++
+* ¿Cómo puedo puedo verificar que el proceso está en ejecución?
+* ¿Cómo finalizo la ejecución del proceso?
 
-[#proc]
-== El directorio /proc
-En el directorio /proc el kernel expone parte de la información que tiene 
-sobre los procesos. Dentro se encuentra un directorio para cada PID y dentro 
-se encuentra la información del proceso correspondiente.
-
-Algunos archivos importantes en /proc son 
-[cols="2,5"]
-|===
-|cmdline|Contiene el comando completo usado para la ejecución
-|exe|Es un link al ejecutable usado.
-|cwd |Es un link al directorio desde el cual se ejecuto.
-|environ| Contiene todas las variables de entorno del proceso
-|fd | Es un subdirectorio, contiene un link por cada descriptor de archivo abierto
-|status| Contiene el estado del proceso
-|===
-
+.Respuestas
+[%collapsible]
+====
+. -
++
+* `ps uU USUARIO`
++
+* `ps u --pid PID`
+. -
++
+* `kill PID`
++
+* `kill -s KILL PID`
+====
