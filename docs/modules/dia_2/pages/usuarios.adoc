@@ -1,4 +1,4 @@
-= Usuarios
+= ¿Qué es un usuario?
 
 :table-caption: Tabla
 :figure-caption: Figura
@@ -17,7 +17,7 @@ Existen tres tipos de usuarios:
 [#grupos]
 == Grupos
 
-Los grupos son conjuntos de usuarios. El objetivo principal de los grupos es permitir que un usuario comparta el acceso a archivos con otros miembros de un grupo. 
+Los grupos son conjuntos de usuarios. El objetivo principal de los grupos es permitir que los usuarios que pertenecen al grupo compartan el acceso a archivos y atributos.
 
 
 [#archivos_usuario]
@@ -114,13 +114,13 @@ Cada línea representa un usuario y tiene nueve campos separados por dos puntos:
 . Un campo reservado para uso futuro que actualmente siempre está vacío.
 
 
-[#comandos]
-== Comandos
+[#acciones]
+== Acciones con usuarios y grupos
 
-[#useradd]
-=== useradd
+[#creacion_usuarios]
+=== ¿Cómo crear usuarios?
 
-Crea un nuevo usuario.
+El comando _useradd_ permite la creación de nuevos usuarios.
 
 ----
 useradd [OPCIONES]... USUARIO
@@ -142,6 +142,10 @@ useradd [OPCIONES]... USUARIO
 |`-u` +
 `--uid`
 |Establece el ID del usuario (UID).
+
+|`-m` +
+`--create-home`
+|Crea el directorio _home_ del usuario.
 |===
 
 [#ejemplo_useradd]
@@ -154,10 +158,10 @@ sudo useradd anquilosaurio
 ----
 
 
-[#userdel]
-=== userdel
+[#eliminar_usuarios]
+=== ¿Cómo eliminar usuarios?
 
-Elimina un usuario.
+El comando _userdel_ nos permite eliminar usuarios.
 
 ----
 userdel [OPCIONES]... USUARIO
@@ -183,10 +187,10 @@ sudo userdel anquilosaurio
 ----
 
 
-[#groupadd]
-=== groupadd
+[#crear_grupos]
+=== ¿Cómo crear grupos?
 
-Crea un nuevo grupo.
+El comando _groupadd_ crea grupos.
 
 ----
 groupadd [OPCIONES]... GRUPO
@@ -214,17 +218,17 @@ sudo groupadd dinosaurio
 [#ejemplo_2_groupadd]
 ==== *Ejemplo 2*
 
-Para agregar al usuario `frodo` al grupo `dinosaurio`, ejecute el comando:
+Para agregar al usuario `velocirraptor` al grupo `dinosaurio`, ejecute el comando:
 
 ----
-sudo usermod -aG dinosaurio frodo
+sudo usermod -aG dinosaurio velocirraptor
 ----
 
 
-[#groupdel]
-=== groupdel
+[#eliminar_grupos]
+=== ¿Cómo eliminar grupos?
 
-Elimina un grupo.
+El comando _groupdel_ elimina grupos.
 
 ----
 groupdel [OPCIONES]... GRUPO
@@ -240,10 +244,10 @@ sudo groupdel dinosaurio
 ----
 
 
-[#passwd]
-=== passwd
+[#contraseña]
+=== ¿Cómo actualizar la constraseña?
 
-Actualiza la contraseña de un usuario.
+Actualiza la contraseña de un usuario mediante el comando _passwd_.
 
 ----
 passwd [OPCIONES]... USUARIO
