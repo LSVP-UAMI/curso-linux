@@ -5,9 +5,18 @@
 
 [#compilación]
 == Compilación con GNU Tools
-En linux la mayor parte de los programas son de software libre,
+En linux muchos de los programas son de software libre,
 esto significa que podemos obtener el código fuente lo que nos 
 permite modificar los programas y compilarlos para nuestro hardware.
+
+=== ¿Que es compilar?
+Compilar es el proceso de transformar un programa informático escrito 
+en un lenguaje en un conjunto de instrucciones en otro formato o lenguaje. 
+Un compilador es un programa de computadora que realiza dicha tarea.
+
+En particular cuando hablamos de compilar nos referimos a traducir codigo 
+escrito en un lenguaje de programación a codigo que puede ser ejecutado por 
+la computadora.
 
 === ¿Cuales son los compiladores de GNU?
 *GNU Compiler Collection* (*GCC*) fue desarrollado como un compilador de lenguaje *C* para el proyecto 
@@ -19,19 +28,17 @@ puede compilar *C*, *C++*, *Objective-C*, *Fortran*, *Ada*, *Go* y *D*.
 * Copia el directorio /tmp/material/hola_mundo a tu directorio home.
 * Entra en tu copia del directorio.
 * Compila el código usando *gcc*.
+* Ejecuta el programa.
 
 .Respuesta
 [%collapsible]
 ====
 [source,shell]
 gcc hola.cpp main.cpp -o hola_mundo
+./hola_mundo
 ====
 
-* Ejecuta el programa.
-[source,shell]
-./hola_mundo
-
-=== ¿Que es Make?
+=== ¿Es lo mismo con proyectos mas complejos?
 Cuando un proyecto se vuelve grande o complejo se hace mas 
 difícil compilarlo a mano, para estos casos existe *make*. 
 
@@ -71,7 +78,7 @@ git clone https://github.com/cmatsuoka/figlet.git
 * Usa *make* para compilar el programa.
 * Usa *make* para instalar el programa.(Requiere *sudo*)
 
-=== Autoconf 
+=== ¿*Make* funciona en cualquier computadora? 
 En muchas ocasiones las diferencias en el hardware y sistema operativo
 hacen imposible para los desarrolladores el poder compilar el código 
 usando solo un *makefile*, algunas formas de solucionar esto fueron 
@@ -80,14 +87,14 @@ que fuera fácil de modificar. Con el tiempo evolucionó a scripts que
 generan de forma automática el *makefile* haciendo un análisis de diferentes 
 aspectos del sistema en el que se ejecutan.
 
-*autoconf* nos ayuda a generar un *makefile* para esto genera un script 
+*autoconf* nos ayuda a generar un *makefile*, para esto genera un script 
 llamado *configure*, este es el encargado de analizar el sistema y generar 
 el *makefile* adecuado.
 
 Para poder usar *autoconf* es necesario que los desarrolladores incluyan 
 un archivo llamado *configure.ac* o *configure.in*.
 
-*configure* algunas opciones para personalizar la instalación, estas 
+El script *configure* incorpora algunas opciones para personalizar la instalación, estas 
 opciones pueden ser consultadas con el siguiente comando.
 
 [source,shell]
