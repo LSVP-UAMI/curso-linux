@@ -66,7 +66,7 @@ plantas
 
 Para mostrar los permisos del archivo `lavanda.txt`, ejecute el comando:
 ----
-ls -l lavanda.txt
+$ ls -l lavanda.txt
 -rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
 ----
 
@@ -103,7 +103,7 @@ Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un a
 El modo simbólico consta de los siguientes elementos:
 
 ----
-USUARIO|OPERADOR|PERMISO
+USUARIO┊OPERADOR┊PERMISO
 ----
 
 Donde:
@@ -166,9 +166,9 @@ Donde:
 [#ejemplo_2]
 === Ejemplo 2
 
-Se desea modificar los permisos del archivo `menta.txt`:
+Para modificar los permisos del archivo `menta.txt`:
 ----
-ls -l menta.txt
+$ ls -l menta.txt
 -rw-r--r-- 1 lamiaceae plantae 313 Jul 3 12:02 menta.txt
 ----
 
@@ -177,9 +177,6 @@ a los siguientes:
 rw-rw-r--
 ----
 
-.Respuesta
-[%collapsible]
-====
 Ejecute el comando:
 ----
 $ chmod g+w menta.txt
@@ -190,74 +187,41 @@ y verifique los permisos del archivo:
 ls -l menta.txt
 -rw-rw-r-- 1 lamiaceae plantae 313 Jul 3 12:02 romero.txt
 ----
-====
-
-[#ejemplo_3]
-=== Ejemplo 3
-
-Se desea modificar los permisos del archivo `oregano.txt`:
-----
-ls -l oregano.txt
--rw-r--r-- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
-----
-
-a los siguientes:
-----
-rw-r-----
-----
-
-.Respuesta
-[%collapsible]
-====
-Ejecute el comando:
-----
-$ chmod o-r oregano.txt
-----
-
-y verifique los permisos del archivo:
-----
-ls -l oregano.txt
--rw-r----- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
-----
-====
-
-[#ejemplo_4]
-=== Ejemplo 4
-
-Se desea modificar los permisos del archivo `romero.txt`:
-----
-ls -l romero.txt
--rw-r--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
-----
-
-a los siguientes:
-----
--wxr--r--
-----
-
-.Respuesta
-[%collapsible]
-====
-Ejecute el comando:
-----
-$ chmod u=wx romero.txt
-----
-
-y verifique los permisos del archivo:
-----
-ls -l romero.txt
---wxr--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
-----
-====
 
 [#actividades_2]
 === Actividades
 
+. Modifica los permisos del archivo `oregano.txt`:
++
+----
+ls -l oregano.txt
+-rw-r--r-- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
+----
++
+a los siguientes:
++
+----
+rw-r-----
+----
+. Modifica los permisos del archivo `romero.txt`:
++
+----
+ls -l romero.txt
+-rw-r--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
+----
++
+a los siguientes:
++
+----
+-wxr--r--
+----
 . ¿Cómo modifico los permisos de todos los archivos en un directorio?
 
 .Respuestas
 [%collapsible]
 ====
+. `chmod o-r oregano.txt`
+. `chmod u=wx romero.txt`
 . `chmod -R MODO DIRECTORIO`
 ====
 
@@ -270,44 +234,39 @@ El comando `chown` permite modificar el usuario/grupo propietario de un archivo:
 chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
 ----
 
+[#actividades_3]
+=== Actividades
 
-[#ejemplo_5]
-=== Ejemplo 5
-
-Se desea modificar el usuario (propietario) y grupo del archivo `lavanda.txt`:
+. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
++
 ----
 ls -l lavanda.txt
 -rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
 ----
-
++
 a los siguientes:
++
 ----
 lavandula planta
 ----
-
-.Respuesta
-[%collapsible]
-====
-Ejecute el comando:
-----
-$ chown lavandula:planta lavanda.txt
-----
-
-y verifique el usuario y grupo del archivo:
+. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
++
 ----
 ls -l lavanda.txt
--rw-r--r-- 1 lavandula planta 279 Jul 3 12:01 lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
 ----
-====
-
-
-[#actividades_3]
-=== Actividades
-
++
+a los siguientes:
++
+----
+USUARIO USUARIO
+----
 . ¿Cómo modifico el usuario/grupo de todos los archivos en un directorio?
 
 .Respuestas
 [%collapsible]
 ====
+. `chown lavandula:planta lavanda.txt`
+. `chown USUARIO:USUARIO lavanda.txt`
 . `chown -R PROPIETARIO:GRUPO DIRECTORIO`
 ====
