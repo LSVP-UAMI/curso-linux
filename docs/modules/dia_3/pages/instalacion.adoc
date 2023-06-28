@@ -28,14 +28,14 @@ puede compilar *C*, *C++*, *Objective-C*, *Fortran*, *Ada*, *Go* y *D*.
 * Copia el directorio /tmp/material/hola_mundo a tu directorio home.
 * Entra en tu copia del directorio.
 * Compila el código usando *gcc*.
-* Ejecuta el programa.
+* Ejecuta el programa pasando tu nombre como parametro.
 
 .Respuesta
 [%collapsible]
 ====
 [source,shell]
-gcc hola.cpp main.cpp -o hola_mundo
-./hola_mundo
+gcc hola.c main.c -o hola_mundo
+./hola_mundo "Nombre"
 ====
 
 === ¿Es lo mismo con proyectos mas complejos?
@@ -71,14 +71,27 @@ para compilar e instalar el programa.
 ==== Práctica
 Compilar e instalar *figlet* usando make.
 
-* Descargar el código fuente desde github.
+* Descargar el código fuente desde https://github.com/cmatsuoka/figlet.git
+
+.Pista
+[%collapsible]
+====
 [source,shell]
 git clone https://github.com/cmatsuoka/figlet.git
+====
 * Entra en el directorio del código.
 * Usa *make* para compilar el programa.
 * Usa *make* para instalar el programa.(Requiere *sudo*)
 
-=== ¿*Make* funciona en cualquier computadora? 
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+make
+sudo make install
+====
+
+=== ¿Make funciona en cualquier computadora? 
 En muchas ocasiones las diferencias en el hardware y sistema operativo
 hacen imposible para los desarrolladores el poder compilar el código 
 usando solo un *makefile*, algunas formas de solucionar esto fueron 
@@ -100,6 +113,37 @@ opciones pueden ser consultadas con el siguiente comando.
 [source,shell]
  ./configure --help
 
+==== Práctica
+* Descarga el código de *moon-buggy* desde https://github.com/seehuhn/moon-buggy.git 
+
+.Pista
+[%collapsible]
+====
+[source,shell]
+git clone https://github.com/seehuhn/moon-buggy.git
+==== 
+* Entra en el directorio del código.
+* Ejecuta el script `autogen.sh` 
+
+.Pista
+[%collapsible]
+====
+[source,shell]
+ ./autogen.sh
+==== 
+* Ejecuta el script `configure`
+* Compila el programa
+* Instala el programa
+
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+ ./configure
+make
+sudo make install
+==== 
+////
 ==== Autoreconf
 En ocasiones no es suficiente con ejecutar *autoconf*, para estos casos 
 existe *autoreconf* esta herramienta se encarga de ejecutar *autoconf* 
@@ -109,6 +153,7 @@ de generar un script de configuración.
 Ejemplo de uso.
 [source,shell]
 autoreconf -i
+////
 
 === Ventajas y desventajas de compilar los programas
 
@@ -126,7 +171,7 @@ de esta forma.
 * Se necesita tener mucho tiempo libre para hacer pruebas.
 
 [#manejador_paquetes]
-== Manejador de paquetes
+== Siempre tengo que compilar los programas que uso?
 Debido a los problemas que tiene compilar los programas con el tiempo 
 surgieron los manejadores de paquetes, estos hacen mas fácil la tarea 
 de administrar los programas que instalamos.
@@ -142,7 +187,7 @@ Los manejadores de paquetes tienen un modelo de dependencias, esto garantiza
 que todas las librerías y otros programas de los que depende un paquete sean 
 instalados previamente. 
 
-=== Formatos
+=== No todas las distribuciones Linux usan los mismos paquetes
 En linux hay dos principales formatos de paquetes que son usados por 
 la mayoría de las distribuciones son *rpm* y *deb*.
 
@@ -154,6 +199,7 @@ Cada uno de estos formatos tiene una herramienta encargada de instalar
 y desinstalar los paquetes. Para *rpm* el instalador de paquetes es *rpm*
 y *dpkg* es el respectivo de *deb*.
 
+////
 ==== Comandos básicos
 Instalar un paquete
 [source,shell]
@@ -173,8 +219,9 @@ dpkg -l
 ==== Práctica
 Instala el paquete cowsay que se encuentra en el directorio 
 /tmp/material/cowsay
+////
 
-=== Repositorios
+=== De donde vienen los paquetes?
 Un repositorio es un servidor que funciona como un almacén de paquetes,
 los repositorios son mantenidos por el equipo desarrollador de cada 
 distribución, de esta forma controlan las versiones de cada paquete para
@@ -244,8 +291,16 @@ apt-file search nombre_del_archivo
 pacman -F nombre_del_archivo
 
 ==== Práctica
-Instala los paquetes *fortune* y *apt-file* desde los repositorios.
+Instala los paquetes *cowsay* y *sl* desde los repositorios.
 
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+yum install cowsay
+yum install sl 
+==== 
+////
 === Práctica
 Compila e instala los programas *cmatrix* y *sl* desde el codigo.
 
@@ -253,4 +308,4 @@ Descarga el codigo usando.
 [source,shell]
 git clone https://github.com/abishekvashok/cmatrix.git
 git clone https://github.com/mtoyoda/sl.git
-
+////
