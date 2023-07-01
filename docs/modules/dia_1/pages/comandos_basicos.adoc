@@ -70,6 +70,14 @@ DESCRIPCIÓN
 
 ----
 
+== Vamos por lo que necesitamos
+
+Copiamos el material necesario para el curso con:
+
+----
+$ cp -r /tmp/.../dia_1 .
+----
+
 == Perdidos en una jungla de bits
 
 === Consultemos el camino recorrido (pwd)
@@ -361,25 +369,61 @@ o eliminar archivos que coincidan con un criterio dado.
 |===
 | Metacaracter | Descripción | Ejemplo
 
-| `*`   | Cualquier cadena, sin importar su longitud  | 12*3 coincide con 1223, 12345 y 123
+| `*`   | Cualquier cadena, sin importar su longitud  | 12*3 coincide con 1223, 12345 y 123.
 
 | `?`   | Cualquier carácter | sept? coincide con sept y sepa.
 
-| `[-]`   | Indica un rango de valores que se van a comparar (el rango debe estar entre paréntesis.).| [1–5][1-9][1-9] [1-9][1-9] coincide con cadenas, como por ejemplo, 12345 o 26589, pero no 67890. 
-
 | `[...]`  | Contiene caracteres específicos y rangos de valores que deben coincidir. | [xyz] coincide con cadenas que contienen x, y o z.
 
-| `[!..]`  | Cualquier carácter excepto los caracteres en el rango | sep[!1] coincide con sep2, sept y sepa pero no con sep1.
+| `[-]`   | Indica un rango de valores que se van a comparar (el rango debe estar entre paréntesis.).| [1–5][1-9][1-9] [1-9][1-9] coincide con cadenas, como por ejemplo, 12345 o 26589, pero no 67890. 
 
-| `{}`     | Para hacer coincidir un grupo de patrones de nombres/comodines | touch prueba{1..3}.txt creara los archivos prueba1.txt, prueba2.txt y prueba2.txt
+| `[!..]`  | Cualquier caracter excepto los caracteres en el rango | sep[!1] coincide con sep2, sept y sepa pero no con sep1.
+
+| `{}`     | Para hacer coincidir un grupo de patrones de nombres/comodines | touch prueba{1..3}.txt creara los archivos prueba1.txt, prueba2.txt y prueba2.txt.
 
 |===
 
-Los metacaracteres son utilizados para construir expresiones regulares. Con BASH, el propio shell expande
-los comodines. Esto significa que los comandos generalmente no ven estos caracteres especiales porque BASH
-ya los ha expandido antes de ejecutar el comando. 
+Los metacaracteres son utilizados para construir expresiones regulares. Con BASH, el propio shell expande los comodines. Esto significa que los comandos generalmente no ven estos caracteres especiales porque BASH ya los ha expandido antes de ejecutar el comando.
 
-*Ejemplos:* 
+[NOTE, caption=Nota]
+====
+En cómputo, una expresión regular es una secuencia de caracteres que conforma un patrón de búsqueda.
+====
+
+Ahora veámos qué tal se entendió. Intente lo siguiente y, si tiene alguna duda, pregunte a cualquier miembro del laboratorio.
+
+Copie el directorio /tmp/.../dia_1/comodines a su directorio home, entre al directorio comodines y realice los siguientes ejercicios.
+
+1. Mostrar los archivos con terminación .txt
+
+2. Mostrar los archivos *sample* que tengan un solo dígito en la sección del día.
+
+3. Mostrar los archivos *sample* de los días 12 a 16.
+
+4. Mostrar los archivos que tengan el patrón *error* en algún lugar de su nombre.
+
+5. Mostrar los archivos *error* que contengan *una sola letra* después del patrón *error*.
+
+6. Crear un nuevo directorio llamado _criadero_ y llenarlo con 15 archivos _conejoNN_, donde N es un dígito entre 0 y 9. Debe obtener una salida como la siguiente:
+
+----
+$ ls
+conejo01  conejo03  conejo05  conejo07  conejo09  conejo11  conejo13  conejo15
+conejo02  conejo04  conejo06  conejo08  conejo10  conejo12  conejo14
+----
+
+O como la siguiente:
+
+----
+$ ls
+
+conejo1   conejo11  conejo13  conejo15  conejo3  conejo5  conejo7  conejo9
+conejo10  conejo12  conejo14  conejo2   conejo4  conejo6  conejo8
+----
+
+=== Ejercicios a casa.
+
+Cree un nuevo directorio y pruebe los siguientes comandos al igual que su salida, después trate de responder a las preguntas del final de la sección.
 
 ----
 $ touch gcutError_recon-all.log s{10,1,6,8}_recon-all.log  s3-recon-all.log
@@ -421,16 +465,13 @@ subject_2.dat  subject_4.dat
 
 ----
 
-Ahora veámos qué tal se entendió. Intente lo siguiente y, si tiene alguna duda, pregunte a cualquier miembro del laboratorio.
-
-
 1. Encuentre un patrón de búsqueda que devuelva todos los archivos que terminan en `.txt`
 
 2. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` y terminen en `.log`
 
 3. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de dos dígitos
 
-4. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de un *solo* dígito
+4. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de *un solo* dígito
 
 5. Ejecute un comando que elimine todos los archivos que terminen con `.dat`
 
