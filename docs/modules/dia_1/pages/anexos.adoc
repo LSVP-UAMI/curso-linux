@@ -71,8 +71,6 @@ $ mkdir -p  plantas/selva
 * Algunos archivos tienen información acerca de los animales. ¿Cuáles son? Usamos *ls -l* para ver el tamaño de los directorios y así deducir cuáles tienen texto. ¿Qué tienen dentro estos archivos? Usamos *cat* para visualizar en pantalla su contenido.
 
 * Utilizando el comando *find* buscamos a los animales _perico_, _cangrejo_, _tortuga_, _tiburon_, _jaguar_, _pinguino_ y _calamar_.
-<<<<<<< HEAD
-=======
 
 == ¡Comodín!
 
