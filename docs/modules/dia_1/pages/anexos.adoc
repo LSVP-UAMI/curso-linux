@@ -201,4 +201,3 @@ subject_2.dat  subject_4.dat
 4. ls s[0-9][!0-9]*
 5. rm *.dat
 ====
->>>>>>> lalo
