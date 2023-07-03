@@ -6,17 +6,19 @@ información que se encuentra en este tipo de archivos.
 
 
 == ¿Cómo filtrar información?
-*grep* es un comando de unix que nos permite filtrar lineas de un 
-archivo de texto, *grep* busca patrones de texto en cada linea y solo 
-muestra las lineas en las que encuentra el patrón.
+*grep* es un comando de unix que nos permite filtrar líneas de un 
+archivo de texto, *grep* busca patrones de texto en cada línea y solo 
+muestra las líneas en las que encuentra el patrón.
 
 Por lo general estos patrones son cadenas de texto pero no se limitan 
 solo a patrones de este tipo.
 
 Forma de uso.
 [source,shell]
+----
 grep [opciones] patron [archivo]
 grep [opciones] [-e patron]... [-f archivo]... [archivo]
+----
 
 Algunas opciones de *grep*
 [cols="1,5"]
@@ -24,34 +26,34 @@ Algunas opciones de *grep*
 |`-i` +
 `--ignore-case`| Ignora si las letras son mayúsculas o minúsculas.
 |`-v` +
-`--invert-`| En lugar de mostrar las lineas que coinciden los patrones, 
-muestra las lineas que no coinciden.
+`--invert-`| En lugar de mostrar las líneas que coinciden los patrones, 
+muestra las líneas que no coinciden.
 |===
 
 === Práctica
-Para las practicas de esta sección copia el archivo 
-/tmp/material/datos/datos.csv
+Para las prácticas de esta sección copia el archivo 
+/tmp/material/datos/Agricultura_2021.csv
 
-Filtra las lineas del archivo de datos que copiaste para que solo muestre
-las lineas que contienen la palabra "Fire".
+Filtra las líneas del archivo de datos que copiaste para que solo muestre
+las líneas que contienen la palabra "Nuez".
 
 == Head y Tail
-*head* y *tail* son comandos que muestran solo las primeras y las ultimas 
-lineas de un archivo respectivamente.
+*head* y *tail* son comandos que muestran solo las primeras y las últimas 
+líneas de un archivo respectivamente.
 
 Opción importante
 [cols="1,5"]
 |===
-|`-n` *N* | Muestra *N* lineas.
+|`-n` *N* | Muestra *N* líneas.
 |===
 
 === Práctica 
-. Muestra las lineas de la 5 a la 10 del archivo de datos.
-. Muestra la penúltima linea del archivo de datos.
+. Muestra las líneas de la 5 a la 10 del archivo de datos.
+. Muestra la penúltima línea del archivo de datos.
 
 == Cut
 *cut* es un comando que se usa en archivos que contienen diferentes 
-campos en cada linea, y nos permite mostrar solo los campos seleccionados,
+campos en cada línea, y nos permite mostrar solo los campos seleccionados,
 para que *cut* funcione es necesario que los campos estén separados por 
 un carácter especifico.
 
@@ -63,10 +65,32 @@ Opciones importantes.
 |===
 
 === Práctica
-Muestra el segundo y sexto campo de las primeras 10 lineas del archivo de datos.
+Muestra el segundo y último campo de las primeras 10 líneas del archivo de Agricultura_2021.
+
+==== Pista
+[%collapsible]
+====
+Primero averigua qué carácter se usa para separar los campos en el archivo mencionado.
+====
+
+==== Respuesta
+[%collapsible]
+====
+De la siguiente manera podemos ve que se usan comas como separador de campos:
+[source,shell]
+----
+head -n 1 Agricultura_2021.csv
+----
+De modo que el ejercicio se resuelve de la siguiente manera.
+[source,shell]
+----
+cut -d "," -f N Agricultura_2021.csv | head -
+----
+donde N es campo que se desea mostrar.
+====
 
 == Sort
-*sort* ordena las lineas de un archivo, para esto podemos indicar los 
+*sort* ordena las líneas de un archivo, para esto podemos indicar los 
 campos que se usaran para el ordenamiento y la forma en la que se ordenaran.
 
 Opciones de *sort*.
@@ -74,23 +98,65 @@ Opciones de *sort*.
 |===
 |`-k` *K*| *K* es la lista de campos usados en el ordenamiento.
 |`-t` *T*| *T* es el separador de campos.
-|`-n` | Ordena las lineas en orden numérico.
+|`-n` | Ordena las líneas en orden numérico.
 |`-r` | Usa el orden inverso.
 |===
 
 === Práctica
-Muestra la segunda columna por orden alfabético.
+Ordena de forma descendente los diez estado que tienen mayor volumen de producción de jitomate.
+
+==== Pista
+[%collapsible]
+====
+Primero averigua cuál es el número de columna que corresponde al volumen de producción.
+====
+
+==== Respuesta
+[%collapsible]
+====
+Para conocer saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
+[source,shell]
+----
+head -n 1 Agricultura_2021.csv
+----
+Primero filtramos con *grep* la palabra jitomate, después usamos *sort* indicandole el carácter que delimita los campos y el número de campo que deseamos ordenar y al final lo pasamos como argumento a *head* indicandole el número de líneas que nos interesan
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | head -10
+----
+Una forma de comprobar si la salida es correcta con el comando *cut* de la siguiente manera, pasar todo el comando anterior a un *cut* de forma que solo nos muestre la columna 21
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | cut -d , -f 21 | head -10
+----
+Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -rn | cut -d , -f 21 | head -10
+----
+Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*.
+====
 
 == Wc
-*wc* cuenta lineas, palabras o caracteres dentro de un archivo.
+*wc* cuenta líneas, palabras o caracteres dentro de un archivo.
 
 Opciones 
 [cols="1,4"]
 |===
 |`-c` | Muestra el total de caracteres.
 |`-w` | Muestra el total de palabras.
-|`-l` | Muestra el total de lineas.
+|`-l` | Muestra el total de líneas.
 |===
 
 === Práctica
-Muestra el total de lineas dentro del archivo de datos que contienen la palabra water.
+Muestra el total de líneas dentro del archivo de datos que contienen la palabra "Aguascalientes".
+
+==== Respuesta
+[%collapsible]
+====
+Primero filtramos "Aguascalientes" en el archivo y lo pasamos al comando *wc* con la opción *-l*
+[source,shell]
+----
+grep Aguascalientes Agricultura_2021.csv | wc -l
+----
+====
