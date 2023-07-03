@@ -84,7 +84,7 @@ subject_2.dat  subject_4.dat
 . rm *.dat
 ====
 
-= Actividades del día.
+== Actividades del día.
 
 :table-caption: Tabla
 :figure-caption: Figura
