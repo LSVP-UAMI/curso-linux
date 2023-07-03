@@ -40,7 +40,7 @@ Un archivo o fichero informático es una secuencia de bytes que son almacenados 
 * Desventajas de este tipo de sistemas de archivos
 ** Es una especie de monstruo de Frankenstein
 
-=== Principales componentes del sistema de archivos
+== Principales componentes del sistema de archivos
 
 * Namespace - Una forma de nombrar las cosas y organizarlas jerárquicamente
 * API - un conjunto de llamadas al sistema para navegación y manipulación de objetos

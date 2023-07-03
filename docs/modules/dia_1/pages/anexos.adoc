@@ -7,7 +7,7 @@ Los comodines (también conocidos como metacaracteres) son símbolos o caractere
 a otros caracteres. Puede usarlos con cualquier comando, como el comando `ls` o el comando `rm`, para enumerar
 o eliminar archivos que coincidan con un criterio dado
 
-=== Descripción de metacaracteres
+== Descripción de metacaracteres
 
 |===
 | Metacaracter | Descripción | Ejemplo
@@ -20,7 +20,7 @@ o eliminar archivos que coincidan con un criterio dado
 | `{}`     | Para hacer coincidir un grupo de patrones de nombres/comodines | touch prueba{1..3}.txt creara los archivos prueba1.txt, prueba2.txt y prueba2.txt
 |===
 
-==== Práctica
+== Práctica
 
 Los metacaracteres son utilizados para construir expresiones regulares. Con BASH, el propio shell expande
 los comodines. Esto significa que los comandos generalmente no ven estos caracteres especiales porque BASH
@@ -65,7 +65,7 @@ subject_1.dat  subject_3.dat  subject_5.dat
 subject_2.dat  subject_4.dat
 ----
 
-==== Ejercicios
+== Ejercicios
 
 . Encuentre un patrón de búsqueda que devuelva todos los archivos que terminan en `.txt`
 . Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` y terminen en `.log`
