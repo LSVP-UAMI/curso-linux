@@ -355,5 +355,5 @@ Y cada sección cuenta con tres tipos de permisos:
 
 * No puede contener el caracter /
 
-* No se deben utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` Espacios
+* No se deben utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` ni espacios
 
