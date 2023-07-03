@@ -27,9 +27,8 @@ El comando *echo* despliega una línea de texto.
 
 Ejemplo: 
 ----
-[frodo@comarca1 ~]$ echo Hola mundo!
+$ echo Hola mundo!
 Hola mundo!
-[frodo@comarca1 ~]$
 ----
 
 == ¿Tenemos manuales? (man)
@@ -38,7 +37,7 @@ GNU/Linux está dotado de una gran colección de comandos, los cuales nos ayudan
 interactuar con el sistema a diferentes niveles. La tarea de memorizar todo es complicada (por no decir imposible), por lo que si en algún momento deseamos recordar o aprender el funcionamiento de algún comando en especial basta con revisar los manuales. Ahora, ¿cómo vemos el manual de un comando?
 
 ----
-[frodo@comarca1 ~]$ man comando
+$ man comando
 ----
 
 Para navegar a través de estas paginas usamos las flechas del teclado. Para buscar dentro del manual basta con escribir una barra "/" seguida del texto que queremos buscar; para pasar a la siguiente coincidencia presionamos la tecla "n" y para regresar a la coincidencia anterior presionamos "shift + n". Para salir presionamos "q".
@@ -46,7 +45,7 @@ Para navegar a través de estas paginas usamos las flechas del teclado. Para bus
 Por ejemplo, veamos el manual del manual.
 
 ----
-[frodo@comarca1 ~]$ man man
+$ man man
 
 
 MAN(1)                                                      Utilidades de paginador del manual                                                     MAN(1)
@@ -71,6 +70,14 @@ DESCRIPCIÓN
 
 ----
 
+== Vamos por lo que necesitamos
+
+Copiamos el material necesario para el curso con:
+
+----
+$ cp -r /tmp/.../dia_1 .
+----
+
 == Perdidos en una jungla de bits
 
 === Consultemos el camino recorrido (pwd)
@@ -78,7 +85,7 @@ DESCRIPCIÓN
 El comando *pwd* muestra como ruta absoluta el lugar en que nos encontramos trabajando.
 
 ----
-[frodo@comarca1 ~]$ pwd
+$ pwd
 
 /home/frodo/
 ----
@@ -87,12 +94,10 @@ El comando *pwd* muestra como ruta absoluta el lugar en que nos encontramos trab
 
 El comando *ls* (list directory) lista el contenido que hay en la ruta especificada (si no recibe una ruta, muestra lo que hay en el directorio en que nos encontramos). Algunos ejemplos y opciones muy comunes en el día a día se muestran en la siguiente tabla.
 
-//Revisar cómo será el directorio home de los usuarios
-
 //Para practicar los comandos se tendrán dos directorios llenos de animales (archivos) llamados ecosistemas 1 y 2
 ----
-[frodo@comarca1 ~]$ ls
-Descargas  Documentos  Escritorio  Imágenes  Música  Plantillas  Público  Vídeos
+$ ls
+dia_1
 ----
 
 |===
@@ -123,7 +128,7 @@ Por ejemplo:
 
 //Revisar cómo será el directorio home de los usuarios
 ----
-[frodo@comarca1 ~]$ cd Documentos
+$ cd dia_1
 ----
 
 |===
@@ -143,7 +148,7 @@ Por ejemplo:
 
 |===
 
-//cd se usará para cambiar entre ecosistemas
+//cd se usará para cambiar entre ecosistemas y revisarlos con ls
 
 === ¿Crear un nuevo directorio? ¡Hagámoslo! (mkdir)
 
@@ -170,13 +175,13 @@ El comando touch nos permite crear un nuevo archivo en blanco.
 Por ejemplo:
 
 ----
-touch new_file.txt
+$ touch new_file.txt
 ----
 
 Si el archivo existe, se modifica la hora y fecha de modificación. 
 //Que usen el manual para ver cómo modificar la hora y fecha (situación: el animal fue atendido y hay que poner la hora en que esto ocurrió).
 
-//Con touch agregarán nuevos animales
+//Con touch agregarán nuevos animales al habitat que quieran y/o plantas
 
 === Vamos a copiar cosas... (cp)
 
@@ -192,10 +197,29 @@ El comando *cp* (copy) sirve para hacer una copia de archivos y/o directorios.
 
 | cp file1 /tmp/    | Copia el archivo file1 al directorio /tmp
 
-//Cómo hacerlo de manera recursiva? Ver con el manual
-// | cp -r /tmp/       | Copia de manera recursiva 
-
 |===
+
+¿Cómo podemos copiar recursivamente?
+
+.Pista 1
+[%collapsible]
+====
+Leer el manual de cp
+====
+
+.Pista 2
+[%collapsible]
+====
+Usando la opción -r
+====
+
+.Respuesta
+[%collapsible]
+====
+----
+$ cp -r dir_copia nuevo_dir
+----
+====
 
 //Tenemos un animal en peligro de extincion (un ajolote) y lo queremos reproducir (copiar).
 
@@ -239,7 +263,9 @@ El comando *rm* (remove) elimina archivos o directorios.
 
 === Hora de destruir el directorio (rmdir y rm -r)
 
-El comando *rmdir* (remove directory) elimina directorios vacios
+El comando *rmdir* (remove directory) elimina directorios vacios.
+
+Otra es utilizar el comando *rm* con la opcion -r.
 
 |===
 | Comando           | Descripción
@@ -259,7 +285,7 @@ El comando *cat* se utiliza para mostrar el contenido de un archivo en la salida
 Un ejemplo es:
 
 ----
-cat gato.txt
+$ cat gato.txt
 ----
 
 //Varios animales tendrán texto en sus archivos y aquí se visualizará
@@ -271,7 +297,7 @@ El comando *find* nos ayuda a encontrar archivos. Para buscar un archivo por su 
 Por ejemplo:
 
 ----
-find . -name gato
+$ find . -name gato
 
 animales/domesticos/gato
 animales/salvajes/gato
@@ -343,25 +369,61 @@ o eliminar archivos que coincidan con un criterio dado.
 |===
 | Metacaracter | Descripción | Ejemplo
 
-| `*`   | Cualquier cadena, sin importar su longitud  | 12*3 coincide con 1223, 12345 y 123
+| `*`   | Cualquier cadena, sin importar su longitud  | 12*3 coincide con 1223, 12345 y 123.
 
 | `?`   | Cualquier carácter | sept? coincide con sept y sepa.
 
-| `[-]`   | Indica un rango de valores que se van a comparar (el rango debe estar entre paréntesis.).| [1–5][1-9][1-9] [1-9][1-9] coincide con cadenas, como por ejemplo, 12345 o 26589, pero no 67890. 
-
 | `[...]`  | Contiene caracteres específicos y rangos de valores que deben coincidir. | [xyz] coincide con cadenas que contienen x, y o z.
 
-| `[!..]`  | Cualquier carácter excepto los caracteres en el rango | sep[!1] coincide con sep2, sept y sepa pero no con sep1.
+| `[-]`   | Indica un rango de valores que se van a comparar (el rango debe estar entre paréntesis.).| [1–5][1-9][1-9] [1-9][1-9] coincide con cadenas, como por ejemplo, 12345 o 26589, pero no 67890. 
 
-| `{}`     | Para hacer coincidir un grupo de patrones de nombres/comodines | touch prueba{1..3}.txt creara los archivos prueba1.txt, prueba2.txt y prueba2.txt
+| `[!..]`  | Cualquier caracter excepto los caracteres en el rango | sep[!1] coincide con sep2, sept y sepa pero no con sep1.
+
+| `{}`     | Para hacer coincidir un grupo de patrones de nombres/comodines | touch prueba{1..3}.txt creara los archivos prueba1.txt, prueba2.txt y prueba2.txt.
 
 |===
 
-Los metacaracteres son utilizados para construir expresiones regulares. Con BASH, el propio shell expande
-los comodines. Esto significa que los comandos generalmente no ven estos caracteres especiales porque BASH
-ya los ha expandido antes de ejecutar el comando. 
+Los metacaracteres son utilizados para construir expresiones regulares. Con BASH, el propio shell expande los comodines. Esto significa que los comandos generalmente no ven estos caracteres especiales porque BASH ya los ha expandido antes de ejecutar el comando.
 
-*Ejemplos:* 
+[NOTE, caption=Nota]
+====
+En cómputo, una expresión regular es una secuencia de caracteres que conforma un patrón de búsqueda.
+====
+
+Ahora veámos qué tal se entendió. Intente lo siguiente y, si tiene alguna duda, pregunte a cualquier miembro del laboratorio.
+
+Copie el directorio /tmp/.../dia_1/comodines a su directorio home, entre al directorio comodines y realice los siguientes ejercicios.
+
+1. Mostrar los archivos con terminación .txt
+
+2. Mostrar los archivos *sample* que tengan un solo dígito en la sección del día.
+
+3. Mostrar los archivos *sample* de los días 12 a 16.
+
+4. Mostrar los archivos que tengan el patrón *error* en algún lugar de su nombre.
+
+5. Mostrar los archivos *error* que contengan *una sola letra* después del patrón *error*.
+
+6. Crear un nuevo directorio llamado _criadero_ y llenarlo con 15 archivos _conejoNN_, donde N es un dígito entre 0 y 9. Debe obtener una salida como la siguiente:
+
+----
+$ ls
+conejo01  conejo03  conejo05  conejo07  conejo09  conejo11  conejo13  conejo15
+conejo02  conejo04  conejo06  conejo08  conejo10  conejo12  conejo14
+----
+
+O como la siguiente:
+
+----
+$ ls
+
+conejo1   conejo11  conejo13  conejo15  conejo3  conejo5  conejo7  conejo9
+conejo10  conejo12  conejo14  conejo2   conejo4  conejo6  conejo8
+----
+
+=== Ejercicios a casa.
+
+Cree un nuevo directorio y pruebe los siguientes comandos al igual que su salida, después trate de responder a las preguntas del final de la sección.
 
 ----
 $ touch gcutError_recon-all.log s{10,1,6,8}_recon-all.log  s3-recon-all.log
@@ -403,16 +465,13 @@ subject_2.dat  subject_4.dat
 
 ----
 
-Ahora veámos qué tal se entendió. Intente lo siguiente y, si tiene alguna duda, pregunte a cualquier miembro del laboratorio.
-
-
 1. Encuentre un patrón de búsqueda que devuelva todos los archivos que terminan en `.txt`
 
 2. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` y terminen en `.log`
 
 3. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de dos dígitos
 
-4. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de un *solo* dígito
+4. Encuentre un patrón de búsqueda que devuelva todos los archivos que comiencen con `s` seguidos de *un solo* dígito
 
 5. Ejecute un comando que elimine todos los archivos que terminen con `.dat`
 
