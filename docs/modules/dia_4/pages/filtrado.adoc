@@ -67,7 +67,7 @@ Opciones importantes.
 === Práctica
 Muestra el segundo y último campo de las primeras 10 líneas del archivo de Agricultura_2021.
 
-==== Pista
+.Pista
 [%collapsible]
 ====
 Primero averigua qué carácter se usa para separar los campos en el archivo mencionado.
@@ -105,13 +105,13 @@ Opciones de *sort*.
 === Práctica
 Ordena de forma descendente los diez estado que tienen mayor volumen de producción de jitomate.
 
-==== Pista
+.Pista
 [%collapsible]
 ====
 Primero averigua cuál es el número de columna que corresponde al volumen de producción.
 ====
 
-==== Respuesta
+.Respuesta
 [%collapsible]
 ====
 Para conocer saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
@@ -151,7 +151,7 @@ Opciones
 === Práctica
 Muestra el total de líneas dentro del archivo de datos que contienen la palabra "Aguascalientes".
 
-==== Respuesta
+.Respuesta
 [%collapsible]
 ====
 Primero filtramos "Aguascalientes" en el archivo y lo pasamos al comando *wc* con la opción *-l*
