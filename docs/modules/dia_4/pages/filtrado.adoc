@@ -31,11 +31,8 @@ muestra las líneas que no coinciden.
 |===
 
 === Práctica
-Para las prácticas de esta sección copia el archivo 
-/tmp/material/datos/Agricultura_2021.csv
-
-Filtra las líneas del archivo de datos que copiaste para que solo muestre
-las líneas que contienen la palabra "Nuez".
+Para las prácticas de esta sección copia el directorio 
+/tmp/material/datos/dia_4 a tu directorio _home_, dentro busca el archivo Agricultura_2021.csv y filtra las líneas del archivo para que solo muestre las líneas que contienen la palabra "Nuez".
 
 == Head y Tail
 *head* y *tail* son comandos que muestran solo las primeras y las últimas 
@@ -60,8 +57,8 @@ un carácter especifico.
 Opciones importantes.
 [cols="1,5"]
 |===
-|`-d` *D* | De esta forma indicamos que *D* delimita los campos dentro del archivo.
-|`-f` *F* | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
+|`-d` "*D*" | De esta forma indicamos que *D* delimita los campos dentro del archivo.
+|`-f` "*F*" | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
 |===
 
 === Práctica
@@ -73,7 +70,7 @@ Muestra el segundo y último campo de las primeras 10 líneas del archivo de Agr
 Primero averigua qué carácter se usa para separar los campos en el archivo mencionado.
 ====
 
-==== Respuesta
+.Respuesta
 [%collapsible]
 ====
 De la siguiente manera podemos ve que se usan comas como separador de campos:
@@ -84,9 +81,9 @@ head -n 1 Agricultura_2021.csv
 De modo que el ejercicio se resuelve de la siguiente manera.
 [source,shell]
 ----
-cut -d "," -f N Agricultura_2021.csv | head -
+cut -d "," -f N Agricultura_2021.csv | head
 ----
-donde N es campo que se desea mostrar.
+donde N es campo que se desea mostrar.(N = 2 y N = 23 respectivamente).
 ====
 
 == Sort
@@ -103,7 +100,7 @@ Opciones de *sort*.
 |===
 
 === Práctica
-Ordena de forma descendente los diez estado que tienen mayor volumen de producción de jitomate.
+Ordena de forma descendente los diez lugares que tienen mayor volumen de producción de jitomate.
 
 .Pista
 [%collapsible]
@@ -114,7 +111,7 @@ Primero averigua cuál es el número de columna que corresponde al volumen de pr
 .Respuesta
 [%collapsible]
 ====
-Para conocer saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
+Para saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
 [source,shell]
 ----
 head -n 1 Agricultura_2021.csv
@@ -127,12 +124,12 @@ grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | head -10
 Una forma de comprobar si la salida es correcta con el comando *cut* de la siguiente manera, pasar todo el comando anterior a un *cut* de forma que solo nos muestre la columna 21
 [source,shell]
 ----
-grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | cut -d , -f 21 | head -10
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | cut -d "," -f 21 | head -n 10
 ----
 Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*
 [source,shell]
 ----
-grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -rn | cut -d , -f 21 | head -10
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -rn | cut -d "," -f 21 | head -n 10
 ----
 Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*.
 ====
