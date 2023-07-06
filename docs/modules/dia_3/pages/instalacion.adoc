@@ -5,45 +5,47 @@
 
 [#compilación]
 == Compilación con GNU Tools
-En linux muchos de los programas son de software libre,
+En linux muchos de los programás son de software libre,
 esto significa que podemos obtener el código fuente lo que nos 
-permite modificar los programas y compilarlos para nuestro hardware.
+permite modificar los programás y compilarlos para nuestro hardware.
 
-=== ¿Que es compilar?
+=== ¿Qué es compilar?
 Compilar es el proceso de transformar un programa informático escrito 
 en un lenguaje en un conjunto de instrucciones en otro formato o lenguaje. 
 Un compilador es un programa de computadora que realiza dicha tarea.
 
-En particular cuando hablamos de compilar nos referimos a traducir codigo 
-escrito en un lenguaje de programación a codigo que puede ser ejecutado por 
+En particular cuando hablamos de compilar nos referimos a traducir código 
+escrito en un lenguaje de programación a código que puede ser ejecutado por 
 la computadora.
 
-=== ¿Cuales son los compiladores de GNU?
+=== ¿Cúales son los compiladores de GNU?
 *GNU Compiler Collection* (*GCC*) fue desarrollado como un compilador de lenguaje *C* para el proyecto 
-GNU, con el tiempo paso a ser una colección de compiladores ya que empezó 
-a dar soporte a mas lenguajes, actualmente en la versión 12.2 *gcc* 
+GNU, con el tiempo paso a ser una colección de compiladores, ya que empezó 
+a dar soporte a más lenguajes, actualmente en la versión 12.2 *gcc* 
 puede compilar *C*, *C++*, *Objective-C*, *Fortran*, *Ada*, *Go* y *D*.
 
 ==== Práctica
-* Copia el directorio /tmp/material/hola_mundo a tu directorio home.
-* Entra en tu copia del directorio.
+* Copia el directorio `/tmp/material/dia_3` a tu directorio home.
+* Entra en el directorio `~/dia_3/hola_mundo`.
 * Compila el código usando *gcc*.
-* Ejecuta el programa pasando tu nombre como parametro.
+* Ejecuta el programa pasando tu nombre como parámetro.
 
 .Respuesta
 [%collapsible]
 ====
 [source,shell]
-gcc hola.c main.c -o hola_mundo
+gcc -c -o hola.o hola.c
+gcc -c -o main.o main.c
+gcc -o hola_mundo hola.o main.o
 ./hola_mundo "Nombre"
 ====
 
-=== ¿Es lo mismo con proyectos mas complejos?
-Cuando un proyecto se vuelve grande o complejo se hace mas 
+=== ¿Es lo mismo con proyectos más complejos?
+Cuando un proyecto se vuelve grande o complejo se hace más 
 difícil compilarlo a mano, para estos casos existe *make*. 
 
-*make* ayuda a automatizar la compilación de programas, los desarrolladores 
-definen reglas para tareas especificas, estas reglas son usadas por *make* 
+*make* ayuda a automatizar la compilación de programás, los desarrolladores 
+definen reglas para tareas específicas, estas reglas son usadas por *make* 
 para saber que debe hacer.
 
 Las reglas son definidas en un archivo llamado *Makefile* o *makefile*,
@@ -94,7 +96,7 @@ sudo make install
 === ¿Make funciona en cualquier computadora? 
 En muchas ocasiones las diferencias en el hardware y sistema operativo
 hacen imposible para los desarrolladores el poder compilar el código 
-usando solo un *makefile*, algunas formas de solucionar esto fueron 
+usando solo un *makefile*, algunas formás de solucionar esto fueron 
 escribir diferentes *makefile* para los diferentes escenarios o proveer uno
 que fuera fácil de modificar. Con el tiempo evolucionó a scripts que
 generan de forma automática el *makefile* haciendo un análisis de diferentes 
@@ -155,26 +157,26 @@ Ejemplo de uso.
 autoreconf -i
 ////
 
-=== Ventajas y desventajas de compilar los programas
+=== Ventajas y desventajas de compilar los programás
 
 ==== Ventajas
-* Los programas pueden ser adaptados a nuestras necesidades.
+* Los programás pueden ser adaptados a nuestras necesidades.
 * Podemos instalar versiones especificas.
 * Podemos tener múltiples versiones instaladas al mismo tiempo.
-* Podemos optimizar los programas para nuestro hardware.
+* Podemos optimizar los programás para nuestro hardware.
 
 ==== Desventajas
 * Se necesitan conocimientos específicos para compilar.
-* Se vuelve complicado administrar todos los programas que instalamos 
+* Se vuelve complicado administrar todos los programás que instalamos 
 de esta forma.
-* Se necesita experiencia para optimizar los programas.
+* Se necesita experiencia para optimizar los programás.
 * Se necesita tener mucho tiempo libre para hacer pruebas.
 
 [#manejador_paquetes]
-== Siempre tengo que compilar los programas que uso?
-Debido a los problemas que tiene compilar los programas con el tiempo 
-surgieron los manejadores de paquetes, estos hacen mas fácil la tarea 
-de administrar los programas que instalamos.
+== ¿Siempre tengo que compilar los programás que uso?
+Debido a los problemás que tiene compilar los programás con el tiempo 
+surgieron los manejadores de paquetes, estos hacen más fácil la tarea 
+de administrar los programás que instalamos.
 
 Un paquete incluye todos los archivos necesarios para la ejecución de 
 un programa, esto incluye binarios previamente compilados, información 
@@ -184,14 +186,14 @@ Los paquetes también incluyen scripts que pueden ser ejecutados durante
 cualquier punto de la instalación.
 
 Los manejadores de paquetes tienen un modelo de dependencias, esto garantiza
-que todas las librerías y otros programas de los que depende un paquete sean 
+que todas las librerías y otros programás de los que depende un paquete sean 
 instalados previamente. 
 
 === No todas las distribuciones Linux usan los mismos paquetes
 En linux hay dos principales formatos de paquetes que son usados por 
 la mayoría de las distribuciones son *rpm* y *deb*.
 
-*rpm* fue creado para RedHat y es heredado por todas las distros basadas 
+*rpm* fue creado para RedHat y es heredado por todas las distribuciones basadas 
 en esta. De la misma forma *deb* es el formato de Debian, y es compartido 
 por sus derivadas.
 
@@ -221,24 +223,24 @@ Instala el paquete cowsay que se encuentra en el directorio
 /tmp/material/cowsay
 ////
 
-=== De donde vienen los paquetes?
+=== ¿De dónde vienen los paquetes?
 Un repositorio es un servidor que funciona como un almacén de paquetes,
 los repositorios son mantenidos por el equipo desarrollador de cada 
 distribución, de esta forma controlan las versiones de cada paquete para
-asegurarse de que son compatibles entre si. 
+asegurarse de que son compatibles entre sí. 
 
-Por lo general las distros tienen una versión de cada paquete para 
+Por lo general las distribuciones tienen una versión de cada paquete para 
 cada tipo de arquitectura a la que dan soporte (64-bits, 32-bits, arm,
 etc), también suelen almacenar varias versiones del mismo paquete.
 
 === Manejadores de paquetes de alto nivel
-Los manejadores de alto nivel ayudan a hacer mas simple las tareas 
+Los manejadores de alto nivel ayudan a hacer más simple las tareas 
 de buscar y descargar paquetes, instalar dependencias de forma automática 
 y hacer actualizaciones de paquetes.
 
 Este tipo de manejadores de paquetes se conecta con los repositorios de
 la distro para buscar y descargar los paquetes que queremos instalar,
-además puede consultar si hay versiones mas recientes de los paquetes
+además puede consultar si hay versiones más recientes de los paquetes
 que tenemos instalados para que estos sean actualizados.
 
 Otra de sus funciones es que pueden consultar en que paquete se encuentra
@@ -259,7 +261,7 @@ Para Arch y derivadas.
 [source,shell]
 pacman
 
-==== Comando básicos
+==== Comandos básicos
 Buscar un paquete en los repositorios.
 [source,shell]
 yum search nombre_del_paquete
@@ -302,7 +304,7 @@ yum install sl
 ==== 
 ////
 === Práctica
-Compila e instala los programas *cmatrix* y *sl* desde el codigo.
+Compila e instala los programás *cmatrix* y *sl* desde el codigo.
 
 Descarga el codigo usando.
 [source,shell]
