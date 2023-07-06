@@ -11,7 +11,7 @@ El comando `ps` muestra una una _captura_ de los procesos del sistema tal y como
 Con el fin de resolver este problema, se han desarrolado diferentes programas basados en `ps` que proporcionan una vista dinámica en tiempo real de la ejecución del sistema. Además, muestran un resumen de la información del sistema, así como una lista de procesos o subprocesos que actualmente administra el kernel de Linux.
 
 [#top]
-== top
+=== top
 
 ----
 top - 10:18:52 up 4 days, 21:57,  1 user,  load average: 0.03, 0.01, 0.00
