@@ -198,36 +198,37 @@ $ cp -r /tmp/material-curso/dia_4 .
 
     .. Busque archivos con nombre _conejo_ dentro del directorio _dia_4/scripts_ y muestrelos utilizando el comando *find*.
 
-        .Pista
-        [%collapsible]
-        ====
-        echo Se encontraron los siguientes conejos:
-        find . -name conejo
-        ====
+.Pista
+[%collapsible]
+====
+echo Se encontraron los siguientes conejos:
+
+find . -name conejo
+====
 
     .. Guarde los archivos (la ruta que regresa el comando) en un archivo temporal _conejos.tmp_
 
-        .Pista
-        [%collapsible]
-        ====
-        find . -name conejo > conejos.tmp
-        ====
+.Pista
+[%collapsible]
+====
+find . -name conejo > conejos.tmp
+====
 
     .. Guarde la primer entrada en una variable llamada _archivo_.
 
-        .Pista
-        [%collapsible]
-        ====
-        archivo=$(head -n 1 conejos.tmp)
-        ====
+.Pista
+[%collapsible]
+====
+archivo=$(head -n 1 conejos.tmp)
+====
 
     .. Borre el archivo que coincide con la primer entrada (y con el valor de la variable _archivo_).
 
-        .Pista
-        [%collapsible]
-        ====
-        rm $archivo
-        ====
+.Pista
+[%collapsible]
+====
+rm $archivo
+====
 
     .. Avise que se eliminó la primer coincidencia.
 
@@ -235,11 +236,11 @@ $ cp -r /tmp/material-curso/dia_4 .
 
     .. Borre el archivo temporal _conejos.tmp_
 
-        .Pista
-        [%collapsible]
-        ====
-        rm conejos.tmp
-        ====
+.Pista
+[%collapsible]
+====
+rm conejos.tmp
+====
 
 2. Hacer un pequeño script que haga lo que sigue:
 
