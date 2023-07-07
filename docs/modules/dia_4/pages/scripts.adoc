@@ -194,7 +194,7 @@ $ cd
 $ cp -r /tmp/material-curso/dia_4 .
 ----
 
-1. Realizar un script que haga lo siguiente:
+* Realizar un script que haga lo siguiente:
 
     .. Busque archivos con nombre _conejo_ dentro del directorio _dia_4/scripts_ y muestrelos utilizando el comando *find*.
 
@@ -242,7 +242,7 @@ rm $archivo
 rm conejos.tmp
 ====
 
-2. Hacer un pequeño script que haga lo que sigue:
+* Hacer un pequeño script que haga lo que sigue:
 
     .. Intentar usar el comando type sobre curl (curl es el argumento del comando type) *y*, si se pudo lograr, que la terminal espere 3 segundos (usamos el comando *sleep 3* ).
 
