@@ -2,3 +2,4 @@
 ** xref:pipes.adoc[Pipes]
 ** xref:filtrado.adoc[Filtrado]
 ** xref:scripts.adoc[Scripts]
+** xref:anexos.adoc[Anexos]
