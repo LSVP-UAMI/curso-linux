@@ -44,8 +44,6 @@ o de forma alternativa:
 Sin embargo, para esta última forma hay que asegurarse de que el archivo tenga permisos de ejecución.
 
 //Se escribe un script que imprima la frase "Hola, Mundo!".
-//Se escribe un script que haga una copia de seguridad de un directorio en particular.
-
 
 [#variables]
 == Variables
@@ -53,8 +51,8 @@ Sin embargo, para esta última forma hay que asegurarse de que el archivo tenga 
 En matemáticas, se llama variable a cualquier símbolo que representa a cualquier valor de los comprendidos en un conjunto.
 
 ----
-x = 3.141592
-z = 1.618034
+$ x = 3.141592
+$ z = 1.618034
 ----
 
 En programación, una variable es un contenedor con nombre para un conjunto particular de bits o tipo de datos.
@@ -78,16 +76,34 @@ tipo_sangre=A
 estatura=1.75
 ----
 
+Otra manera de de asignar un valor a una variable es mediante el comando *read*. A continuación se muestra utilización del comando mediante un ejemplo:
+
+----
+$ read apellido
+$ Belmont
+----
+
+Esto sirve para guardar en la variable _apellido_ el contenido _Belmont_. Al pulsar la tecla Enter después del comando *read*, la terminal quedará a la espera de que introduzcamos el valor que almacenará la variable.
+
+Cuando guardamos el resultado de un comando en una variable, el comando va entre paréntesis y precedido de un *$*. Ejemplo:
+
+----
+$ ruta=$(pwd)
+$ echo $ruta
+/home/usuario
+----
+
 [NOTE, caption=NOTA]
 ====
 En Bash no es necesario declarar una variable, solo asignarle un valor.
 ====
 
 
+
 [#valor]
 === Valor
 
-Para obtener el valor de una variable, utilizamos el símbolo "$" seguido del nombre de la variable. Por ejemplo, para imprimir el valor de una variable se utilizaría el siguiente formato:
+Para obtener el valor de una variable, utilizamos el símbolo *"$"* seguido del nombre de la variable. Por ejemplo, para imprimir el valor de una variable se utilizaría el siguiente formato:
 
 ----
 echo $mi_variable
@@ -136,6 +152,97 @@ Son variables que el shell establece internamente y que están disponibles para 
 
 Cuando un programa finaliza, éste deja un _código de salida_, un valor numérico también conocido como _código de error_ o _valor de salida_. Cuando el código de salida es cero (0), generalmente significa que el programa se ejecutó sin problemas. Sin embargo, si el programa tiene un error, suele salir con un número distinto de 0.
 
-//Se realizan las sig. actividades para mostrar lo anterior
-//. Ejecuta el script _variables_especiales.sh_.
-//. Imprime el código de salida del script _variables_especiales.sh_.
+
+[#operadores_logicos]
+== Operadores lógicos
+
+[#and]
+=== *AND*
+
+El operador lógico `&&` (and) funciona de la siguiente forma:
+
+----
+COMANDO_1 && COMANDO_2
+----
+
+El shell ejecuta el `COMANDO_1`:
+
+. Si su código de salida es 0, entonces el shell ejecuta el `COMANDO_2`.
+. En caso contrario, el shell no ejecuta el `COMANDO_2`.
+
+
+[#or]
+=== *OR*
+
+El operador lógico `||` (or) funciona de la siguiente forma:
+
+----
+COMANDO_1 || COMANDO_2
+----
+
+El shell ejecuta el `COMANDO_1`:
+
+. Si su código de salida es 0, el shell no ejecuta el `COMANDO_2`.
+. En caso contrario, el shell ejecuta el `COMANDO_2`.
+
+== Ejercicios.
+
+Para los ejercicios primero copiamos el directorio _/tmp/material-curso/dia_4_ a nuestro home:
+
+----
+$ cd
+$ cp -r /tmp/material-curso/dia_4 .
+----
+
+1. Realizar un script que haga lo siguiente:
+
+    .. Busque archivos con nombre _conejo_ dentro del directorio _dia_4/scripts_ y muestrelos utilizando el comando *find*.
+
+        .Pista
+        [%collapsible]
+        ====
+        echo Se encontraron los siguientes conejos:
+        find . -name conejo
+        ====
+
+    .. Guarde los archivos (la ruta que regresa el comando) en un archivo temporal _conejos.tmp_
+
+        .Pista
+        [%collapsible]
+        ====
+        find . -name conejo > conejos.tmp
+        ====
+
+    .. Guarde la primer entrada en una variable llamada _archivo_.
+
+        .Pista
+        [%collapsible]
+        ====
+        archivo=$(head -n 1 conejos.tmp)
+        ====
+
+    .. Borre el archivo que coincide con la primer entrada (y con el valor de la variable _archivo_).
+
+        .Pista
+        [%collapsible]
+        ====
+        rm $archivo
+        ====
+
+    .. Avise que se eliminó la primer coincidencia.
+
+    .. Utilice *find* para mostrar que el archivo se ha ido.
+
+    .. Borre el archivo temporal _conejos.tmp_
+
+        .Pista
+        [%collapsible]
+        ====
+        rm conejos.tmp
+        ====
+
+2. Hacer un pequeño script que haga lo que sigue:
+
+    .. Intentar usar el comando type sobre curl (curl es el argumento del comando type) *y*, si se pudo lograr, que la terminal espere 3 segundos (usamos el comando *sleep 3* ).
+
+    .. Mostrar el contenido del archivo _about_periquito.txt_ *y*, si se logra, que la terminal espere 7 segundos *y* si se logra, ejecutamos el comando *curl parrot.live*
