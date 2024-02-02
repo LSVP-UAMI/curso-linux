@@ -1,0 +1,77 @@
+= Anexos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+[#modo_octal]
+== Modo (octal)
+
+Además del xref:../permisos#modo_simbolico[_modo simbólico_] el comando `chmod` soporta el _modo octal_ o _modo absoluto_ para modificar los permisos de un archivo. Para utilizar el _modo octal_, siga la sintaxis vista previamente:
+----
+chmod [OPCIONES] MODO ARCHIVO
+----
+
+.Codificación de permisos
+[cols="^.^1,^.^1,^.^1", options="autowidth, header"]
+|===
+|Permiso
+|Binario
+|Octal
+
+|`---`
+|000
+|0
+
+|`--x`
+|001
+|1
+
+|`-w-`
+|010
+|2
+
+|`-wx`
+|011
+|3
+
+|`r--`
+|100
+|4
+
+|`r-x`
+|101
+|5
+
+|`rw-`
+|110
+|6
+
+|`rwx`
+|111
+|7
+|===
+
+[#ejemplo]
+=== Ejemplo
+
+Para modificar los permisos del archivo archivo `lavanda.txt`:
+----
+ls -l lavanda.txt
+-rw-r--r-- 1 lavandula planta 279 Jul 3 12:01 lavanda.txt
+----
+
+a los siguientes:
+----
+rwxrw-rw-
+----
+
+Ejecute el comando:
+----
+$ chmod 766 lavanda.txt
+----
+
+y verifique los permisos del archivo:
+----
+ls -l lavanda.txt
+-rwxrw-rw- 1 lavandula planta 279 Jul 3 12:01 lavanda.txt
+----

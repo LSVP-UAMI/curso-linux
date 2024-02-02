@@ -1,0 +1,272 @@
+= Permisos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+Cada archivo tiene nueve permisos que determinan qué operaciones se pueden realizar sobre el y por quién:
+----
+-rw-r--r-- 1 sophie amundsen 973194 Dec 5 12:00 world.txt
+----
+
+Estos permisos están agrupados en tres conjuntos:
+
+* Permisos para el propietario del archivo
+* Permisos para el grupo de propietarios del archivo
+* Permisos para el resto de usuarios
+
+.Permisos de archivo
+image::permisos/permisos.png["Permisos de archivo"]
+
+Cada uno de estos conjuntos tiene tres tipos de permisos:
+
+* Lectura (r)
+* Escritura (w)
+* Ejecución (x)
+
+.Efecto de los permisos en archivos y directorios
+[cols="^.^1,.^1,.^1", options="autowidth, header"]
+|===
+|Permiso
+|Archivo
+|Directorio
+
+|`r`
+|Leer el contenido del archivo.
+|Listar el contenido del directorio.
+
+|`w`
+|Modificar/eliminar el archivo. 
+|Crear/eliminar archivos.
+
+|`x`
+|Ejecutar el archivo.
+|Acceder al directorio.
+|===
+
+
+[#mostrar_permisos]
+== ¿Cómo muestro los permisos de un archivo?
+
+La forma más común de mostrar los permisos de un archivo es utilizando el comando `ls`:
+----
+ls -l [ARCHIVO]
+----
+
+[#ejemplo_1]
+=== Ejemplo 1
+
+El directorio `plantas`, contiene los siguientes archivos:
+----
+plantas
+├── lavanda.txt
+├── menta.txt
+├── oregano.txt
+└── romero.txt
+----
+
+Para mostrar los permisos del archivo `lavanda.txt`, ejecute el comando:
+----
+$ ls -l lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
+----
+
+[#actividades_1]
+=== Actividades
+
+. ¿Cómo muestro los permisos de todos los archivos en un directorio?
+. ¿Cómo muestro los permisos de un directorio?
+
+.Respuestas
+[%collapsible]
+====
+. `ls -l`
+. `ls -ld`
+====
+
+
+[#modificar_permisos]
+== ¿Cómo modifico los permisos de un archivo?
+
+El comando `chmod` permite modificar los permisos de un archivo:
+----
+chmod [OPCIONES] MODO ARCHIVO
+----
+
+[WARNING, caption=ADVERTENCIA]
+====
+Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un archivo.
+====
+
+[#modo_simbolico]
+=== Modo simbólico
+
+El modo simbólico consta de los siguientes elementos:
+
+----
+USUARIO┊OPERADOR┊PERMISO
+----
+
+Donde:
+
+. Usuario. A quién se le aplica la modificación
+. Operador. Tipo de operación que se aplica
+. Permiso. Tipo de permiso a modificar
+
+.Tipos de usuarios
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Símbolo
+|Descripción
+
+|`u`
+|Usuario propietario
+
+|`g`
+|Grupo propietario
+
+|`o`
+|Otros usuarios
+
+|`a`
+|Todos los usuarios
+|===
+
+.Tipos de operadores
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Operador
+|Descripción
+
+|`+`
+|Agregar
+
+|`-`
+|Eliminar
+
+|`=`
+|Asignar
+|===
+
+.Tipos de permisos
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Permiso
+|Descripción
+
+|`r`
+|Lectura
+
+|`w`
+|Escritura
+
+|`x`
+|Ejecución
+|===
+
+[#ejemplo_2]
+=== Ejemplo 2
+
+Para modificar los permisos del archivo `menta.txt`:
+----
+$ ls -l menta.txt
+-rw-r--r-- 1 lamiaceae plantae 313 Jul 3 12:02 menta.txt
+----
+
+a los siguientes:
+----
+rw-rw-r--
+----
+
+Ejecute el comando:
+----
+$ chmod g+w menta.txt
+----
+
+y verifique los permisos del archivo:
+----
+ls -l menta.txt
+-rw-rw-r-- 1 lamiaceae plantae 313 Jul 3 12:02 romero.txt
+----
+
+[#actividades_2]
+=== Actividades
+
+. Modifica los permisos del archivo `oregano.txt`:
++
+----
+ls -l oregano.txt
+-rw-r--r-- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
+----
++
+a los siguientes:
++
+----
+rw-r-----
+----
+. Modifica los permisos del archivo `romero.txt`:
++
+----
+ls -l romero.txt
+-rw-r--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
+----
++
+a los siguientes:
++
+----
+-wxr--r--
+----
+. ¿Cómo modifico los permisos de todos los archivos en un directorio?
+
+.Respuestas
+[%collapsible]
+====
+. `chmod o-r oregano.txt`
+. `chmod u=wx romero.txt`
+. `chmod -R MODO DIRECTORIO`
+====
+
+
+[#modificar_usurio_grupo]
+== ¿Cómo modifico el usuario/grupo de una archivo?
+
+El comando `chown` permite modificar el usuario/grupo propietario de un archivo:
+----
+chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
+----
+
+[#actividades_3]
+=== Actividades
+
+. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
++
+----
+ls -l lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
+----
++
+a los siguientes:
++
+----
+lavandula planta
+----
+. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
++
+----
+ls -l lavanda.txt
+-rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
+----
++
+a los siguientes:
++
+----
+USUARIO USUARIO
+----
+. ¿Cómo modifico el usuario/grupo de todos los archivos en un directorio?
+
+.Respuestas
+[%collapsible]
+====
+. `chown lavandula:planta lavanda.txt`
+. `chown USUARIO:USUARIO lavanda.txt`
+. `chown -R PROPIETARIO:GRUPO DIRECTORIO`
+====

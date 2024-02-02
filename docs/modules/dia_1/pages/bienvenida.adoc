@@ -1,0 +1,60 @@
+= Bienvenida
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+== Bienvenidos al Curso-taller terminal GNU/LINUX Nivel cero
+
+Algunos datos sobre este curso:
+
+* Esta es la segunda edición con este formato.
+* Impartido por miembros del *Laboratorio de Supercómputo y Visualización en Paralelo*
+
+****
+
+El Laboratorio de Supercómputo y Visualización en Paralelo (LSVP) de la
+División de Ciencias Básicas e Ingeniería (DCBI) de la Universidad Autónoma
+Metropolitana Unidad Iztapalapa (UAM-I), inició su funcionamiento a finales de 1993.
+
+El Laboratorio tiene como finalidad apoyar el trabajo de investigación que
+requiere de cómputo científico de alto rendimiento en Física, Química, Matemáticas
+e ingeniería.
+
+image::bienvenida/lsvp.jpeg[align=center]
+****
+
+****
+El núcleo del laboratorio es el cluster *Yoltla (Yoltlamaltini)*
+
+Cuyo nombre significa *'“semillero del saber o conocimiento”'*
+
+image::bienvenida/yoltla.jpg[align=center]
+****
+
+* El cluster Yoltla Está hecho con linux
+** Se requiere linux para administrarlo
+** Se requiere linux para utilizar los recursos
+
+* La administración y mantenimiento del laboratorio se realiza, en buena medida,
+por alumnos de licenciatura.
+
+* Se realizan actividades como
+** Implementación de nuevos servicios
+** Mantenimiento
+** Optimización de aplicaciones científicas
+** Impartir cursos
+
+== Instructores para este curso
+
+Los miembros del laboratorio que van a dar este curso
+
+* Eduardo Morgado Velázquez
+* Diego Morales Serrano
+* Alfonso Iván Rojo Guerrero
+* Luis Fernando Torres Hernández
+
+== Demografía del curso
+Esta es la demografía para este curso
+****
+image::bienvenida/demografia.png[align=center]
+****

@@ -1,0 +1,172 @@
+= Anexos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+[#bash]
+== Bash
+
+Un shell es un programa diseñado para leer comandos escritos por un usuario y ejecutar
+los programas adecuados para responder a dichos comandos. También puede ser llamado 
+interprete de comandos.
+
+Los shells no solo fueron diseñados para un uso interactivo.
+
+Si puedes escribir comandos en un shell, entonces puedes escribir scripts.
+Un script de shell es una serie de comandos escritos en un archivo. El  shell
+lee los comandos desde el archivo tal como si fueran escritos dentro de la terminal
+
+Ejemplos de shells son:
+
+* sh
+* bash
+* zsh
+* fish
+
+[#comandos_extra]
+== Comandos extra
+
+=== sleep
+
+El comando *sleep* hace una pausa con el número de segundos que se le indican.
+
+----
+$ sleep 3
+----
+En este caso la terminal hará una pausa y posteriormente nos regresará el control.
+
+=== curl
+
+*curl* es una herramienta de línea de comandos que permite transferir datos hacia o desde un servidor sin interacción del usuario.
+
+[#condicionales]
+== Condicionales
+
+Los condicionales se utilizan en los lenguajes de programación para realizar cualquier tarea de toma de decisiones.
+
+.Estructura general de un condicional en Bash
+----
+if [ COMANDO_1 ]
+then
+   # Código
+elif [ COMANDO_2 ]
+then
+   # Código
+else
+   # Código
+fi
+----
+
+Las palabras _if_, _then_, _elif_, _else_ y _fi_ son palabras reservadas o palabras clave (keywords), es decir, que tiene un significado especial para el shell.
+
+.Operadores de comparación numérica
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Operador
+|Descripción
+
+|-gt
+|Es mayor que
+
+|-lt
+|Es menor que
+
+|-ge
+|Es mayor que o igual a
+
+|-le
+|Es menor que o igual a
+
+|-eq
+|Es igual a
+
+|-ne
+|No es igual a
+|===
+
+.Ejemplo de condicional
+----
+#!/bin/bash
+
+mayoria_edad=18
+tercera_edad=60
+edad=15
+
+if [ $edad -ge $tercera_edad ]
+then
+    echo "Eres un adulto mayor"
+elif [ $edad -ge $mayoria_edad ]
+then
+    echo "Eres mayor de edad"
+else
+    echo "Eres menor de edad"
+fi
+----
+
+[#ciclos]
+== Ciclos
+
+Un ciclo es una secuencia de comandos que se ejecutan repetidas veces, hasta alcanzar una condición determinada.
+
+Hay dos tipos de bucles en Bash: 
+
+* for
+* while
+
+
+[#for]
+=== for
+
+.Estructura básica del ciclo for en Bash
+----
+for VARIABLE in ELEMENTOS
+do
+	# Código
+done
+----
+
+Las palabras _for_, _in_, _do_ y _done_ son palabras reservadas.
+
+.Imprime los números del 1 al 5 utilizando el ciclo for 
+----
+#!/bin/bash
+
+for numero in 1 2 3 4 5
+do
+	echo $numero
+done
+----
+
+
+[#while]
+=== while
+
+.Estructura básica del ciclo while en Bash
+----
+while COMANDO
+do
+	# Código
+done
+----
+
+Las palabras _while_, _do_ y _done_ son palabras reservadas.
+
+.Imprime los números del 1 al 5 utilizando el ciclo while
+----
+#!/bin/bash
+
+x=1
+
+while [ $x -le 5 ]
+do
+	echo $x
+	x=$(( $x + 1 ))
+done
+----
+
+[#actividades]
+== Actividades
+
+. Utilizando el ciclo `for`, escribe un script que imprima los número pares entre el 1 y el 50.
+. Utilizando el ciclo `while`, escribe  un script que imprima los número impares entre el 1 y el 50.
+. Escribe un script que determine el mayor de tres números.

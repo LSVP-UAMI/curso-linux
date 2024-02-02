@@ -1,0 +1,249 @@
+= Scripts
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+Un script de shell es una serie de comandos escritos en un archivo; el shell lee los comandos del archivo tal como lo haría si los escribieramos en una terminal.
+
+Los scripts de Bash comienzan con la siguiente línea, la cual indica que el programa `/bin/bash` debe ejecutar los comandos en el archivo de script.
+
+----
+#!/bin/bash
+----
+
+.Estructura de un script de Bash
+----
+#!/bin/bash
+
+# Soy un comentario
+# Soy otro comentario
+
+Instruccion 1
+Instruccion 2
+...
+Instrucción n
+----
+
+[NOTE, caption=NOTA]
+====
+Se conoce como shebang al conjunto de caracteres #!. Con excepción del shebang en la parte superior de un script, un # al comienzo de una línea indica un comentario; es decir, el shell ignora cualquier cosa en la línea después de #.
+====
+
+Para ejecutar un script utilizamos el comando `bash` seguido del nombre del script. Por ejemplo:
+
+----
+bash mi_script.sh 
+----
+
+o de forma alternativa:
+
+----
+./mi_script.sh 
+----
+
+Sin embargo, para esta última forma hay que asegurarse de que el archivo tenga permisos de ejecución.
+
+//Se escribe un script que imprima la frase "Hola, Mundo!".
+
+[#variables]
+== Variables
+
+En matemáticas, se llama variable a cualquier símbolo que representa a cualquier valor de los comprendidos en un conjunto.
+
+----
+$ x = 3.141592
+$ z = 1.618034
+----
+
+En programación, una variable es un contenedor con nombre para un conjunto particular de bits o tipo de datos.
+
+
+[#asignacion]
+=== Asignación
+
+Para asignar un valor a una variable, se debe seguir el formato:
+
+----
+nombre_variable=valor
+----
+
+Una variable puede contener un número, un caracter o una cadena de caracteres. Por ejemplo:
+
+----
+nombre=juan
+edad=23
+tipo_sangre=A
+estatura=1.75
+----
+
+Otra manera de de asignar un valor a una variable es mediante el comando *read*. A continuación se muestra utilización del comando mediante un ejemplo:
+
+----
+$ read apellido
+$ Belmont
+----
+
+Esto sirve para guardar en la variable _apellido_ el contenido _Belmont_. Al pulsar la tecla Enter después del comando *read*, la terminal quedará a la espera de que introduzcamos el valor que almacenará la variable.
+
+Cuando guardamos el resultado de un comando en una variable, el comando va entre paréntesis y precedido de un *$*. Ejemplo:
+
+----
+$ ruta=$(pwd)
+$ echo $ruta
+/home/usuario
+----
+
+[NOTE, caption=NOTA]
+====
+En Bash no es necesario declarar una variable, solo asignarle un valor.
+====
+
+
+
+[#valor]
+=== Valor
+
+Para obtener el valor de una variable, utilizamos el símbolo *"$"* seguido del nombre de la variable. Por ejemplo, para imprimir el valor de una variable se utilizaría el siguiente formato:
+
+----
+echo $mi_variable
+----
+
+Un caso particular sería:
+
+----
+echo $edad
+23
+----
+
+[#variables_especiales]
+== Variables especiales
+
+Son variables que el shell establece internamente y que están disponibles para el usuario.
+
+.Variables especiales del shell
+[cols="^.^1,.^1", options="autowidth, header"]
+|===
+|Variable
+|Descripción
+
+|`$0`
+|Nombre del script.
+
+|`$n`
+|Argumento `n` pasado al script.
+
+|`$#`
+|Número de argumentos pasados al script.
+
+|`$@`
+|Todos los argumentos pasados al script.
+|`$$`
+
+|ID de proceso del shell actual.
+
+|`$?`
+|Código de salida del último comando que el shell ejecutó.
+|===
+
+
+[#codigos_salida]
+=== Códigos de salida
+
+Cuando un programa finaliza, éste deja un _código de salida_, un valor numérico también conocido como _código de error_ o _valor de salida_. Cuando el código de salida es cero (0), generalmente significa que el programa se ejecutó sin problemas. Sin embargo, si el programa tiene un error, suele salir con un número distinto de 0.
+
+
+[#operadores_logicos]
+== Operadores lógicos
+
+[#and]
+=== *AND*
+
+El operador lógico `&&` (and) funciona de la siguiente forma:
+
+----
+COMANDO_1 && COMANDO_2
+----
+
+El shell ejecuta el `COMANDO_1`:
+
+. Si su código de salida es 0, entonces el shell ejecuta el `COMANDO_2`.
+. En caso contrario, el shell no ejecuta el `COMANDO_2`.
+
+
+[#or]
+=== *OR*
+
+El operador lógico `||` (or) funciona de la siguiente forma:
+
+----
+COMANDO_1 || COMANDO_2
+----
+
+El shell ejecuta el `COMANDO_1`:
+
+. Si su código de salida es 0, el shell no ejecuta el `COMANDO_2`.
+. En caso contrario, el shell ejecuta el `COMANDO_2`.
+
+== Ejercicios.
+
+Para los ejercicios primero copiamos el directorio _/tmp/material-curso/dia_4_ a nuestro home:
+
+----
+$ cd
+$ cp -r /tmp/material-curso/dia_4 .
+----
+
+* Realizar un script que haga lo siguiente:
+
+    .. Busque archivos con nombre _conejo_ dentro del directorio _dia_4/scripts_ y muestrelos utilizando el comando *find*.
+
+.Pista
+[%collapsible]
+====
+echo Se encontraron los siguientes conejos:
+
+find . -name conejo
+====
+
+    .. Guarde los archivos (la ruta que regresa el comando) en un archivo temporal _conejos.tmp_
+
+.Pista
+[%collapsible]
+====
+find . -name conejo > conejos.tmp
+====
+
+    .. Guarde la primer entrada en una variable llamada _archivo_.
+
+.Pista
+[%collapsible]
+====
+archivo=$(head -n 1 conejos.tmp)
+====
+
+    .. Borre el archivo que coincide con la primer entrada (y con el valor de la variable _archivo_).
+
+.Pista
+[%collapsible]
+====
+rm $archivo
+====
+
+    .. Avise que se eliminó la primer coincidencia.
+
+    .. Utilice *find* para mostrar que el archivo se ha ido.
+
+    .. Borre el archivo temporal _conejos.tmp_
+
+.Pista
+[%collapsible]
+====
+rm conejos.tmp
+====
+
+* Hacer un pequeño script que haga lo que sigue:
+
+    .. Intentar usar el comando type sobre curl (curl es el argumento del comando type) *y*, si se pudo lograr, que la terminal espere 3 segundos (usamos el comando *sleep 3* ).
+
+    .. Mostrar el contenido del archivo _about_periquito.txt_ *y*, si se logra, que la terminal espere 7 segundos *y* si se logra, ejecutamos el comando *curl parrot.live*

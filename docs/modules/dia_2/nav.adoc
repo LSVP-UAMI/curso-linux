@@ -1,0 +1,4 @@
+* Día 2
+** xref:usuarios.adoc[Usuarios]
+** xref:permisos.adoc[Permisos]
+*** xref:anexos/permisos.adoc[Anexos]

@@ -1,0 +1,359 @@
+= Comandos básicos
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+[#lo_basico]
+== Lo básico de los comandos
+
+Un comando es una instrucción que le damos a nuestra máquina y puede tener diferentes funciones.
+
+*¿Cómo se escribe un comando?*
+
+ Los comandos tienen la siguiente estructura general.
+
+----
+$ comando [opciones]  [argumentos] | [archivos]
+----
+
+*Entrada, salida y error estándar.*
+
+
+image::filesystem/estandar.png["Entrada,salida y error estándar"]
+
+*¡Hola mundo! (echo)*
+
+El comando *echo* despliega una línea de texto.
+
+Ejemplo: 
+----
+$ echo Hola mundo!
+Hola mundo!
+----
+
+== ¿Tenemos manuales? (man)
+
+GNU/Linux está dotado de una gran colección de comandos, los cuales nos ayudan a
+interactuar con el sistema a diferentes niveles. La tarea de memorizar todo es complicada (por no decir imposible), por lo que si en algún momento deseamos recordar o aprender el funcionamiento de algún comando en especial basta con revisar los manuales. Ahora, ¿cómo vemos el manual de un comando?
+
+----
+$ man comando
+----
+
+Para navegar a través de estas paginas usamos las flechas del teclado. Para buscar dentro del manual basta con escribir una barra "/" seguida del texto que queremos buscar; para pasar a la siguiente coincidencia presionamos la tecla "n" y para regresar a la coincidencia anterior presionamos "shift + n". Para salir presionamos "q".
+
+Por ejemplo, veamos el manual del manual.
+
+----
+$ man man
+
+
+MAN(1)                                                      Utilidades de paginador del manual                                                     MAN(1)
+
+NOMBRE
+       man - interfaz de los manuales de referencia del sistema
+
+SINOPSIS
+       man [opciones de man] [[sección] página ...] ...
+       man -k [opciones de apropos] regexp ...
+       man -K [opciones de man] [sección] term ...
+       man -f [whatis opciones] página ...
+       man -l [opciones de man] archivo ...
+       man -w|-W [opciones de man] página ...
+
+DESCRIPCIÓN
+       man  es el paginador de manuales del sistema.  Cada argumento de página dado a man normalmente es el nombre de un programa, utilidad o función. La
+       página de manual asociada con cada uno de estos argumentos es, pues, encontrada y mostrada.  Si se proporciona una sección, man mirará solo en esa
+       sección  del  manual.   La  acción  predeterminada es buscar en todas las secciones disponibles siguiendo un orden predefinido (véase DEFAULTS), y
+       mostrar solo la primera página encontrada, incluso si la página existe en varias secciones.
+...
+
+----
+
+== Vamos por lo que necesitamos
+
+Copiamos el material necesario para el curso con:
+
+----
+$ cp -r /tmp/.../dia_1 .
+----
+
+== Perdidos en una jungla de bits
+
+=== Consultemos el camino recorrido (pwd)
+
+El comando *pwd* muestra como ruta absoluta el lugar en que nos encontramos trabajando.
+
+----
+$ pwd
+
+/home/frodo/
+----
+
+=== ¿Qué hay aquí? (ls)
+
+El comando *ls* (list directory) lista el contenido que hay en la ruta especificada (si no recibe una ruta, muestra lo que hay en el directorio en que nos encontramos). Algunos ejemplos y opciones muy comunes en el día a día se muestran en la siguiente tabla.
+
+//Para practicar los comandos se tendrán dos directorios llenos de animales (archivos) llamados ecosistemas 1 y 2
+----
+$ ls
+dia_1
+----
+
+|===
+| Comando       | Descripción
+
+| ls 			| En el caso que ls se ejecute sin parámetros, despliega el contenido del directorio donde se encuentre. 
+
+| ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
+
+| ls -l		    | Utiliza formato de lista larga (muestra más detalles).
+
+| ls -a		    | No ignora entradas que empiecen con "." (archivos ocultos).
+
+| ls -t		    | Ordenar por tiempo de modificación (el más reciente primero).
+
+| ls -S		    | Ordena por tamaño de archivo.
+
+|===
+
+//Con ls se observará qué hay dentro de cada ecosistema (los directorios)
+
+=== Vayamos a otro lugar (cd)
+
+El comando *cd* (change directory) nos sirve para movernos entre directorios.
+Generalmente cuando el usuario inicia una sesión, el directorio donde comienza es su directorio personal; desde ahí uno puede moverse a los diferentes directorios donde se tenga acceso. Al utilizar *cd* debemos indicar el lugar al que queremos movernos utilizando una ruta absoluta o una relativa.
+
+Por ejemplo:
+
+//Revisar cómo será el directorio home de los usuarios
+----
+$ cd dia_1
+----
+
+|===
+| Comando       | Descripción
+
+| cd            | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
+
+| cd /etc/apt/	| Ir a la ruta especificada. Esta es una ruta absoluta ya que comienza con "/".
+
+| cd .			| Directorio actual.
+
+| cd ..			| Cambia al directorio padre (un directorio arriba de donde estamos). 
+
+| cd /			| Cambia al directorio raíz.
+
+| cd -			| Cambia al directorio donde estábamos anteriormente.
+
+|===
+
+//cd se usará para cambiar entre ecosistemas y revisarlos con ls
+
+=== ¿Crear un nuevo directorio? ¡Hagámoslo! (mkdir)
+
+El comando *mkdir* (make directory) permite crear un nuevo directorio en la ruta donde se especifique (relativa o absoluta), usualmente se le pasa el nombre del nuevo directorio y éste se creará en el sitio donde nos encontramos.
+
+
+|===
+| Comando                   | Descripción
+
+| mkdir NAME	            | Crea el directorio NAME en la ruta actual
+
+| mkdir /home/frodo/NAME2	| Crea el directorio NAME2 en la ruta especificada 
+
+| mkdir -p Documentos/NAME3 | Crea el directorio NAME3 y Los directorios padres especificados en el pathname si no existen.
+
+|===
+
+//Con mkdir se harán dos directorios para clasificar los animales dentro de los ecosistemas, uno de los directorios usa la opción -p
+
+=== Creando un archivo vacío (touch)
+
+El comando touch nos permite crear un nuevo archivo en blanco.
+
+Por ejemplo:
+
+----
+$ touch new_file.txt
+----
+
+Si el archivo existe, se modifica la hora y fecha de modificación. 
+//Que usen el manual para ver cómo modificar la hora y fecha (situación: el animal fue atendido y hay que poner la hora en que esto ocurrió).
+
+//Con touch agregarán nuevos animales al habitat que quieran y/o plantas
+
+=== Vamos a copiar cosas... (cp)
+
+El comando *cp* (copy) sirve para hacer una copia de archivos y/o directorios. 
+
+
+|===
+| Comando           | Descripción
+
+| cp file1 file2	| Realiza una copia idéntica de file1 y le llama file2
+
+| cp /etc/passwd . 	| Copia el archivo passwd al directorio actual
+
+| cp file1 /tmp/    | Copia el archivo file1 al directorio /tmp
+
+|===
+
+¿Cómo podemos copiar recursivamente?
+
+.Pista 1
+[%collapsible]
+====
+Leer el manual de cp
+====
+
+.Pista 2
+[%collapsible]
+====
+Usando la opción -r
+====
+
+.Respuesta
+[%collapsible]
+====
+----
+$ cp -r dir_copia nuevo_dir
+----
+====
+
+//Tenemos un animal en peligro de extincion (un ajolote) y lo queremos reproducir (copiar).
+
+=== ¿Y si muevo esto de lugar? (mv)
+
+El comando *mv* (move) realiza la misma función que cp pero además destruye el archivo original. 
+Se puede decir que *mueve* el archivo. 
+
+|===
+| Comando           | Descripción
+
+| mv /etc/passwords . 	| Mueve el archivo passwords al directorio actual
+
+| mv file1 /tmp/      | Mueve el archivo file1 al directorio /tmp
+|===
+
+=== ¡Ahora te llamarás...! (mv)
+
+Además de mover archivos, *mv* también sirve para renombrarlos, basta con que "movamos" el archivo a la misma ubicación pero con diferente nombre.
+
+|===
+| Comando           | Descripción
+
+| mv file1 file2		| "Mueve" el archivo file1 a file2. A efectos prácticos, le cambia el nombre.
+|===
+
+//Cambiaremos algunos animales de ecosistema, además, a lo largo de la historia animales evolucionaron y CAMBIARON DE NOMBRE
+
+=== Ya no necesito esta cosa (rm)
+
+El comando *rm* (remove) elimina archivos o directorios.
+
+|===
+| Comando           | Descripción
+
+| rm file1          | Elimina el archivo file1
+
+|===
+
+//Algunos animales se extinguieron y hay que eliminarlos del registro
+
+=== Hora de destruir el directorio (rmdir y rm -r)
+
+El comando *rmdir* (remove directory) elimina directorios vacios.
+
+Otra es utilizar el comando *rm* con la opcion -r.
+
+|===
+| Comando           | Descripción
+
+| rmdir Dir1 | Elimina el directorio Dir1 SOLO SI ESTÁ VACÍO.
+
+| rm -r Dir2  | Elimina de forma recursiva el directorio Dir2 y TODO su contenido.
+|===
+
+//Algún habitat se quedó sin animales, por lo que no es necesario mantenerlo (rmdir)
+//Algún evento ocurrió y terminó con un habitad y todos sus animales (rm -r)
+
+=== ¿Qué había escrito aquí? (cat)
+
+El comando *cat* se utiliza para mostrar el contenido de un archivo en la salida estándar (generalmente el monitor).
+
+Un ejemplo es:
+
+----
+$ cat gato.txt
+----
+
+//Varios animales tendrán texto en sus archivos y aquí se visualizará
+
+=== ¿Dónde quedó mi archivo? (find)
+
+El comando *find* nos ayuda a encontrar archivos. Para buscar un archivo por su nombre se le debe pasar al comando la ruta donde se quiere buscar, después la opción -name y el nombre del archivo a buscar. Como resultado obtendremos las rutas donde se encuentren archivos cuyos nombres coincidan con el que se busca.
+
+Por ejemplo:
+
+----
+$ find . -name gato
+
+animales/domesticos/gato
+animales/salvajes/gato
+----
+
+Y éste busca de manera recursiva dentro del directorio en que estamos todos los archivos llamados "gato".
+
+Además de buscar por nombre, hay otras formas de utilizar el comando *find*, para más información véase su manual.
+
+//Utilizar find para encontrar algunos animales en los directorios, confirmar si están o no.
+
+=== ¿Que mi archivo tiene qué? (atributos de un archivo)
+
+image::filesystem/atributos.png["Ejemplo de atributos de un archivo"]
+
+
+
+1. Tipo de arhivo
++
+image::filesystem/tipo.png["Tipo de archivos"]
+
+
+
+2. Permisos del archivo
++
+Se divide en tres secciones:
+
+* Usuario (u)
+
+* Grupo (g)
+
+* Otros (o)
++
+Y cada sección cuenta con tres tipos de permisos:
+
+- Lectura (r)
+
+- Escritura (w)
+
+- Ejecución (x)
+
+
+
+3. Numero de enlaces del archivo
+
+4. Nombre del propietario del archivo
+
+5. Grupo al que pertenece el archivo
+
+6. Tamaño del archivo en bytes
+
+7. Fecha de la ultima modificación del archivo
+
+8. Nombre del archivo
+
+* No puede contener el caracter /
+
+* No se deben utilizar los caracteres: `|` `&` `;` `,` `(` `)` `<` `>` `[` `]` `{` `}` `~` `"` `'` `*` `\` `?` `#` ni espacios
+

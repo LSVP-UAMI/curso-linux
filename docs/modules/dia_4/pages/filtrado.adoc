@@ -1,0 +1,159 @@
+= Comandos de filtrado
+
+En linux trabajamos mucho con archivos de texto, debido a esto tenemos
+a nuestra disposición una variedad de comandos que ayudan a filtrar la
+información que se encuentra en este tipo de archivos.
+
+
+== ¿Cómo filtrar información?
+*grep* es un comando de unix que nos permite filtrar líneas de un 
+archivo de texto, *grep* busca patrones de texto en cada línea y solo 
+muestra las líneas en las que encuentra el patrón.
+
+Por lo general estos patrones son cadenas de texto pero no se limitan 
+solo a patrones de este tipo.
+
+Forma de uso.
+[source,shell]
+----
+grep [opciones] patron [archivo]
+grep [opciones] [-e patron]... [-f archivo]... [archivo]
+----
+
+Algunas opciones de *grep*
+[cols="1,5"]
+|===
+|`-i` +
+`--ignore-case`| Ignora si las letras son mayúsculas o minúsculas.
+|`-v` +
+`--invert-`| En lugar de mostrar las líneas que coinciden los patrones, 
+muestra las líneas que no coinciden.
+|===
+
+=== Práctica
+Para las prácticas de esta sección copia el directorio 
+/tmp/material/datos/dia_4 a tu directorio _home_, dentro busca el archivo Agricultura_2021.csv y filtra las líneas del archivo para que solo muestre las líneas que contienen la palabra "Nuez".
+
+== Head y Tail
+*head* y *tail* son comandos que muestran solo las primeras y las últimas 
+líneas de un archivo respectivamente.
+
+Opción importante
+[cols="1,5"]
+|===
+|`-n` *N* | Muestra *N* líneas.
+|===
+
+=== Práctica 
+. Muestra las líneas de la 5 a la 10 del archivo de datos.
+. Muestra la penúltima línea del archivo de datos.
+
+== Cut
+*cut* es un comando que se usa en archivos que contienen diferentes 
+campos en cada línea, y nos permite mostrar solo los campos seleccionados,
+para que *cut* funcione es necesario que los campos estén separados por 
+un carácter especifico.
+
+Opciones importantes.
+[cols="1,5"]
+|===
+|`-d` "*D*" | De esta forma indicamos que *D* delimita los campos dentro del archivo.
+|`-f` "*F*" | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
+|===
+
+=== Práctica
+Muestra el segundo y último campo de las primeras 10 líneas del archivo de Agricultura_2021.
+
+.Pista
+[%collapsible]
+====
+Primero averigua qué carácter se usa para separar los campos en el archivo mencionado.
+====
+
+.Respuesta
+[%collapsible]
+====
+De la siguiente manera podemos ve que se usan comas como separador de campos:
+[source,shell]
+----
+head -n 1 Agricultura_2021.csv
+----
+De modo que el ejercicio se resuelve de la siguiente manera.
+[source,shell]
+----
+cut -d "," -f N Agricultura_2021.csv | head
+----
+donde N es campo que se desea mostrar.(N = 2 y N = 23 respectivamente).
+====
+
+== Sort
+*sort* ordena las líneas de un archivo, para esto podemos indicar los 
+campos que se usaran para el ordenamiento y la forma en la que se ordenaran.
+
+Opciones de *sort*.
+[cols="1,4"]
+|===
+|`-k` *K*| *K* es la lista de campos usados en el ordenamiento.
+|`-t` *T*| *T* es el separador de campos.
+|`-n` | Ordena las líneas en orden numérico.
+|`-r` | Usa el orden inverso.
+|===
+
+=== Práctica
+Ordena de forma descendente los diez lugares que tienen mayor volumen de producción de jitomate.
+
+.Pista
+[%collapsible]
+====
+Primero averigua cuál es el número de columna que corresponde al volumen de producción.
+====
+
+.Respuesta
+[%collapsible]
+====
+Para saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
+[source,shell]
+----
+head -n 1 Agricultura_2021.csv
+----
+Primero filtramos con *grep* la palabra jitomate, después usamos *sort* indicandole el carácter que delimita los campos y el número de campo que deseamos ordenar y al final lo pasamos como argumento a *head* indicandole el número de líneas que nos interesan
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | head -10
+----
+Una forma de comprobar si la salida es correcta con el comando *cut* de la siguiente manera, pasar todo el comando anterior a un *cut* de forma que solo nos muestre la columna 21
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | cut -d "," -f 21 | head -n 10
+----
+Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*
+[source,shell]
+----
+grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -rn | cut -d "," -f 21 | head -n 10
+----
+Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*.
+====
+
+== Wc
+*wc* cuenta líneas, palabras o caracteres dentro de un archivo.
+
+Opciones 
+[cols="1,4"]
+|===
+|`-c` | Muestra el total de caracteres.
+|`-w` | Muestra el total de palabras.
+|`-l` | Muestra el total de líneas.
+|===
+
+=== Práctica
+Muestra el total de líneas dentro del archivo de datos que contienen la palabra "Aguascalientes".
+
+.Respuesta
+[%collapsible]
+====
+Primero filtramos "Aguascalientes" en el archivo y lo pasamos al comando *wc* con la opción *-l*
+[source,shell]
+----
+grep Aguascalientes Agricultura_2021.csv | wc -l
+----
+====
