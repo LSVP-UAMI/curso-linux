@@ -1,0 +1,99 @@
+= Sistema de Archivos
+
+Un sistema de archivos o sistema de ficheros, (file system: fs), en informática, es un elemento que controla cómo se almacenan y recuperan los datos. + 
+Los sistemas de archivos se utilizan para estructurar la información que se guarda en las unidades de almacenamiento disponibles para un sistema de computo 
+El propósito básico de un sistema de archivos es representar y organizar los recursos de almacenamiento del sistema.
+
+
+== Filosofía Unix
+“Everything is a file” (Todo es un archivo) describe una de las principales características de Unix y sus derivados
+
+Un *archivo* se puede definir como un conjunto de datos con un nombre asociado. Los archivos suelen residir en dispositivos de almacenamiento secundario tales como cintas, discos duros o discos flexibles. Estos archivo no son mś que una secuencia de bytes (8 bits)
+
+== ¿Por qué todo es un archivo en Unix?
+
+Hay tres ventajas principales en el enfoque de "todo es un archivo":
+
+* 1. Archivos y dispositivos de Entrada/Salida (teclado,pantalla, etc.) son tan similares como es posible.
+
+* 2. Los nombres de archivo y dispositivo tienen la misma sintaxis y significado, por lo que un programa que espera un nombre de archivo como parámetro puede pasar un nombre de dispositivo
+
+* 3. Los archivos especiales están sujetos al mismo mecanismo de protección que los archivos normales 
+
+En Unix los archivos están organizados en los que se conoce como _directorios_. Un _directorio_ no es más que un archivo especial, el cual contiene información que permite localizar en el dispositivo otros archivos. Los directorios pueden contener a su vez nuevos directorios, los cuales se denominan subdirectorios.
+
+//image::filesystem/pathname.png["arbol-de-archivo"]
+
+._Representación de una árbol de archivo_ 
+image::usuarios/passwd.png["arbol-de-arvhico"]
+
+• / +
+El directorio del root (usuario con todos los privilegios). Sólo el usuario root tiene el permiso de escribir en esta carpeta.
+• /bin (Binarios del usuario): + 
+Contiene los comandos que son usados por todos los usuarios del sistema.
+• /boot (Archivos del bootloader): +
+Contiene todos los archivos necesarios para arrancar el sistema.
+• /dev (Archivos de los dispositivos): +
+Todos los archivos de los dispositivos como el disco duro, floppy, cd-rom, usb se encuentran en esta carpeta.
+• /etc (Archivos de configuración): +
+Contiene los archivos de configuración necesarios por todos los programas.
+ • /home (Directorios de usuario): +
+Contiene  todos los directorios para los usuarios.
+• /lib (Bibliotecas de sistema): +
+Los archivos de bibliotecas que soportan a los binarios que se localizan en /biny /sbin se encuentran aquí.
+• /mnt (Directorio de montaje): +
+Es la carpeta donde se montan archivos usados como temporales por el administrador del sistema. Por ejemplo los discos duros de Windows, u otro sistema operativo.
+• /root :+
+Es distinto de “/”, es el directorio “home” para el usuario root. El usuario root es el administrador que tiene todo los privilegios y permisos.
+• /sbin (Binarios del sistema): +
+Contiene binarios ejecutables. Para el mantenimiento del sistema, usualmente es usado por administradores del sistema.
+• /srv (Datos de servicio): +
+Contiene los datos para los servicios que provee el sistema. Por ejemplo, las páginas web albergadas en la BeagleBone Black se encontrarían en esta carpeta.
+• /tmp (Archivos temporales): +
+Contiene los archivos temporales creados por el sistema y los usuarios. Estos archivos se borran automáticamente cuando el sistema se re-inicia.
+• /usr (Programas de usuario): +
+Los archivos y aplicaciones usados por los usuarios.
+• /var (Archivos de variables de datos): +
+Todo incluyendo a los archivos “log” que se escribirá en /usr se escribirá en esta carpeta automáticamente.
+
+== Pathname
+Los archivos en un sistema tipo Unix están organizados en una estructura jerárquica de varios niveles conocida como árbol de directorios. En la parte superior del sistema de archivos hay un directorio llamado "raíz" que se representa con "/". Todos los demás archivos son "descendientes" de la raíz.
+
+._Representación de un pathname_ 
+image::usuarios/passwd.png["pathname"]
+
+Como en todo sistema de archivos de cualquier sistema operativo, la referencia a un archivo/directorio debe ser hecha a través de su *path*. Un path se forma de la siguiente manera:
+
+----
+[directorio raíz][directorio 1][directorio 2]...[directorio n][archivo]
+----
+
+=== Ruta absoluta
+La ruta absoluta siempre comienza en el directorio raíz (/). 
+
+----
+/home/Ana/Documentos/Materia/ejemplo.txt
+----
+
+=== Una ruta relativa 
+comienza desde el directorio en el que nos encontremos. 
+
+----
+/Documentos/Materia/ejemplo.txt
+----
+
+== Tipos de Archivos
+
+El sistema de archivos UNIX contiene varios tipos diferentes de archivos:
+Archivos ordinarios: un archivo ordinario es un archivo en el sistema que contiene datos, texto o instrucciones de programa.
+
+* _Directorios:_ archivos que son listas de otros archivos.
+
+* _Archivos especiales:_ se utilizan para representar un dispositivo físico real, como una impresora
+
+* _Pipes (Tuberías):_ UNIX le permite vincular comandos mediante una tubería. La tubería actúa como un archivo temporal que solo existe para contener datos de un comando hasta que los lea otro.
+
+* _Sockets:_ un socket Unix (o socket de comunicación entre procesos) es un archivo especial que permite una comunicación avanzada entre procesos.
+
+* _Enlace simbólico:_ el enlace simbólico se utiliza para hacer referencia a algún otro archivo del sistema de archivos.
+

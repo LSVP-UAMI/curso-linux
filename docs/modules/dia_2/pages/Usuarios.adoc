@@ -1,0 +1,281 @@
+= Usuarios
+
+== ¿Qué es un usuario?
+Un usuario se refiere a una cuenta individual que puede ser utilizada por una persona o un programa para acceder al sistema operativo. Cada usuario tiene un identificador único llamado "UID" (User ID) y pertenece a uno o más grupos, identificados por "GID" (Group ID). 
+
+=== Tipos de usuarios
+_Superusuario o root:_ El usuario "root" es el administrador del sistema con privilegios totales. Tiene acceso completo a todos los recursos del sistema y puede realizar cualquier acción, incluyendo la instalación y desinstalación de software,configuración del sistema y gestión de usuarios. Debido a la gran cantidad de privilegios, se recomienda usar la cuenta de root con precaución para evitar cambios accidentales    o malintencionados en el sistema.
+
+_Usuario común o estándar:_ Este es el tipo de usuario regular que se utiliza para tareas diarias. Los usuarios comunes no tienen privilegios administrativos elevados y están limitados en cuanto a las acciones que pueden realizar en el sistema. 
+
+_Usuario invitado:_ Algunas distribuciones de Linux ofrecen la opción de tener un usuario "invitado" que permite a los usuarios iniciar sesión temporalmente sin necesidad de una cuenta regular. El usuario invitado generalmente tiene restricciones en cuanto a la capacidad de realizar cambios permanentes en el sistema.
+
+== Grupos
+En Unix, un "grupo" es una colección de uno o más usuarios que comparten ciertos privilegios y permisos en el sistema. Los grupos proporcionan una forma eficiente de administrar permisos y controlar el acceso a recursos del sistema.
+
+Cada grupo tiene un identificador único llamado "GID" (Group ID). El GID es un número que identifica de manera única al grupo en el sistema.
+
+== Archivos especiales de usuarios
+
+=== _/etc/passwd_
+El archivo /etc/passwd es un archivo de texto plano que almacena información sobre las cuentas de usuario en el sistema. Este archivo contiene una entrada por línea para cada usuario y está estructurado con varios campos separados por dos puntos ':'.
+
+.Una lista de usuarios en _/etc/passwd_
+----
+root:x:0:0:Superuser:/root:/bin/sh
+daemon:*:1:1:daemon:/usr/sbin:/bin/sh
+bin:*:2:2:bin:/bin:/bin/sh
+sys:*:3:3:sys:/dev:/bin/sh
+nobody:*:65534:65534:nobody:/home:/bin/false
+juser:x:3119:1000:J. Random User:/home/juser:/bin/bash
+beazley:x:143:1000:David Beazley:/home/beazley:/bin/bash
+----
+
+Cada línea representa un usuario y tiene siete campos separados por dos puntos.
+
+.Una entrada del archivo _passwd_
+image::usuarios/etc-passwd.png["Una entrada del archivo _passwd_"]
+
+1. Nombre de usuario (username): Identifica el nombre del usuario.
+
+2. Contraseña (password): En versiones modernas, este campo suele contener 
+una "x" o un "*" para indicar que la contraseña está almacenada en el archivo 
+/etc/shadow para mayor seguridad. La contraseña real no se almacena en /etc/passwd.
+
+3. ID de usuario (UID): Un número único que identifica de manera única al usuario en el sistema. Es el equivalente al ID de usuario.
+
+4. ID de grupo principal (GID): Indica el ID del grupo principal al que pertenece el usuario.
+
+5. Información del usuario (GECOS): Campo que puede contener información adicional sobre el usuario, como el nombre completo, número de teléfono, etc. Este campo generalmente se divide en subcampos y se utiliza para almacenar información de manera más descriptiva.
+
+6. Directorio de inicio (home): La ruta al directorio principal del usuario, donde se encuentra su espacio de trabajo por defecto.
+
+7. Shell de inicio (shell): La ruta al programa de shell que se utilizará cuando el usuario inicie sesión. Este programa define la interfaz de línea de comandos para el usuario.
+
+== _/etc/groups/_
+Otro archivo clave en sistemas basados en Unix y Linux es /etc/group. Al igual que /etc/passwd, es un archivo de texto plano que almacena información sobre los grupos del sistema. Cada línea en este archivo representa un grupo y contiene varios campos separados por dos puntos ':'.
+
+.Una lista de grupos en _/etc/group_
+----
+root:*:0:juser
+daemon:*:1:
+bin:*:2:
+sys:*:3:
+adm:*:4:
+disk:*:6:juser,beazley
+nogroup:*:65534:
+user:*:1000:
+----
+
+Cada línea representa un grupo y tiene cuatro campos separados por dos puntos:
+
+.Una entrada del archivo _groups_
+image::usuarios/etc-passwd.png["Una entrada del archivo _groups_"]
+
+1. Nombre del grupo (groupname): Identifica el nombre del grupo.
+
+2. Contraseña (password): Similar al archivo /etc/passwd, este campo generalmente contiene una "x" o "*" para indicar que la contraseña se almacena en el archivo /etc/gshadow. La contraseña real no se almacena en /etc/group.
+
+3. ID de grupo (GID): Un número único que identifica de manera única al grupo en el sistema.
+
+4. Lista de miembros (users): Enumera los nombres de usuario que son miembros del grupo, separados por comas.
+
+[NOTE, caption=Nota]
+====
+para saber a qué grupos pertenece un usuario se usa el comando _groups_
+----
+$ groups
+----
+====
+
+== _/etc/shadow_
+Finalmente archivo /etc/shadow. Al igual que /etc/passwd y /etc/group, es un documento de texto plano que contiene información crítica en sistemas Unix y Linux. /etc/shadow fue diseñado para almacenar de manera segura las contraseñas de los usuarios.  A diferencia de /etc/passwd, que solía contener contraseñas directamente, /etc/shadow mejora la seguridad al separar la información de las contraseñas del resto de los detalles de la cuenta de usuario.
+
+Este archivo suele tener un acceso restringido sólo al usuario root para proteger la información sensible. Los campos en una entrada de /etc/shadow son los siguientes:
+
+.Una entrada del archivo _shadow_
+image::usuarios/etc-passwd.png["Una entrada del archivo _shadow_"]
+
+1. Nombre de usuario (username): Identifica el nombre del usuario.
+
+2. Contraseña (password): Almacena una versión cifrada o hash de la contraseña del usuario.
+
+3. Fecha de la última modificación (last password change): Representa la fecha de la última modificación de la contraseña, medida en días desde el 1 de enero de 1970 (época de Unix).
+
+4. Período de inactividad (min days): Número mínimo de días antes de que el usuario pueda cambiar su contraseña.
+
+5. Período de validez de la contraseña (max days): Número máximo de días antes de que el usuario deba cambiar su contraseña.
+
+6. Avisos de cambio de contraseña (warm days): Número de días antes de que el sistema advierte al usuario sobre la necesidad de cambiar su contraseña.
+
+7. Periodo de cuenta inactiva (inactive): Número de días de inactividad después de los cuales la cuenta se desactivará.
+
+8. Fecha de caducidad de la cuenta (expire date): Fecha en la que la cuenta se bloqueará, expresada en días desde la época de Unix.
+
+9. Reservado (reserved): Campo reservado para uso futuro.
+
+== Comando Sudo
+
+El comando *sudo* se utiliza para ejecutar un comando con privilegios de superusuario (root) o con los privilegios de otro usuario. Estos comandos pueden ser para agregar o eliminar usuarios, eliminar archivos que pertenecen a otros usuarios, instalar nuevo software (entre otras cosas., (y en general, cualquier tarea necesaria para administrar un sistema Unix/Linux.))
+
+----
+	$ sudo [opciones] 'comando'     Ó   $ sudo 'comando'
+----
+Cuando se ejecuta el comando *sudo*, generalmente se pedirá que ingreses tu contraseña para verificar que tienes los permisos adecuados.
+
+Es importante usar *sudo* con precaución, ya que los comandos con privilegios elevados pueden afectar el sistema y los archivos críticos. Solo debes de ejecutar comandos con *sudo* si estás seguro de lo que estás haciendo y comprender las implicaciones de tus acciones.
+
+Un consejo es revisar las propiedades de los archivos, ¿Con qué comando desplegamos el contenido de un directorio en forma de lista?
+
+.Respuestas
+[%collapsible]
+====
+1. $ ls -l
+2. $ ls -la
+====
+
+== Creación de usuarios
+Usaremos el comando *useradd* para crear un nuevo usuario 
+----
+$ useradd [opciones] 'nombreUsuario'
+----
+|===
+| Opciones          | Descripción
+| -d +
+ --home-dir    | Establece el directorio de inicio del usuario.
+| -s +
+ --shell       | Establece el shell del usuario.
+| -u +
+ --uid         | Asigna el ID de usuario (UID).
+| -U                | Crea un grupo con el mismo nombre que el usuario y agregue el usuario a este grupo. (user-group).
+| -m +
+ --create-home | Crea el directorio personal (home) del usuario si no existe.
+| -p +
+ --password    | Asigna una contraseña al usuario nuevo
+|===
+[NOTE, caption=Nota]
+====
+Se necesitan permisos de super usuario
+====
+
+Para crear el usuario charmander, se ejecuta el comando:
+----
+$ sudo useradd charmander
+----
+Para crear el usuario pikachu con el ID 1005 y crear su home
+----
+$ sudo useradd pikachu -m -u 1005 
+----
+
+== ¿Y la contraseña?
+Para asignar contraseña a un usuario utilizamos el comando *passwd*
+----
+$ passwd [opción] usuario
+----
+
+|===
+| Opción            | Descripción
+| -d +
+ --delete      | Elimina la contraseña del usuario.
+| -l + 
+--lock         | Permite bloquear la contraseña del usuario
+| -x +
+ --maxdays     | Determina después de cuántos días debe renovarse una contraseña 
+| -w +
+ --warndays    | Avisa al usuario que la contraseña esta apunto de caducar
+|===
+
+La contraseña debe contener de 6 a 8 caracteres, incluyendo uno o más caracteres de los siguientes conjuntos.
+
+* Alfabeto  en minúsculas.
+* Digitos del 0 al 9.
+* Signos de puntuación.
+[WARNING, caption=IMPORTANTE]
+====
+`passwd` rechazará cualquier contraseña que no sea lo suficientemente compleja.
+====
+
+Ejemplo:
+----
+$ passwd vulpix
+
+$ sudo passwd vulpix
+Introduce una nueva contraseña UNIX:
+Vuelve a introducir la nueva contraseña UNIX:
+passwd: Se ha cambiado la contraseña con éxito
+----
+
+== Eliminar Usuarios    
+Para eliminar un usuario utilizaremos el comando *userdel*
+[NOTE, caption=Nota]
+====
+Se requieren permisos de super usuario
+====
+
+----
+$ sudo [opciones] usuario
+----
+|===
+| Opcion        | Descripción
+| -r +
+--remove        | borra el directorio de inicio del usuario /home/usuario
+|===
+
+Actividad
+
+== Creación de grupos 
+Para crear un nuevo grupo usaremos el comando *groupadd*
+
+----
+$ groupadd [OPCIONES] ‘nombreGrupo’
+----
+|===
+| Opción            | Descripción
+| -g +
+    --gid           | Asigna un identificador (GID) al grupo
+| -p +
+    --passwdord     | Asigna una contraseña al grupo
+|===
+[NOTE, caption=Nota]
+====
+Se requieren permisos de super usuario
+====
+Ejemplo: 
+----
+$ sudo groupadd planta -g 203
+$ sudo groupadd dragon -g 2001 -p 1234
+----
+
+== Modificar Grupos
+=== Agregar usuarios a un grupo
+Para agregar usuarios a un grupo utilizamos la siguiente instrucción:
+----
+$ sudo usermod -a -G ‘grupo‘ ‘usuario’
+----
+=== Eliminar usuarios de un grupo
+Para eliminar un miembro de un grupo suplementario, utilizaremos el comando *usermod* listando los grupos suplementarios de los que el usuario siga siendo miembro.
+
+Ejemplo: Si el usuario ‘charizard’ es miembro de los grupos volador, dragon, fuego y agua, para eliminar al usuario del grupo , utilizaremos la siguiente instrucción:
+
+----
+$ sudo usermod -G volador,dragon,fuego charizard
+----
+
+Con qué comando se sabe a cuántos grupos permanece un usuario.
+.Respuestas
+[%collapsible]
+====
+$ groups
+====
+
+== Eliminar grupos _(groupdel)_
+Para eliminar un grupo usamos el comando *groupdel* 
+----
+$ groupdel [OPCIONES] ‘nombreGrupo’
+----
+eliminaremos el grupo fuego
+----
+$ sudo groupdel fuego 
+----
+
+ACTIVIDADES

@@ -1,0 +1,269 @@
+= Comandos básicos
+
+== ¿Qué es un comando básico?
+Un comando básico en Linux es un instrucción que se ingresa en la línea de comandos para realizar una tarea específica es el sistema operativo.
+
+*¿Qué es la línea de comandos?*
+
+La línea de comandos en Linux, a menudo llamada terminal o shell, es una interfaz de texto que permite a los usuarios interactuar con el sistema operativo ingresando comandos directamente.
+
+=== Características de la línea de comandos:
+
+==== Prompt
+La línea de comandos muestra un indicador (prompt) que generalmente muestra información sobre el usuario, la máquina y el directorio actual. Este indicador está esperando a que el usuario ingrese un comando.
+
+Ejemplo:
+----
+maverick@rocky:~ $
+----
+Donde: +
+_maverick_ es el nombre de usuario +
+_rocky_ es el nombre del host (equipo)
+
+=== Interfaz de texto
+En lugar de hacer clic en iconos y menú, los usuarios escriben comandos de texto para realizar acciones. Esto puede incluir la navegación por el sistema de archivos, la ejecución de programas, la manipulación de archivos, directorios, y otras operaciones.
+
+=== Shell
+La línea de comandos se ejecuta dentro de un programa llamado shell, que interpreta los comandos ingresados por el usuario y los ejecuta. Algunos ejemplos comunes de shells en Linux incluyen Bash (Bourne Again Shell), Zsh (Z Shell), y Fish.
+
+=== Historial de comandos
+La mayoría de los shells mantienen un historial de comandos previos, lo que facilita la recuperación y repetición de comandos anteriores.
+
+*¿Cómo ingresamos a la líne de comandos?*
+Existen dos formas de ingresar a la terminal: +
+- Buscar en el sistema 'terminal' +
+- Presionando las teclas 'Ctrl' + 'Alt' + 't'
+
+*¿Para qué sirven los comandos básicos?*
+Permite al usuario interactuar con el sistema operativo y realizar diversas operaciones, como la navegación por el sistema de archivos, la manipulación de archivos y directorios, la gestión de procesos entre otras funciones + 
+Ejemplos: 'ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'cat', 'touch',...
+
+*¿Cómo se escribe un comando?*
+Los comandos tienen la siguiente estructura general.
+----
+$ comando [opcion] [argumento] 'archivo/directorio'
+----
+
+== ¿Cómo saber las opciones del comando? *man*
+En GNU/Linux cuenta con un gran número de comandos, por lo que saber todos es complicado, por suerte existe *man* que nos dará información del comando y las opciones con las que cuenta.
+
+----
+$ man 'comando'
+$ man ldd --> información del comando ldd
+----
+Para navegar a través de estas páginas usamos las flechas del teclado. Para buscar dentro del manual basta con escribir una barra "/" seguida del texto que queremos buscar; para pasar a la siguiente coincidencia presionamos la tecla "n" y para regresar a la coincidencia anterior presionamos "shift + n". Para salir presionamos "q".
+
+'man' también es un comando, veamos el manual de 'man'
+
+----
+
+$ man man
+
+MAN(1)                                                      Utilidades de paginador del manual                                                     MAN(1)
+
+NOMBRE
+       man - interfaz de los manuales de referencia del sistema
+
+SINOPSIS
+       man [opciones de man] [[sección] página ...] ...
+       man -k [opciones de apropos] regexp ...
+       man -K [opciones de man] [sección] term ...
+       man -f [whatis opciones] página ...
+       man -l [opciones de man] archivo ...
+       man -w|-W [opciones de man] página ...
+
+DESCRIPCIÓN
+       man  es el paginador de manuales del sistema.  Cada argumento de página dado a man normalmente es el nombre de un programa, utilidad o función. La
+       página de manual asociada con cada uno de estos argumentos es, pues, encontrada y mostrada.  Si se proporciona una sección, man mirará solo en esa
+       sección  del  manual.   La  acción  predeterminada es buscar en todas las secciones disponibles siguiendo un orden predefinido (véase DEFAULTS), y
+       mostrar solo la primera página encontrada, incluso si la página existe en varias secciones.
+...
+
+----
+
+== Comencemos!
+
+=== ¿Dónde estamos? _(pwd)_
+El comando *pwd* muestra como ruta absoluta el lugar en que nos encontramos. 
+----
+$ pwd 
+
+/home/Dory
+----
+
+=== ¿Cómo ver el contenido de los directorios? _(ls)_
+El comando *ls* (list directory) lista el contenido que hay en la ruta 	especificada (si no recibe una ruta, muestra lo que hay en el directorio en que nos encontramos).
+
+----
+$ ls
+
+Barco_Hundido    Corriente_Marina    Sherman_Wallaby_42_Sidney
+----
+
+|===
+| Comando       | Descripción
+
+| ls 			| Despliega el contenido del directorio donde se encuentre.
+
+| ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
+
+| ls -l		    | Utiliza formato de lista larga (muestra más detalles).
+
+| ls -a		    | No ignora entradas que empiecen con "." (archivos ocultos).
+
+| ls -t		    | Ordenar por tiempo de modificación (el más reciente primero).
+
+| ls -S		    | Ordena por tamaño de archivo.
+
+|===
+
+=== ¿Cómo moverse entre los directorios? _(cd)_
+El comando *cd* (change directory) se utiliza para cambiar el directorio actual en el que se encuentra. +
+Ejemplo:
+
+----
+cd Barco_Hundido
+----
+
+|===
+| Comando       | Descripción
+
+| cd            | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
+
+| cd /etc/apt/	| Ir a la ruta especificada. Esta es una ruta absoluta ya que comienza con "/".
+
+| cd .			| Directorio actual.
+
+| cd ..			| Cambia al directorio padre (un directorio arriba de donde estamos). 
+
+| cd /			| Cambia al directorio raíz.
+
+| cd -			| Cambia al directorio donde estábamos anteriormente.
+
+|===
+
+*Empecemos la aventura junto a Marlin y Dory, para buscar a Nemo*
+
+=== Hora de crear un directorio _(mkdir)_
+
+*mkdir* se utiliza para crear directorios. +
+
+----
+$ mkdir [opcion] nombreDirectorio
+----
+
+|===
+|Comando   |Descripción
+|$ mkdir 'nombreCarpeta'         | Crea un directorio llamado 'nombreCarpeta'
+|$ mkdir -p 'carpeta1'/'carpeta2' | Crea directorios de manera recursiva
+|===
+
+=== ¿Y los archivos? _(touch)_
+*touch* se utiliza para crear archivos vacíos.
+
+----
+$ touch [opcion] 'nombreArchivo
+----
+|===
+|Comando    | Descripción
+|$ touch Documento   | Crea un archivo llamado Documento
+|$ touch ejemplo.txt | Crea un archivo llamado ejemplo.txt
+|===
+[NOTE, caption=Nota]
+====
+Se pueden crear archivos con la extensión que se necesita
+====
+
+=== ¿Y si mejor creo una copia? _(cp)_
+El comando *cp* lo utilizamos para copiar archivos y directorios.
+
+----
+$ cp [opcion] 'nombre' 'origen' 'destino'
+----
+|===
+|Comando        | Descripción
+|$ cp cancion musica | Copia el archivo 'cancion' en el directorio 'musica'
+|$ cp -r temp/ aux/  | Copia el contenido del directorio 'temp' en el directorio 'aux' de manera recursiva
+|===
+
+=== mejor lo moveremos... ó le cambió el nombre? _(mv)_
+
+para mover de lugar un archivo o solo cambiarle el nombre utilizamos el comando 'mv'.
+
+----
+$ mv [opcion] 'origen'/'nombre' 'destino'/'nuevoNombre'
+----
+|===
+| Comando       | Descripción
+|$ mv 'archivo' 'nuevoNombre' | Renombrar un archivo
+|$ mv 'archivo' carpeta/      | mueve 'archivo' a 'carpeta'
+|===
+
+¿Cómo mover una carpeta de lugar?
+----
+$ mv carpeta1/ carpeta2/ --> mueve la 'carpeta1' a 'carpeta2'
+----
+
+==== Esto ya no es necesario _(rm)_
+Para eliminar archivo o directorios que ya no se utilizaran se utiliza *rm*.
+
+----
+$ rm [opciones] 'nombre'
+----
+|===
+| Comando          | Descripción
+| $ rm tem.txt     | Elimina el archivo 'tem.txt'
+| $ rm -r Doc/     | Elimina la carpeta 'Doc' y su contenido de manera recursiva.
+| $ rm -rf 'carpetaForzada' | Elimina la carpeta 'carpetaForzada' sin pedir confirmación (*¡CUIDADO!*).
+|===
+
+=== Eliminar directorios(vacios) _(rmdir)_
+Con *rmdir* eliminamos directorios vacíos.
+
+----
+$ rmdir [opcion] nombreDirectorio
+----
+
+=== ¿Qué está escrito aquí? _(cat)_
+El comando *cat* se utiliza para concatenar y mostrar el contenido de archivos.
+
+----
+$ cat [opcion] file
+----
+|===
+| Comando           | Descripción
+| $ cat 'ejemplo.txt'   | Muestra el contenido del archivo 'ejemplo.txt'
+|===
+
+=== Otra forma de ver el contenido de mi archivo? _(less)_
+*less* también nos permite visualizar el contenido de los archivos.
+
+----
+$ less [opcion] file
+----
+|===
+| Comando       | Descripción
+| $ less hola.c | Muestra en contenido de hola.c
+|===
+[NOTE, caption=Nota]
+====
+Presionamos 'q' para salir de less
+====
+
+=== ¿Dónde lo encuentro? _(find)_
+Para buscar buscar directorios o archivo utilizaremos el comando *find*
+
+----
+$ find [ruta] [opciones] -name 'patron'
+----
+|===
+| Comando       | Descripción
+| $ find /home/usuario -name '*.txt' | Busca todos los archivos con extensión'.txt' en el directorio especificado.
+|===
+
+=== Limpiemos la pantalla _(clear)_
+*clear* lo utilizaremos para limpiar la pantalla.
+
+----
+$ clear
+----
