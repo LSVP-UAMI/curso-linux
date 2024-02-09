@@ -29,6 +29,8 @@ comando > archivo-salida
 comando >> archivo-salida
 comando 2> archivo-error
 
+image::redireccionamiento/redir.png[align=center]
+
 === Práctica
 . Copia el contenido del archivo */etc/passwd* al archivo */tmp/passwd* usando el comando *cat*. 
 

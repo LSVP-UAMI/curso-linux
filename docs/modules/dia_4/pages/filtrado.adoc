@@ -4,6 +4,22 @@ En linux trabajamos mucho con archivos de texto, debido a esto tenemos
 a nuestra disposición una variedad de comandos que ayudan a filtrar la
 información que se encuentra en este tipo de archivos.
 
+== Obtengamos un poco de información de los archivos.
+El comando *wc* cuenta líneas, palabras o caracteres dentro de un archivo.
+
+Opciones 
+[cols="1,4"]
+|===
+|`-c` | Muestra el total de caracteres.
+|`-w` | Muestra el total de palabras.
+|`-l` | Muestra el total de líneas.
+|===
+
+=== Práctica
+Para estas prácticas se utilizará el archivo datos.csv.
+
+Muestra el total de líneas, palabras y caractéres dentro del archivo de datos.
+
 
 == ¿Cómo filtrar información?
 *grep* es un comando de unix que nos permite filtrar líneas de un 
@@ -30,9 +46,21 @@ Algunas opciones de *grep*
 muestra las líneas que no coinciden.
 |===
 
-=== Práctica
-Para las prácticas de esta sección copia el directorio 
-/tmp/material/datos/dia_4 a tu directorio _home_, dentro busca el archivo Agricultura_2021.csv y filtra las líneas del archivo para que solo muestre las líneas que contienen la palabra "Nuez".
+=== Prácticas
+
+1. Filtra las lineas del archivo de datos que copiaste para que solo muestre las lineas que contienen la palabra "Fire".
+2. Muestra el total de lineas dentro del archivo de datos que contienen la palabra water.
+
+.Respuesta
+[%collapsible]
+====
+Primero filtramos "water" en el archivo y lo pasamos al comando *wc* con la opción *-l*
+[source,shell]
+----
+grep water datos.csv | wc -l
+----
+====
+
 
 == Head y Tail
 *head* y *tail* son comandos que muestran solo las primeras y las últimas 
@@ -57,12 +85,12 @@ un carácter especifico.
 Opciones importantes.
 [cols="1,5"]
 |===
-|`-d` "*D*" | De esta forma indicamos que *D* delimita los campos dentro del archivo.
-|`-f` "*F*" | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
+|`-d` *D* | De esta forma indicamos que *D* delimita los campos dentro del archivo.
+|`-f` *F* | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
 |===
 
 === Práctica
-Muestra el segundo y último campo de las primeras 10 líneas del archivo de Agricultura_2021.
+Muestra el segundo y sexto campo de las primeras 10 líneas del archivo de datos.
 
 .Pista
 [%collapsible]
@@ -76,14 +104,14 @@ Primero averigua qué carácter se usa para separar los campos en el archivo men
 De la siguiente manera podemos ve que se usan comas como separador de campos:
 [source,shell]
 ----
-head -n 1 Agricultura_2021.csv
+head -n 1 datos.csv
 ----
 De modo que el ejercicio se resuelve de la siguiente manera.
 [source,shell]
 ----
-cut -d "," -f N Agricultura_2021.csv | head
+cut -d "," -f N datos.csv | head
 ----
-donde N es campo que se desea mostrar.(N = 2 y N = 23 respectivamente).
+donde N es campo que se desea mostrar.(N = 2 y N = 6 respectivamente).
 ====
 
 == Sort
@@ -100,60 +128,87 @@ Opciones de *sort*.
 |===
 
 === Práctica
-Ordena de forma descendente los diez lugares que tienen mayor volumen de producción de jitomate.
-
-.Pista
-[%collapsible]
-====
-Primero averigua cuál es el número de columna que corresponde al volumen de producción.
-====
+Muestra la segunda columna por orden alfabético.
 
 .Respuesta
 [%collapsible]
 ====
-Para saber qué número de columna corresponde al volumen de producción ejecutamos el siguiente comando y contamos hasta llegar a *Volumenproducción* (es la columna 21).
 [source,shell]
 ----
-head -n 1 Agricultura_2021.csv
+tail -n 800 datos.csv | cut -d ',' -f 2 | sort
 ----
-Primero filtramos con *grep* la palabra jitomate, después usamos *sort* indicandole el carácter que delimita los campos y el número de campo que deseamos ordenar y al final lo pasamos como argumento a *head* indicandole el número de líneas que nos interesan
-[source,shell]
-----
-grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | head -10
-----
-Una forma de comprobar si la salida es correcta con el comando *cut* de la siguiente manera, pasar todo el comando anterior a un *cut* de forma que solo nos muestre la columna 21
-[source,shell]
-----
-grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -n | cut -d "," -f 21 | head -n 10
-----
-Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*
-[source,shell]
-----
-grep -i jitomate Agricultura_2021.csv | sort -t "," -k 21 -rn | cut -d "," -f 21 | head -n 10
-----
-Al ver la salida de este comando podemos ver que el resultado está ordenado de menor a mayor, esto se arregla con la opción *-r* del comando *sort*.
 ====
 
-== Wc
-*wc* cuenta líneas, palabras o caracteres dentro de un archivo.
 
-Opciones 
-[cols="1,4"]
-|===
-|`-c` | Muestra el total de caracteres.
-|`-w` | Muestra el total de palabras.
-|`-l` | Muestra el total de líneas.
-|===
+== Ejemplos prácticos
 
-=== Práctica
-Muestra el total de líneas dentro del archivo de datos que contienen la palabra "Aguascalientes".
+Utilizando el archivo *heroes_information.csv*, obtener lo siguiente:
 
-.Respuesta
+1. ¿Cuál es el número de personajes que aparecen en el archivo?
+2. ¿Cuántas mujeres hay(Female)? ¿Y cuántos hombres(Male)?
+3. Obtener únicamente las columnas con el nombre de los personajes (name) y su raza (race).
+4. ¿Qué tipo de personajes hay más? Buenos (good), malos (bad) o neutrales (neutral)
+5. Mostrar todas las editoriales de los personajes
+6. Mostrar qué personajes que no tiene la información de su editorial (mostrar columnas de personaje y editorial).
+7. Mostrar la cantidad de mujeres buenas y la cantidad de malas.
+
+.Respuestas
 [%collapsible]
 ====
-Primero filtramos "Aguascalientes" en el archivo y lo pasamos al comando *wc* con la opción *-l*
+* Número de personajes
 [source,shell]
 ----
-grep Aguascalientes Agricultura_2021.csv | wc -l
+wc -l heroes_information.csv 
 ----
+
+* Número de mujeres
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep -c Female 
+----
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep Female | wc -l
+----
+
+* Número de hombres
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep -c Male 
+----
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep Male | wc -l
+----
+
+* Nombres de personajes 
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,5
+----
+
+* Editoriales de los personajes.
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 8 | sort -u
+----
+
+* Personaje sin editorial.
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,8 | grep '""'
+----
+
+* Cantidad de mujeres buenas
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 3,10 | grep Female | grep -c good
+----
+
+*Cantidad de mujeres malas
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 3,10 | grep Female | grep -c bad
+----
+
 ====
