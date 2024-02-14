@@ -3,270 +3,128 @@
 :table-caption: Tabla
 :figure-caption: Figura
 
-Cada archivo tiene nueve permisos que determinan qué operaciones se pueden realizar sobre el y por quién:
+Cada directorio y archivo cuentan con permisos, estos cumplen con la función de designar qué usuarios tendrán acceso a modificar o trabajar con cada uno de estos.
+
+_Permisos del Usuario:_ Son los permisos que se aplican al propietario de un determinado archivo o directorio.
+
+_Permisos del Grupo:_ Estos permisos definen los derechos de lectura, escritura y ejecución que se aplican sólo a  aquellos usuarios que pertenecen al mismo grupo que el propietario del archivo/directorio.
+
+_Permisos de Otros:_ Estos permisos indican los derechos de lectura, escritura y ejecución del resto de los usuarios.
+
+¿Cómo saber los permisos de los archivos y directorios? 
+.Respuestas
+[%collapsible]
+====
+1. $ ls -l
+2. $ls -la
+====
+
+Para conocer los permisos de archivo en específico ejecutamos:
+
 ----
--rw-r--r-- 1 sophie amundsen 973194 Dec 5 12:00 world.txt
+$ ls -l 'nombreArchivo'
+
+-rwxr-xr-x  1  user  user  0  jun 25 15:43  'nombreArchivo'
 ----
 
-Estos permisos están agrupados en tres conjuntos:
-
-* Permisos para el propietario del archivo
-* Permisos para el grupo de propietarios del archivo
-* Permisos para el resto de usuarios
-
-.Permisos de archivo
-image::permisos/permisos.png["Permisos de archivo"]
-
-Cada uno de estos conjuntos tiene tres tipos de permisos:
-
-* Lectura (r)
-* Escritura (w)
-* Ejecución (x)
-
-.Efecto de los permisos en archivos y directorios
-[cols="^.^1,.^1,.^1", options="autowidth, header"]
+El primer bit indica el tipo de archivo. Generalmente se puede tratar de los siguientes casos:
 |===
-|Permiso
-|Archivo
-|Directorio
-
-|`r`
-|Leer el contenido del archivo.
-|Listar el contenido del directorio.
-
-|`w`
-|Modificar/eliminar el archivo. 
-|Crear/eliminar archivos.
-
-|`x`
-|Ejecutar el archivo.
-|Acceder al directorio.
+| -  | Se trata de un archivo regular.
+| d  | Se trata de un directorio 
+| l  | Se trata de un enlace simbólico
+| b  | Se trata de un enlace simbólico
+|===
+El resto de los 9 bits a continuación representan los permisos del propietario del archivo o directorio, los del grupo al que pertenece este usuario y los del resto de usuario.
+|===
+| r  | Permisos de lectura
+| w  | Permiso de escritura
+| x  | Permisos de ejecución
+| -  | No tiene permiso de lectura, escrituro o ejecución 
 |===
 
+.Representación de los permisos de un archivo
+image:permisos.png["Representación de los permisos de un archivo"]
 
-[#mostrar_permisos]
-== ¿Cómo muestro los permisos de un archivo?
+== Representación numérica 
+En este caso se sustituye en grupos de 3 bits (r, w y x) por un 1 o 0, dependiendo de si se da o no el permiso, al final, del número en binario obtenido, lo representamos en número decimal para representar las diferentes combinaciones (rwx).
 
-La forma más común de mostrar los permisos de un archivo es utilizando el comando `ls`:
+|===
+| Permisos  | Binario   | Decimal
+| r – –     | 1 0 0     | 4
+| – w –     | 1 0 1     | 2 
+| – – x     | 0 0 1     | 1
+|===
+
+Tomando en cuenta la tabla anterior, podemos obtener el número que es la suma de todos los anteriores, dependiendo si se dan o no los permisos. 
+
+|===
+| Permisos  | Binario   | Decimal   | Descripción
+| r w x     | 1 1 1     | 7         | Permisos de lectura, escritura y ejecución.
+| r w –     | 1 1 0     | 6         | Permisos de lectura y escritura.
+| r – x     | 1 0 1     | 5         | Permisos de lectura y ejecución
+| r – –     | 1 0 0     | 4         | Permiso de lectura.
+| – w x     | 0 1 1     | 3         | Permisos de escritura y ejecución. 
+| – w –     | 0 1 0     | 2         | Permiso de escritura.
+| – – x     | 0 0 1     | 1         | Permiso de ejecución
+| – – –     | 0 0 0     | 0         | Sin permisos.
+|===
+
+== Modificar los permisos de un archivo/directorio _(chmod)_
 ----
-ls -l [ARCHIVO]
+$ chmod [Opciones] archivo/directorio
+----
+Primero desplegamos los permisos del archivo al que cambiaremos los permisos
+----
+$ ls -l Bombay
+
+-rw-r--r-- 1 Omar Omar 0 feb 3 12:54 Bombay
+----
+Ahora, para conceder a los grupos permisos de escritura (w), lo hacemos con la siguiente combinación 6 6 4. +
+En comandos sería de la siguiente manera:
+----
+chmod 644 Bombay
+----
+Comprobamos los cambios realizados
+----
+$ ls -l Bombay
+
+- rw-rw-r-- 1 Omar Omar 0 feb 3 12:57 Bombay
 ----
 
-[#ejemplo_1]
-=== Ejemplo 1
+ACTIVIDADES
 
-El directorio `plantas`, contiene los siguientes archivos:
-----
-plantas
-├── lavanda.txt
-├── menta.txt
-├── oregano.txt
-└── romero.txt
-----
+== Cambio de Propietarios _(chown)_
+El comando *chown* se utiliza para cambiar el propietario y/o grupo de archivos y directorios, es una abreviación de change owner (cambio de propietario).
 
-Para mostrar los permisos del archivo `lavanda.txt`, ejecute el comando:
+Recuerda que si no eres el propietario del archivo/directorio, deberás tener privilegios de superusuario (root).
+
 ----
-$ ls -l lavanda.txt
--rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
+$ chwon [OPCIONES] ‘nuevoPropietario[:nuevoGrupo]’ ‘archivo/directorio’
+
+Ejemplo: 
+$ chown nuevoPropietario archivo.txt
 ----
 
-[#actividades_1]
-=== Actividades
+Cambiar el propietario y el grupo de un archivo al mismo tiempo:
 
-. ¿Cómo muestro los permisos de todos los archivos en un directorio?
-. ¿Cómo muestro los permisos de un directorio?
+----
+$ chown nuevoPropietario:nuevoGrupo archivo.txt
+----
+
+¿Cómo cambiar el propietario de un directorio y de todos sus archivo y subdirectorios de forma recursiva?
 
 .Respuestas
 [%collapsible]
 ====
-. `ls -l`
-. `ls -ld`
+$ chown -R nuevoPropietario directorio
 ====
 
-
-[#modificar_permisos]
-== ¿Cómo modifico los permisos de un archivo?
-
-El comando `chmod` permite modificar los permisos de un archivo:
-----
-chmod [OPCIONES] MODO ARCHIVO
-----
-
-[WARNING, caption=ADVERTENCIA]
-====
-Solo el dueño del archivo y el superusuario pueden cambiar los permisos de un archivo.
-====
-
-[#modo_simbolico]
-=== Modo simbólico
-
-El modo simbólico consta de los siguientes elementos:
-
-----
-USUARIO┊OPERADOR┊PERMISO
-----
-
-Donde:
-
-. Usuario. A quién se le aplica la modificación
-. Operador. Tipo de operación que se aplica
-. Permiso. Tipo de permiso a modificar
-
-.Tipos de usuarios
-[cols="^.^1,.^1", options="autowidth, header"]
-|===
-|Símbolo
-|Descripción
-
-|`u`
-|Usuario propietario
-
-|`g`
-|Grupo propietario
-
-|`o`
-|Otros usuarios
-
-|`a`
-|Todos los usuarios
-|===
-
-.Tipos de operadores
-[cols="^.^1,.^1", options="autowidth, header"]
-|===
-|Operador
-|Descripción
-
-|`+`
-|Agregar
-
-|`-`
-|Eliminar
-
-|`=`
-|Asignar
-|===
-
-.Tipos de permisos
-[cols="^.^1,.^1", options="autowidth, header"]
-|===
-|Permiso
-|Descripción
-
-|`r`
-|Lectura
-
-|`w`
-|Escritura
-
-|`x`
-|Ejecución
-|===
-
-[#ejemplo_2]
-=== Ejemplo 2
-
-Para modificar los permisos del archivo `menta.txt`:
-----
-$ ls -l menta.txt
--rw-r--r-- 1 lamiaceae plantae 313 Jul 3 12:02 menta.txt
-----
-
-a los siguientes:
-----
-rw-rw-r--
-----
-
-Ejecute el comando:
-----
-$ chmod g+w menta.txt
-----
-
-y verifique los permisos del archivo:
-----
-ls -l menta.txt
--rw-rw-r-- 1 lamiaceae plantae 313 Jul 3 12:02 romero.txt
-----
-
-[#actividades_2]
-=== Actividades
-
-. Modifica los permisos del archivo `oregano.txt`:
-+
-----
-ls -l oregano.txt
--rw-r--r-- 1 lamiaceae plantae 389 Jul 3 12:03 oregano.txt
-----
-+
-a los siguientes:
-+
-----
-rw-r-----
-----
-. Modifica los permisos del archivo `romero.txt`:
-+
-----
-ls -l romero.txt
--rw-r--r-- 1 lamiaceae plantae 343 Jul 3 12:01 romero.txt
-----
-+
-a los siguientes:
-+
-----
--wxr--r--
-----
-. ¿Cómo modifico los permisos de todos los archivos en un directorio?
+¿Ahora, para cambiar el propietario y el grupo de un directorio y de todos sus archivo y subdirectorios de forma recursiva?
 
 .Respuestas
 [%collapsible]
 ====
-. `chmod o-r oregano.txt`
-. `chmod u=wx romero.txt`
-. `chmod -R MODO DIRECTORIO`
+$ chown -R nuevoPropietario:nuevoGrupo directorio
 ====
 
-
-[#modificar_usurio_grupo]
-== ¿Cómo modifico el usuario/grupo de una archivo?
-
-El comando `chown` permite modificar el usuario/grupo propietario de un archivo:
-----
-chown [OPCIONES] PROPIETARIO:GRUPO ARCHIVO
-----
-
-[#actividades_3]
-=== Actividades
-
-. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
-+
-----
-ls -l lavanda.txt
--rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
-----
-+
-a los siguientes:
-+
-----
-lavandula planta
-----
-. Modifica el usuario (propietario) y grupo del archivo `lavanda.txt`:
-+
-----
-ls -l lavanda.txt
--rw-r--r-- 1 lamiaceae plantae 279 Jul 3 12:01 lavanda.txt
-----
-+
-a los siguientes:
-+
-----
-USUARIO USUARIO
-----
-. ¿Cómo modifico el usuario/grupo de todos los archivos en un directorio?
-
-.Respuestas
-[%collapsible]
-====
-. `chown lavandula:planta lavanda.txt`
-. `chown USUARIO:USUARIO lavanda.txt`
-. `chown -R PROPIETARIO:GRUPO DIRECTORIO`
-====
+ACTIVIDADES
