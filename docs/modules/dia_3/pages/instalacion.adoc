@@ -6,7 +6,7 @@
 == Compilación
 En el pasado de Linux si alguien necesitaba software especifico que no estuviera en el sistema, este debía ser compilado a partir del código fuente.
 
-Por fortuna en la actualidad el software que podemos instalar en Linux es distribuido mediante paquetes.
+Por fortuna en la actualidad la mayoria del software que podemos instalar en Linux es distribuido mediante paquetes.
 
 === Ventajas y desventajas de compilar los programas
 
@@ -69,8 +69,8 @@ rpm -qa
 dpkg -l
 
 ==== Práctica
-Instala el paquete ``sl`` que se encuentra en el directorio 
-``/tmp/material/sl``
+Instala los paquetes ``sl`` y ``nsnake`` que se encuentra en el directorio 
+``/tmp/material/debs``
 
 .Pista
 [%collapsible]
@@ -148,7 +148,7 @@ apt-file search nombre_del_archivo
 pacman -F nombre_del_archivo
 
 ==== Práctica
-Instala los paquetes ``nsnake`` y ``cowsay`` desde los repositorios.
+Instala los paquetes ``moon-buggy`` y ``cowsay`` desde los repositorios.
 
 .Respuesta
 [%collapsible]
