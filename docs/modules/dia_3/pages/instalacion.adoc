@@ -154,7 +154,7 @@ Instala los paquetes ``moon-buggy`` y ``cowsay`` desde los repositorios.
 [%collapsible]
 ====
 [source,shell]
-apt install nsnake
+apt install moon-buggy
 apt install cowsay 
 ==== 
 
