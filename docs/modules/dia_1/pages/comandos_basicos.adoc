@@ -1,19 +1,17 @@
-= Comandos Unix
+= Comandos Linux
 
 :table-caption: Tabla
 :figure-caption: Figura
 
 [#lo_basico]
 == ¿Qué es un comando?
-En el contexto de sistemas operativos basados en *Unix/Linux*, un comando es una instrucción que se proporciona al sistema operativo para realizar una tarea específica. Los comandos en *Unix/Linux* se ingresan a través de la línea de comandos, también conocida como terminal o consola.
+En el contexto de sistemas operativos basados en *Linux*, un comando es una instrucción que se proporciona al sistema operativo para realizar una tarea específica. Los comandos en *Linux* se ingresan a través de una terminal o consola.
 
 == Intérprete de comandos
-En *Unix/Linux*, un intérprete de comandos, también conocido como shell, es un programa que proporciona una interfaz de usuario para interactuar con el sistema operativo. El shell acepta comandos ingresados por el usuario, los interpreta y luego los ejecuta.
+En *Linux*, un intérprete de comandos, también conocido como shell, es un programa que proporciona una interfaz de usuario para interactuar con el sistema operativo. El shell acepta comandos ingresados por el usuario, los interpreta y luego los ejecuta.
 
-== Línea de comandos
-La línea de comandos en *Unix/Linux*, a menudo llamada terminal o shell, es una interfaz de texto que permite a los usuarios interactuar con el sistema operativo ingresando comandos directamente.
 
-=== Características de la línea de comandos:
+=== Características del Intérprete de comandos:
 
 ==== Prompt
 La línea de comandos muestra un indicador (prompt) que generalmente muestra información sobre el usuario, la máquina y el directorio actual. Este indicador está esperando a que el usuario ingrese un comando.
@@ -24,22 +22,39 @@ Ejemplo:
 ----
 Donde: +
 
-_maverick_ es el nombre de usuario +
-_rocky_ es el nombre del host (equipo)
+_maverick_ es el nombre de usuario. +
+_rocky_ es el nombre del host (equipo).
+
+Encontraremos los siguientes símbolos "$" y "#", los cuales tienen diferentes significados: +
+
+*Prompt de usuario:* +
+- Cuando se ve este símbolo "$", nos indica que estás trabajando con privilegios de usuarios normales. +
+- Los comandos que ejecutas con este prompt tiene acceso solo a los recursos y archivos a los que el usuario tiene permisos. +
+
+
+*Prompt de superusuario o root:* +
+- Cuando ves este símbolo "#", indica que estás trabajando con privilegios de superusuario o root. +
+- Los comandos ejecutados con este prompt tiene acceso total al sistema y pueden realizar cambios críticos, como instalar o desinstalar programas, modificar configuraciones del sistema, etc. 
+
+
+[NOTE, caption=Nota]
+====
+Es muy importante tener precaución al utilizar el prompt de superusuario "#", ya que los comandos ejecutados con estos privilegios pueden afectar al sistema de manera significativa. Por lo que te recomiendo minimizar el uso de estos privilegios y solo utilizarlos cuando sea necesario para evitar posibles problemas de seguridad o errores graves.
+====
 
 ==== Interfaz de texto
-En lugar de hacer clic en iconos y menú, los usuarios escriben comandos de texto para realizar acciones. Esto puede incluir la navegación por el sistema de archivos, la ejecución de programas, la manipulación de archivos, directorios, y otras operaciones.
+En lugar de hacer clic en íconos y menú, los usuarios escriben comandos de texto para realizar acciones. Esto puede incluir la navegación por el sistema de archivos, la ejecución de programas, la manipulación de archivos, directorios y otras operaciones.
 
 ==== Shell
-En sistemas *Unix/Linux*, los comandos se ejecutan a través de un intérprete de comandos llamado "shell". Los shells son programas que interpretan y ejecutan los comandos ingresados por el usuario.
+En sistemas *Linux*, los comandos se ejecutan a través de un intérprete de comandos llamado "shell". Los shells son programas que interpretan y ejecutan los comandos ingresados por el usuario.
 
 ==== Historial de comandos
 La mayoría de los shells mantienen un historial de comandos previos, lo que facilita la recuperación y repetición de comandos anteriores.
 
-
 == ¿Para qué sirven los comandos?
-
 Permite al usuario interactuar con el sistema operativo y realizar diversas operaciones, como la navegación por el sistema de archivos, la manipulación de archivos y directorios, la gestión de procesos entre otras funciones + 
+
+
 Ejemplos: 'ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'cat', 'touch',...
 
 == Sintaxis básica en Linux
@@ -49,23 +64,26 @@ Ejemplos: 'ls', 'cd', 'pwd', 'cp', 'mv', 'rm', 'mkdir', 'cat', 'touch',...
 
 |===
 | Comando      | El nombre del comando que se va a ejecutar.
-| Opciones     | Modificadores que afectan el comportamiento del comando
-|Argumentos    | Datos que el comando necesita para realizar su tarea
+| Opciones     | Modificadores que afectan el comportamiento del comando.
+| Argumentos   | Datos que el comando necesita para realizar su tarea.
 |===
 
-== Entrda, Salida y Error Estándar
+== Entrada, Salida y Error Estándar
 
-._Entrada, Salida y error Estándar_ 
-image:estandar.png["Entrada, Salida y Erro"]
+._Entrada, Salida y Error Estándar_ 
+image::filesystem/estandarComandos.png["Entrada, Salida y Error"]
 
-== ¿Cómo saber las opciones del comando? *man*
-En *GNU/Linux* cuenta con un gran número de comandos, por lo que saber todos es complicado, por suerte existe *man* que nos dará información del comando y las opciones con las que cuenta.
+== ¿Cómo saber las opciones del comando? _(man)_
+*Linux* cuenta con un gran número de comandos, por lo que saber todos es complicado, por suerte existe *man* (manual) que nos dará información del comando y las opciones con las que cuenta.
 
 ----
 $ man 'comando'
 $ man ping --> información del comando ping
 ----
-Para navegar a través de estas páginas usamos las flechas del teclado. Para buscar dentro del manual basta con escribir una barra "/" seguida del texto que queremos buscar; para pasar a la siguiente coincidencia presionamos la tecla "n" y para regresar a la coincidencia anterior presionamos "shift + n". Para salir presionamos "q".
+-Para navegar a través de estas páginas usamos las flechas del teclado. +
+-Para buscar dentro del manual basta con escribir una barra "/" seguida del texto que queremos buscar. +
+-Para pasar a la siguiente coincidencia presionamos la tecla "n" y para regresar a la coincidencia anterior presionamos "shift + n". +
+-Para salir presionamos "q". +
 
 'man' también es un comando, veamos el manual de 'man'
 
@@ -95,18 +113,34 @@ DESCRIPCIÓN
 
 ----
 
-== Comencemos!
+Antes de empezar la aventura con Nemo, debemos descagar el material que necesitamos, para ello crea una carpeta dentro de tu home con nombre "Curso".
+
+-----
+
+       $ mkdir Curso
+
+-----
+
+Ahora vamos a copiar los archivos con la siguiente instrucción:
+
+----
+
+       $ cp -r /tmp/material-curso/dory Curso
+
+----
+
+== ¡Comencemos!
 
 === ¿Dónde estamos? _(pwd)_
-El comando *pwd* muestra como ruta absoluta el lugar en que nos encontramos. 
+El comando *pwd* (Print Work Directory) muestra la ruta absoluta del lugar en que nos encontramos. 
 ----
        $ pwd 
 
-       /home/Dory
+       /home/dory
 ----
 
 === ¿Cómo ver el contenido de los directorios? _(ls)_
-El comando *ls* (list directory) lista el contenido que hay en la ruta especificada (si no recibe una ruta, muestra lo que hay en el directorio en que nos encontramos).
+El comando *ls* (LiSt) lista el contenido que hay en la ruta especificada (si no recibe una ruta, muestra lo que hay en el directorio en que nos encontramos).
 
 ----
        $ ls
@@ -117,22 +151,22 @@ El comando *ls* (list directory) lista el contenido que hay en la ruta especific
 |===
 | Comando       | Descripción
 
-| ls 			| Despliega el contenido del directorio donde se encuentre.
+| ls                 | Despliega el contenido del directorio donde se encuentre.
 
-| ls /etc/apt	| Despliegue el contenido de la ruta que se especifique.
+| ls /etc/apt | Despliegue el contenido de la ruta que se especifique.
 
-| ls -l		    | Utiliza formato de lista larga (muestra más detalles).
+| ls -l                  | Utiliza formato de lista larga (muestra más detalles).
 
-| ls -a		    | No ignora entradas que empiecen con "." (archivos ocultos).
+| ls -a                  | No ignora entradas que empiecen con "." (archivos ocultos).
 
-| ls -t		    | Ordenar por tiempo de modificación (el más reciente primero).
+| ls -t                  | Ordenar por tiempo de modificación (el más reciente primero).
 
-| ls -S		    | Ordena por tamaño de archivo.
+| ls -S                  | Ordena por tamaño de archivo.
 
 |===
 
 === ¿Cómo moverse entre los directorios? _(cd)_
-El comando *cd* (change directory) se utiliza para cambiar el directorio actual en el que se encuentra. +
+El comando *cd* (Change Directory) se utiliza para cambiar el directorio actual en el que se encuentra. +
 Ejemplo:
 
 ----
@@ -142,22 +176,22 @@ Ejemplo:
 |===
 | Comando       | Descripción
 
-| cd            | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal o home directory del usuario. 
+| cd            | En el caso que *cd* se ejecute sin parámetros, cambiará al directorio personal del usuario. 
 
-| cd /etc/apt/	| Ir a la ruta especificada. Esta es una ruta absoluta ya que comienza con "/".
+| cd /etc/apt/       | Ir a la ruta especificada. Esta es una ruta absoluta ya que comienza con "/".
 
-| cd .			| Directorio actual.
+| cd .               | Directorio actual.
 
-| cd ..			| Cambia al directorio padre (un directorio arriba de donde estamos). 
+| cd ..                     | Cambia al directorio *padre* (un directorio arriba de donde estamos). 
 
-| cd /			| Cambia al directorio raíz.
+| cd /               | Cambia al directorio raíz.
 
-| cd -			| Cambia al directorio donde estábamos anteriormente.
+| cd -               | Cambia al directorio donde estábamos anteriormente.
 
 |===
 
 === Hora de crear un directorio _(mkdir)_
-*mkdir* se utiliza para crear directorios. +
+*mkdir* (MaKe DIRectory) se utiliza para crear directorios. +
 
 ----
        $ mkdir [opcion] nombreDirectorio
@@ -170,7 +204,7 @@ Ejemplo:
 |===
 
 === ¿Y los archivos? _(touch)_
-*touch* se utiliza para crear archivos vacíos.
+*touch* (change file timestamps) se utiliza para crear archivos vacíos.
 
 ----
        $ touch [opcion] 'nombreArchivo
@@ -180,37 +214,33 @@ Ejemplo:
 |$ touch Documento   | Crea un archivo llamado 'Documento'
 |$ touch ejemplo.txt | Crea un archivo llamado 'ejemplo.txt'
 |===
-[NOTE, caption=Nota]
-====
-Se pueden crear archivos con la extensión que se necesita
-====
 
-=== ¿Y si mejor creo una copia? _(cp)_
-El comando *cp* lo utilizamos para copiar archivos y directorios.
+=== ¿Y si mejor creo una copia? _(cp)_ 
+El comando *cp* (CoPy) lo utilizamos para copiar archivos y directorios.
 
 ----
-       $ cp [opcion] 'nombre' 'origen' 'destino'
+       $ cp [opcion] 'origen' 'destino'
 ----
 |===
 |Comando        | Descripción
-|$ cp cancion musica | Copia el archivo 'cancion' en el directorio 'musica'
-|$ cp -r temp/ aux/  | Copia el contenido del directorio 'temp' en el directorio 'aux' de manera recursiva
+|$ cp cancion musica | Copia el archivo 'cancion' en el directorio 'musica'.
+|$ cp -r temp/ aux/  | Copia el contenido del directorio 'temp' en el directorio 'aux' de manera recursiva.
 |===
 
 === ¿Cómo se puede mover un directorio o archivo? _(mv)_
-Para mover de lugar un archivo o directorio utilizamos el comando *mv*.
+Para mover de lugar un archivo o directorio utilizamos el comando *mv* (MoVe).
 
 ----
-       $ mv [opcion] 'origen/' 'destino'/
+       $ mv [opcion] 'origen' 'destino'
 ----
 |===
 | Comando       | Descripción
 | $ mv archivo /ruta/del/destino/ | Mueve 'archivo' a '/ruta/del/destino/'
-| $ mv carpeta1/ carpeta2/ | Mueve la 'caprtepa1/' a 'carpeta2/'
+| $ mv carpeta1/ carpeta2/ | Mueve la 'carpeta1/' a 'carpeta2/'
 |===
 
 === Renombrar un directorio o archivo _(mv)_
-con *mv* también podemos renombrar un archivo o directorio.
+Con *mv* (MoVe) también podemos renombrar un archivo o directorio.
 
 ----
        $ mv [opcion] 'nombre' 'nuevoNombre'
@@ -218,18 +248,18 @@ con *mv* también podemos renombrar un archivo o directorio.
 
 |===
 | Comando        | Descripción
-| $ mv version1 version2    | Cambia el nombre de el archivo 'version1' a 'version2'
+| $ mv version1 version2    | Cambia el nombre de el archivo 'version1' a 'version2'.
 |===
 
 === Eliminemos algo _(rmdir)_
-*rmdir* lo utilizaremos para eliminar directorio vacíos, es decir, aquellos que no contengan subdirectorio ni archivos.
+*rmdir* (ReMove DIRectory) lo utilizaremos para eliminar directorios vacíos, es decir, aquellos que no contengan subdirectorio ni archivos.
 
 ----
        $ rm [opcion] 'directorioVacio'
 ----
 
 === Eliminar archivos _(rm)_
-Con *rm* podemos eliminar archivos, además de directorio que no estén vacíos.
+Con *rm* (ReMove) podemos eliminar archivos, además de directorio que no estén vacíos.
 
 ----
        $ rm [opcion] 'archivo'
@@ -243,17 +273,14 @@ Con *rm* podemos eliminar archivos, además de directorio que no estén vacíos.
 |===
 [NOTE, caption=Nota]
 ====
-La opción *-r* (recursivo) es esencial cuando se utiliza rm para eliminar directorios y su contenido. Sin esta opción, *rm* no eliminará directorios no vacíos.
+La opción *-r* (recursivo) es esencial cuando se utiliza rm para eliminar directorios y su contenido. Sin está opción, *rm* no eliminará directorios.
 ====
 
 *Advertencia* +
 Antes de eliminar cualquier archivo o directorio, hay que estar completamente seguros de que ya no son necesarios, pues tanto *rmdir* con *rm* no  solicitan algún tipo de confirmación y todo lo eliminado no se podrá recuperar.
 
-
-
-
 === ¿Qué está escrito aquí? _(cat)_
-El comando *cat* se utiliza para concatenar y mostrar el contenido de archivos.
+El comando *cat* (conCATenate) se utiliza para concatenar y mostrar el contenido de archivos.
 
 ----
 $ cat [opcion] file
@@ -263,8 +290,8 @@ $ cat [opcion] file
 | $ cat 'ejemplo.txt'   | Muestra el contenido del archivo 'ejemplo.txt'
 |===
 
-=== Otra forma de ver el contenido de mi archivo? _(less)_
-*less* también nos permite visualizar el contenido de los archivos.
+=== ¿Existe otra forma de ver el contenido de mi archivo? _(less)_
+Si, *less*  (LESS is more) también nos permite visualizar el contenido de los archivos.
 
 ----
 $ less [opcion] file
@@ -275,19 +302,19 @@ $ less [opcion] file
 |===
 [NOTE, caption=Nota]
 ====
-Presionamos 'q' para salir de less
+Presionamos 'q' para salir de less.
 ====
 
 *Diferencias entre _cat_ y _less_*
 |===
-|cat          |less
+|*cat*          |*less*
 |Su función principal es concatenar y mostrar el contenido de archivos en la salida estándar (generalmente la pantalla).      | Permite visualizar el contenido de archivos de manera paginada, lo que facilita la navegación por grandes cantidades de datos. A diferencia de *cat*, *less* muestra el contenido de manera que se puede desplazar hacia arriba y hacia abajo.
 |*cat archivo1 archivo2* muestra el contenido de *archivo1* seguido por el contenido de *archivo2*.      | *less archivo.txt* permite ver el contenido de *archivo.txt* de manera paginada, facilitando la lectura y la navegación.
-|Muestra todo el contenido de los archivos de una vez. Puede ser útil para archivos pequeños o cuando simplemente se quiere ver rápidamente el contenido completo.|  Permite desplazarse hacia arriba y hacia abajo, realizar búsquedas, y ofrece otras funciones de visualización más avanzadas.
+|Muestra todo el contenido de los archivos de una vez. Puede ser útil para archivos pequeños o cuando simplemente se quiere ver rápidamente el contenido completo.|  Permite desplazarse hacia arriba y hacia abajo, realizar búsquedas y ofrece otras funciones de visualización más avanzadas.
 |===
 
 === ¿Dónde lo encuentro? _(find)_
-Para buscar buscar directorios o archivo utilizaremos el comando *find*
+Para buscar directorios o archivos utilizaremos el comando *find* (encontrar).
 
 ----
 $ find [ruta] [opciones] -name 'patron'
@@ -298,8 +325,10 @@ $ find [ruta] [opciones] -name 'patron'
 |===
 
 === Limpiemos la pantalla _(clear)_
-*clear* lo utilizaremos para limpiar la pantalla.
+*clear* (limpiar) lo utilizaremos para limpiar la pantalla.
 
 ----
 $ clear
 ----
+
+Otra manera de limpiar la pantalla es utilizando *_ctrl + l_* , se borra el contenido visible en la terminal, pero el historial de comandos y resultados anteriores sigue estando disponible. Este atajo es útil para limpiar la pantalla y hacerla más legible, especialmente cuando se han ejecutado muchos comandos y la salida en la terminal se vuelve extensa. Es una forma rápida y conveniente de mantener la interfaz de usuario limpia. 

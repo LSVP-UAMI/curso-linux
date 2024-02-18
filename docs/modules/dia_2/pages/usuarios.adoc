@@ -11,12 +11,10 @@ _Superusuario o root:_ El usuario "root" es el administrador del sistema con pri
 
 _Usuario común o estándar:_ Este es el tipo de usuario regular que se utiliza para tareas diarias.  
 
-_Usuario invitado:_ Algunas distribuciones de Unix/Linux ofrecen la opción de tener un usuario "invitado" que permite a los usuarios iniciar sesión temporalmente sin necesidad de una cuenta regular. 
 
 == Grupos
 En Unix, un "grupo" es una colección de uno o más usuarios que comparten ciertos privilegios y permisos en el sistema. Los grupos proporcionan una forma eficiente de administrar permisos y controlar el acceso a recursos del sistema.
 
-Cada grupo tiene un identificador único llamado "GID" (Group ID). El GID es un número que identifica de manera única al grupo en el sistema.
 
 == Archivos especiales de usuarios
 
@@ -38,7 +36,7 @@ beazley:x:143:1000:David Beazley:/home/beazley:/bin/bash
 Cada línea representa un usuario y tiene siete campos separados por dos puntos.
 
 .Una entrada del archivo _/etc/passwd_
-image:passwd.png["Una entrada del archivo _/etc/passwd_"]
+image:passwdUsuarios.png["Una entrada del archivo _/etc/passwd_"]
 
 1. _Login name_: Nombre del usuario.
 
@@ -54,7 +52,7 @@ image:passwd.png["Una entrada del archivo _/etc/passwd_"]
 
 7. _Shell_: La ruta al programa de shell que se utilizará cuando el usuario inicie sesión. Este programa define la interfaz de línea de comandos para el usuario.
 
-== _/etc/groups/_
+== _/etc/group/_
 El archivo /etc/group contiene información sobre los grupos del sistema. Cada línea en este archivo representa un grupo y contiene varios campos separados por dos puntos ':'.
 
 .Una lista de grupos en _/etc/group_
@@ -71,8 +69,8 @@ user:*:1000:
 
 Cada línea representa un grupo y tiene cuatro campos separados por dos puntos:
 
-.Una entrada del archivo _groups_
-image:groups.png["Una entrada del archivo _/etc/groups_"]
+.Una entrada del archivo _group_
+image:groupUsuarios.png["Una entrada del archivo _/etc/groups_"]
 
 1. _Group name_: Identifica el nombre del grupo.
 
@@ -125,14 +123,19 @@ Cada línea representa un usuario y tiene nueve campos separados por dos puntos:
 
 == Comando Sudo
 
-El comando *sudo* se utiliza para ejecutar un comando con privilegios de superusuario (root) o con los privilegios de otro usuario. Estos comandos pueden ser para agregar o eliminar usuarios, eliminar archivos que pertenecen a otros usuarios, instalar nuevo software (entre otras cosas., (y en general, cualquier tarea necesaria para administrar un sistema Unix/Linux.))
+El comando *sudo* se utiliza para ejecutar un comando con privilegios de superusuario (root). Estos comandos pueden ser para agregar o eliminar usuarios, eliminar archivos que pertenecen a otros usuarios e instalar nuevo software.
 
 ----
-	$ sudo [opciones] 'comando'     Ó   $ sudo 'comando'
+    $ sudo [opciones] 'comando' 
 ----
 Cuando se ejecuta el comando *sudo*, generalmente se pedirá que ingreses tu contraseña para verificar que tienes los permisos adecuados.
 
 Es importante usar *sudo* con precaución, ya que los comandos con privilegios elevados pueden afectar el sistema y los archivos críticos. Solo debes de ejecutar comandos con *sudo* si estás seguro de lo que estás haciendo y comprender las implicaciones de tus acciones.
+
+Por ejemplo, cuando se ejecuta el comando ´sudo -i´, el sistema te pedirá la contraseña  del usuario actual que tiene permisos de sudo para confirmar que estás autorizado para realizar operaciones con privilegios de superusuario, después de ingresar la contraseña, se abrirá un nuevo shell con privilegios de superusuario. (Es importante usarlo con precaución, ya que las acciones realizadas con privilegios de superusuario pueden tener consecuencias graves del sistema).
+
+
+Nota: Si no estas seguro de las operaciones que estas realizando con superusuario puedes cerrar la sesión de superusuario con 'exit' o 'ctrl+d', tan pronto hayas completado las tareas que requieren privilegios elevados para minimizar los riesgos de seguridad.
 
 Un consejo es revisar las propiedades de los archivos. + 
 ¿Con qué comando desplegamos el contenido de un directorio en forma de lista?
@@ -147,7 +150,7 @@ Un consejo es revisar las propiedades de los archivos. +
 == Creación de usuarios
 Usaremos el comando *useradd* para crear un nuevo usuario 
 ----
-    $ useradd [opcion] 'nombreUsuario'
+    # useradd [opcion] 'nombreUsuario'
 ----
 |===
 | Opciones          | Descripción
@@ -161,23 +164,26 @@ Usaremos el comando *useradd* para crear un nuevo usuario
 | -m +
  --create-home | Crea el directorio personal (home) del usuario si no existe.
 | -p +
- --password    | Asigna una contraseña al usuario nuevo
+ --password    | Asigna una contraseña al usuario nuevo.
 |===
 [NOTE, caption=Nota]
 ====
-Se necesitan permisos de super usuario
+Se necesitan permisos de super usuario.
 ====
 
 Para crear el usuario charmander, se ejecuta el comando:
 ----
-    $ sudo useradd charmander
+    # useradd charmander
 ----
 Para crear el usuario pikachu con el ID 1005 y crear su home
 ----
-    $ sudo useradd pikachu -m -u 1005 
+    # useradd pikachu -m -u 1005 
 ----
 
 == ¿Y la contraseña?
+
+Aunque *useradd* da la opción *-p* para asigna contraseña al usuario que se está creando, esto no es muy usado, ya que podría quedar expuesta en registros del sistema o en la salida de comandos, lo que representa riesgos de confidencialidad.
+
 Para asignar contraseña a un usuario utilizamos el comando *passwd*
 ----
     $ passwd [opción] usuario
@@ -188,17 +194,17 @@ Para asignar contraseña a un usuario utilizamos el comando *passwd*
 | -d +
  --delete      | Elimina la contraseña del usuario.
 | -l + 
---lock         | Permite bloquear la contraseña del usuario
+--lock         | Permite bloquear la contraseña del usuario.
 | -x +
- --maxdays     | Determina después de cuántos días debe renovarse una contraseña 
+ --maxdays     | Determina después de cuántos días debe renovarse una contraseña.
 | -w +
- --warndays    | Avisa al usuario que la contraseña esta apunto de caducar
+ --warndays    | Avisa al usuario que la contraseña esta apunto de caducar.
 |===
 
 La contraseña debe contener de 6 a 8 caracteres, incluyendo uno o más caracteres de los siguientes conjuntos.
 
 * Alfabeto  en minúsculas.
-* Digitos del 0 al 9.
+* Dígitos del 0 al 9.
 * Signos de puntuación.
 [WARNING, caption=IMPORTANTE]
 ====
@@ -212,14 +218,14 @@ $ passwd vulpix
 $ sudo passwd vulpix
 Introduce una nueva contraseña UNIX:
 Vuelve a introducir la nueva contraseña UNIX:
-passwd: Se ha cambiado la contraseña con éxito
+passwd: Se ha cambiado la contraseña con éxito.
 ----
 
 == Eliminar Usuarios    
 Para eliminar un usuario utilizaremos el comando *userdel*
 [NOTE, caption=Nota]
 ====
-Se requieren permisos de super usuario
+Se requieren permisos de superusuario
 ====
 
 ----
@@ -228,7 +234,7 @@ Se requieren permisos de super usuario
 |===
 | Opcion        | Descripción
 | -r +
---remove        | borra el directorio de inicio del usuario /home/usuario
+--remove        | Borra el directorio de inicio del usuario /home/usuario
 |===
 
 Actividad
@@ -242,13 +248,13 @@ $ groupadd [OPCIONES] ‘nombreGrupo’
 |===
 | Opción            | Descripción
 | -g +
-    --gid           | Asigna un identificador (GID) al grupo
+    --gid           | Asigna un identificador (GID) al grupo.
 | -p +
-    --passwdord     | Asigna una contraseña al grupo
+    --passwdord     | Asigna una contraseña al grupo.
 |===
 [NOTE, caption=Nota]
 ====
-Se requieren permisos de super usuario
+Se requieren permisos de superusuario.
 ====
 Ejemplo: 
 ----
@@ -256,16 +262,17 @@ $ sudo groupadd planta -g 203
 $ sudo groupadd dragon -g 2001 -p 1234
 ----
 
-== Modificar Grupos
+== Modificar Grupos +
+
 === Agregar usuarios a un grupo
 Para agregar usuarios a un grupo utilizamos la siguiente instrucción:
 ----
-$ sudo usermod -a -G ‘grupo‘ ‘usuario’
+$ sudo usermod -aG ‘grupo‘ ‘usuario’
 ----
 === Eliminar usuarios de un grupo
 Para eliminar un miembro de un grupo suplementario, utilizaremos el comando *usermod* listando los grupos suplementarios de los que el usuario siga siendo miembro.
 
-Ejemplo: Si el usuario ‘charizard’ es miembro de los grupos volador, dragon, fuego y agua, para eliminar al usuario del grupo , utilizaremos la siguiente instrucción:
+Ejemplo: Si el usuario ‘charizard’ es miembro de los grupos volador, dragon, fuego y agua, para eliminar al usuario del grupo agua, utilizaremos la siguiente instrucción:
 
 ----
 $ sudo usermod -G volador,dragon,fuego charizard
@@ -287,5 +294,3 @@ eliminaremos el grupo fuego
 ----
 $ sudo groupdel fuego 
 ----
-
-ACTIVIDADES

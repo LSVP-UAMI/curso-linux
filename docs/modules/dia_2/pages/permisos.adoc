@@ -7,11 +7,12 @@ Cada directorio y archivo cuentan con permisos, estos cumplen con la función de
 
 _Permisos del Usuario:_ Son los permisos que se aplican al propietario de un determinado archivo o directorio.
 
-_Permisos del Grupo:_ Estos permisos definen los derechos de lectura, escritura y ejecución que se aplican sólo a  aquellos usuarios que pertenecen al mismo grupo que el propietario del archivo/directorio.
+_Permisos del Grupo:_ Estos permisos definen los derechos de lectura, escritura y ejecución que se aplican sólo a  aquellos usuarios que pertenecen al mismo grupo propietario del archivo/directorio.
 
 _Permisos de Otros:_ Estos permisos indican los derechos de lectura, escritura y ejecución del resto de los usuarios.
 
 ¿Cómo saber los permisos de los archivos y directorios? 
+
 .Respuestas
 [%collapsible]
 ====
@@ -30,28 +31,28 @@ $ ls -l 'nombreArchivo'
 El primer bit indica el tipo de archivo. Generalmente se puede tratar de los siguientes casos:
 |===
 | -  | Se trata de un archivo regular.
-| d  | Se trata de un directorio 
-| l  | Se trata de un enlace simbólico
-| b  | Se trata de un enlace simbólico
+| d  | Se trata de un directorio.
+| l  | Se trata de un enlace simbólico.
+| b  | Se trata de un enlace simbólico.
 |===
 El resto de los 9 bits a continuación representan los permisos del propietario del archivo o directorio, los del grupo al que pertenece este usuario y los del resto de usuario.
 |===
-| r  | Permisos de lectura
-| w  | Permiso de escritura
-| x  | Permisos de ejecución
-| -  | No tiene permiso de lectura, escrituro o ejecución 
+| r  | Permisos de lectura.
+| w  | Permisos de escritura.
+| x  | Permisos de ejecución.
+| -  | No tiene permiso de lectura, escritura o ejecución. 
 |===
 
 .Representación de los permisos de un archivo
-image:permisos.png["Representación de los permisos de un archivo"]
+image:permisosPer.png["Representación de los permisos de un archivo"]
 
 == Representación numérica 
-En este caso se sustituye en grupos de 3 bits (r, w y x) por un 1 o 0, dependiendo de si se da o no el permiso, al final, del número en binario obtenido, lo representamos en número decimal para representar las diferentes combinaciones (rwx).
+En este caso se sustituye en grupos de 3 bits (_r_, _w_ y _x_) por un 1 ó 0, dependiendo de si se da o no el permiso, al final, del número en binario obtenido, lo representamos en número decimal para representar las diferentes combinaciones (rwx).
 
 |===
 | Permisos  | Binario   | Decimal
 | r – –     | 1 0 0     | 4
-| – w –     | 1 0 1     | 2 
+| – w –     | 0 1 0     | 2 
 | – – x     | 0 0 1     | 1
 |===
 
@@ -61,70 +62,176 @@ Tomando en cuenta la tabla anterior, podemos obtener el número que es la suma d
 | Permisos  | Binario   | Decimal   | Descripción
 | r w x     | 1 1 1     | 7         | Permisos de lectura, escritura y ejecución.
 | r w –     | 1 1 0     | 6         | Permisos de lectura y escritura.
-| r – x     | 1 0 1     | 5         | Permisos de lectura y ejecución
+| r – x     | 1 0 1     | 5         | Permisos de lectura y ejecución.
 | r – –     | 1 0 0     | 4         | Permiso de lectura.
 | – w x     | 0 1 1     | 3         | Permisos de escritura y ejecución. 
 | – w –     | 0 1 0     | 2         | Permiso de escritura.
-| – – x     | 0 0 1     | 1         | Permiso de ejecución
+| – – x     | 0 0 1     | 1         | Permiso de ejecución.
 | – – –     | 0 0 0     | 0         | Sin permisos.
 |===
 
+
+*Vamos por lo que necesitamos*
+
+¿Como nos colocamos en /home/seiya?
+
+.Respuesta
+[%collapsible]
+====
+    $ cd
+====
+
+Primero creamos un directorio.
+----
+    $ mkdir 'directorio'
+----
+
+Descargemos el material.
+----
+    $ sudo cp -r /mnt/material-curso/user 'directorio' 
+----
+
+Dentro del directorio _user_ encontraras dos directorio:
+
+----
+Perros Gatos
+----
+
+Ingresemos en el directorios Perros.
+
+-----
+    $ cd Perros
+-----
+
+¿Como se muestran los permisos del contenido del directorio.
+
+.Respuesta
+[%collapsible]
+====
+    # ls -l
+    # ls -la
+    Recuerda que la opcion '-la' no ingnora los archivos ocultos. 
+====
+
+./user/Perros
+image:perrosPermisos.png["/user/Perros"]
+
+Aquí tenemos un error, los archivos de este directorio no necesitan perimsos de ejecución, vamos a solucionarlo.
+
 == Modificar los permisos de un archivo/directorio _(chmod)_
-----
-$ chmod [Opciones] archivo/directorio
-----
-Primero desplegamos los permisos del archivo al que cambiaremos los permisos
-----
-$ ls -l Bombay
+El comando *chmod* se utiliza para cambiar los permisos de archivos y directorios. 
 
--rw-r--r-- 1 Omar Omar 0 feb 3 12:54 Bombay
 ----
-Ahora, para conceder a los grupos permisos de escritura (w), lo hacemos con la siguiente combinación 6 6 4. +
-En comandos sería de la siguiente manera:
-----
-chmod 644 Bombay
-----
-Comprobamos los cambios realizados
-----
-$ ls -l Bombay
-
-- rw-rw-r-- 1 Omar Omar 0 feb 3 12:57 Bombay
+    $ sudo chmod [opciones] permisos 'archivo/directorio'
 ----
 
-ACTIVIDADES
-
-== Cambio de Propietarios _(chown)_
-El comando *chown* se utiliza para cambiar el propietario y/o grupo de archivos y directorios, es una abreviación de change owner (cambio de propietario).
+|===
+| opciones  |  Pueden ser varias opciones, como -R para cambiar permisos de forma recursiva en directorios y subdirectorios, para saber mas revisa el _man_.
+| permisos  |  Representa los permisos que deseas asignar al archivo o directorio.
+| archivo/directorio | Es el nombre del archivo o directorio que se le cambiarán los permisos.
+|===
 
 Recuerda que si no eres el propietario del archivo/directorio, deberás tener privilegios de superusuario (root).
 
-----
-$ chwon [OPCIONES] ‘nuevoPropietario[:nuevoGrupo]’ ‘archivo/directorio’
+=== Actividades
 
-Ejemplo: 
-$ chown nuevoPropietario archivo.txt
-----
+*Modifica los permisos del archivo Boxer.txt a los siguientes:*
 
-Cambiar el propietario y el grupo de un archivo al mismo tiempo:
-
+.Permisos de Boxer.txt
 ----
-$ chown nuevoPropietario:nuevoGrupo archivo.txt
+    -rw-r--r-- 1 root root 0 Feb 09:34 Boxer.txt
 ----
 
-¿Cómo cambiar el propietario de un directorio y de todos sus archivo y subdirectorios de forma recursiva?
-
-.Respuestas
+.Respuesta
 [%collapsible]
 ====
-$ chown -R nuevoPropietario directorio
+    $ sudo chmod 644 Boxer.txt
 ====
 
-¿Ahora, para cambiar el propietario y el grupo de un directorio y de todos sus archivo y subdirectorios de forma recursiva?
+*Modifica los permisos de Husky a los siguientes:*
 
-.Respuestas
+.Permisos de Husky
+----
+    -rw-rw-r-- 1 root root 0 Feb 09:34 Husky
+----
+
+.Respuesta
 [%collapsible]
 ====
-$ chown -R nuevoPropietario:nuevoGrupo directorio
+    $ sudo chmod 664 Husky
 ====
 
-ACTIVIDADES
+*Modifica los permisos de Pug.zip a los siguientes:*
+
+.Permisos de Pug.zip
+----
+    -rw-r----- 1 root root 0 Feb 09:34 Pug.zip
+----
+
+.Respuesta
+[%collapsible]
+====
+    $ sudo chmod 640 Pug.zip
+====
+
+*Revisa los permisos del directorio Gatos.*
+
+.Permisos de Gatos
+image:gatosPermisos.png["/user/Gtaos"]
+
+Tenemos el mismo error que en el directorio Perros, vamos a modificar los permisos.
+
+*Cambia los permisos de todos los archivos del directorio Gatos de manera recursiva a los siguientes:*
+
+.Nuevos permisos de Gatos
+----
+    -rw-r--r-- 1 root root 0 Feb 09:36 Bombay 
+    -rw-r--r-- 1 root root 0 Feb 09:36 Persa.js
+    -rw-r--r-- 1 root root 0 Feb 09:36 Siberiano.c
+----
+
+.Respuesta
+[%collapsible]
+====
+    $ sudo chmod -R 644 Gatos
+====
+
+== Cambio de Propietarios _(chown)_
+El comando *chown* se utiliza para cambiar el propietario y/o grupo de archivos y directorios.
+----
+$ sudo chown [opciones] nuevoPropietario[:nuevoGrupo] 'archivo/directorio'
+----
+
+|===
+| nuevoPropietario  |  Especifica el nuevo propietario al que se desea asignar el archivo o directorio.
+| nuevoGrupo        | Permite especificar un nuevo grupo para el archivo o directorio. Si no se proporciona, el grupo se mantendrá sin cambios.
+| archivo/directorio| Es el nombre del archivo o directorio que se le cambiarán los permisos.
+|===
+
+Recuerda que si no eres el propietario del archivo/directorio, deberás tener privilegios de superusuario (root).
+
+=== Actividades
+
+*Cambia el propietario del archivo que elijas por un usuario que creaste anteriormente.*
+
+.Pista
+[%collapsible]
+====
+    $ sudo chwon 'nombrePropietario' 'nombreArchivo'
+====
+    
+*Cambiar el propietario y el grupo  de un archivo al mismo tiempo:*
+
+.Pista
+[%collapsible]
+====
+    $ sudo chown 'nuevoPropuetario:nuevoGrupo' 'nombreArchivo'
+====
+
+*Cambia el propietario y grupo del directorio Perros y todos sus archivos y subdirectorios de forma recursiva por un ausuario antes creado.*
+
+.Pista
+[%collapsible]
+====
+    $ sudo chown -R 'nuevoPropietario:nuevoGrupo' Perros
+====
