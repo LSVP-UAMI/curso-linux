@@ -8,13 +8,13 @@ Un sistema de archivos es una estructura y conjunto de reglas utilizadas por un 
 *Ejemplos.*
 
     * exFAT
-    * NTFS
-    * FAT32
+    * Ext4
+    * XFS   
 
 == Filosofía Unix
 “Everything is a file” (Todo es un archivo) describe una de las principales características de Unix y sus derivados.
 
-Un *archivo normal* se puede definir como un conjunto de datos con un nombre asociado. Los archivos suelen residir en dispositivos de almacenamiento secundario tales como cintas, discos duros o discos flexibles. Estos archivo no son mś que una secuencia de bytes (8 bits).
+Un *archivo normal* se puede definir como un conjunto de datos con un nombre asociado. Los archivos suelen residir en dispositivos de almacenamiento secundario tales como cintas, discos duros o discos flexibles. Estos archivo no son más que una secuencia de bytes (8 bits).
 
 == ¿Por qué todo es un archivo en Sistema tipo Unix?
 
@@ -48,7 +48,7 @@ image::filesystem/arbolSistemas.png["Árbol de archivos"]
 | /bin (binarios del sistema) | Contiene archivos ejecutables esenciales para la administración del sistema, generalmente utilizados por el superusuario.
 | /tmp (temporal)   | Directorio utilizado para almacenar archivos temporales.
 | /usr (usuario)    | Contiene archivos y programas utilizados por usuarios, incluyendo binarios, bibliotecas y documentos.
-| /usr/bin  | Este directorio almacena ejecutables (programas o comandos) que están disponibles para todos los usuarios del sistema.
+| /usr/bin  | Contiene información de instalaciones locales.
 | /usr/lib  | Almacena las bibliotecas y los archivos de datos necesarios para los programas almacenados en /usr o en otro lugar.
 | /var (variable)   | Almacena datos variables, como registros de sistemas y archivos de bases de datos.
 |===
@@ -98,4 +98,3 @@ Se contienen varios tipos de archivos:
 * _Sockets:_ Es un archivo especial que permite una comunicación avanzada entre procesos.
 
 * _Enlace simbólico:_ El enlace simbólico se utiliza para hacer referencia a algún otro archivo del sistema de archivos.
-

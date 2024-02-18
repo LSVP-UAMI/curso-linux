@@ -36,7 +36,7 @@ beazley:x:143:1000:David Beazley:/home/beazley:/bin/bash
 Cada línea representa un usuario y tiene siete campos separados por dos puntos.
 
 .Una entrada del archivo _/etc/passwd_
-image:passwdUsuarios.png["Una entrada del archivo _/etc/passwd_"]
+image::/usuarios/passwdUsuarios.png["Una entrada del archivo _/etc/passwd_"]
 
 1. _Login name_: Nombre del usuario.
 
@@ -70,7 +70,7 @@ user:*:1000:
 Cada línea representa un grupo y tiene cuatro campos separados por dos puntos:
 
 .Una entrada del archivo _group_
-image:groupUsuarios.png["Una entrada del archivo _/etc/groups_"]
+image::/usuarios/groupUsuarios.png["Una entrada del archivo _/etc/groups_"]
 
 1. _Group name_: Identifica el nombre del grupo.
 
