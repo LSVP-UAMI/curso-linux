@@ -225,12 +225,12 @@ El comando *cp* (CoPy) lo utilizamos para copiar archivos y directorios.
 Para mover de lugar un archivo o directorio utilizamos el comando *mv* (MoVe).
 
 ----
-       $ mv [opcion] 'origen' 'destino'
+       $ mv [opcion] 'archivo/directorio' 'destino'
 ----
 |===
 | Comando       | Descripción
-| $ mv archivo /ruta/del/destino/ | Mueve 'archivo' a '/ruta/del/destino/'
-| $ mv carpeta1/ carpeta2/ | Mueve la 'carpeta1/' a 'carpeta2/'
+| $ mv archivo ruta/del/destino | Mueve 'archivo' a 'ruta/del/destino'
+| $ mv carpeta1 carpeta2 | Mueve la 'carpeta1' a 'carpeta2'
 |===
 
 === Renombrar un directorio o archivo _(mv)_
