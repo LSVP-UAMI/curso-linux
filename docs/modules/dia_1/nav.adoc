@@ -2,4 +2,4 @@
 ** xref:bienvenida.adoc[Bienvenida]
 ** xref:sistema_archivos.adoc[Sistema de archivos]
 ** xref:comandos_basicos.adoc[Comandos básicos]
-** xref:actividades.adoc.adoc[Actividades]
+** xref:actividades.adoc[Actividades]
