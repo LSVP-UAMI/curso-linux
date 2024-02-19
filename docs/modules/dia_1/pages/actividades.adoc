@@ -1,0 +1,154 @@
+= Actividades
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+
+== Comando tree
+
+El comando *tree* se utiliza para mostrar la estructura de directorios en forma de árbol. Es especialmente útil para visualizar la jerarquía de carpetas y archivos de manera organizada.
+
+----
+    tree [opcion] [directorio]
+----
+
+|===
+| Opciones      | Descripción
+| -L N          | Limita la profundidad del árbol a N niveles.
+| -a            | Mostrar archivos y directorios ocultos.
+| -d            | Mostrar solo directorios, sin archivos. 
+|===
+
+=== Instalación tree
+
+Para instalar *tree* en sistemas basados en Debian/Ubuntu.
+----
+    $ sudo apt-get install tree
+----
+Y en sistemas basados en Red Hat/Fedora.
+----
+    $ sudo yum install tree
+----
+
+== Repasemos las cosas
+
+* Crea el directorio *Animales*.
+* Dentro del directorio *Animales* Crea el siguiente árbol de directorios y archivos.
+
+.Árbol de archivos a crear.
+image::actividades/arbol.png["Árbol de archivo a crear"]
+
+* Cambia el nombre de *m3dus4.c* a *medusa.c*.
+
+.Respuesta
+[%collapsible]
+====
+    $ mv m3dus4.c medusa.c
+====
+* Cambia el nombre de *bvrr0.txt* a *burro.txt*.
+
+.Respuesta
+[%collapsible]
+====
+//     $ mv bvrr0.txt burro.txt
+    Es similar a la respuesta anterior
+====
+* Copia *gallina.java* en *Granja* (verifícalo).
+
+.Respuesta
+[%collapsible]
+====
+    $ cp gallina.java Granja
+====
+* Mueve *gallina.java* a *Aves*.
+
+.Respuesta
+[%collapsible]
+====
+    $ mv gallina.java Aves
+====
+*  Mueve cada animal en el directorio que le corresponde.
+
+.Pista
+[%collapsible]
+====
+    $ mv 'animal'.'algo' directorio
+====
+* Ingresa a cada directorio y borra a los animales que no pertenecen.
+ 
+.Pista
+[%collapsible]
+====
+    $ ls 'directorio'
+    $ rm 'animal'.'algo' 
+    Recuerda regresar al directorio anterior con $ cd ..
+====
+
+Para eliminar más de un archivo de un directorio lo puedes hacer de la siguiente manera:
+
+-----
+    $ rm archivo1 archivo2 ... archivoN
+-----
+
+
+* Ingresa *Insectos* y elimina su contenido.
+
+.Pista
+[%collapsible]
+====
+    $ rm 'nombreInsecto'
+====
+* Elimina el directorio *Insectos*
+
+.Respuesta
+[%collapsible]
+====
+    $ rmdir Insectos
+====
+* Elimina de manera _recursiva_ el directorio *Aves*
+
+.Respuesta
+[%collapsible]
+====
+    $ rm -r Aves
+====
+* Encuentra los animales con extención *.c* del directorio *Marinos*. 
+
+.Respuesta
+[%collapsible]
+====
+    $ find Animales/Marinos -name "*.c" --> Si te encuentras fuera del directorio Animales
+    $ find Marino -name "*.c" --> Si te encuentras en el directorio Animales
+    $ find -name "*.c" --> Si te encuentras el dentro del directorio Marinos.
+====
+
+* Encuentra todos los animales con extencion *.txt* del directorio *Animales*.
+
+.Respuesta
+[%collapsible]
+====
+    $ find -name "*.json" --> Si te encuentras en el directorio Animales.
+    $ find Animles -name "*.json" --> Si te encuentras fuera del directorio Animales.
+====
+
+En general, si quieres encontrar una coincidencia con *find* es de la siguiente manera.
+
+----
+    $ find [directorio] [-opcion] "coincidencia".
+----
+
+|===
+| directorio    | Especifica el directorio en el que se realizará la búsqueda. ejemplo: "/home/usuarios"
+| opcion        | Puedes utilizar diversas opciones para refinar tu búsqueda, (Revisa el man).
+| coincidencia  | Define los criterios de búsqueda, como nombre de archivo, tipo, tamaño, etc.
+|===
+
+
+Finalmente el árbol de archivos se vera de la siguiente manera
+
+.Árbol de archivos final.
+image::actividades/arbol_final.png["Árbol de archivos final"]
+
+
+
+//* Encuentra los animales con extención *.c* del directorio Marinos. 

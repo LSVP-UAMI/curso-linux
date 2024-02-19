@@ -1,0 +1,184 @@
+= Actividades
+:table-caption: Tabla
+:figure-caption: Figura
+
+== Crea los Usuarios:
+
+* Squirtle 
+
+.Respuesta
+[%collapsible]
+====
+    # useradd Squirtle
+====
+
+* Charizard, establece su directorio personal. 
+
+.Respuesta
+[%collapsible]
+====
+    # useradd -m Charizar
+====
+
+* Dragonite, establece su directorio personal , shell de usuario, ID = 2001
+
+.Respuesta
+[%collapsible]
+====
+    #  useradd -m -s /bin/bash -u 2001 Dragonite
+====
+
+* Bulbasaur, establece su directorio personal ID = 3043 y crea un grupo con su mismo nombre.
+
+.Respuesta
+[%collapsible]
+====
+    # useradd -m -u 3043 -U Bulbasaur
+====
+
+*Revisa los documentos*
+
+* /etc/passwd
+* /etc/groups
+
+./etc/passwd
+image::actividades/passwd2.png["/etc/passwd"]
+
+./etc/group
+image::actividades/group2.png["/etc/group"]
+
+*¿Notas la diferencia?*
+
+En el caso de _/etc/passwd_, al no asignar un *UID* (User ID) de usuario (-u),  el sistema asignará automáticamente un UID disponible en función de la configuración del sistema y las UID ya existentes.
+
+Por otra parte, a *Dragonite* fue al usuario que se le asigno un shell de usuario (-s /bin/bash ) lo que le proporciona funcionalidades adicionales, como historial de comandos, autocompletado y características más avanzadas de scripting.
+
+Mientras que *Charizar* y *Bulbasaur* obtuvieron /bin/hs, a menudo se utiliza como un enlace simbólico a una shell específica del sistema, que puede ser Bash ó Dash. 
+
+*Reviza el directorio /home*
+
+./home
+image::actividades/home.png["/etc/passwd"]
+
+En el directorio falta el usuario *Squirtle*, ya qué no se le ingreso la opción de establecer el directorio personal *(-m)*
+
+
+== Contraseñas
+Asigna una contraseña a *Charizard* y *Bulbasaur*.
+
+.Respuesta
+[%collapsible]
+====
+    # passwd Charizard
+    # passwd Bulbasaur
+====
+
+
+== Creemos los siguientes grupos
+
+Crea los siguientes grupos:
+
+* *Agua.*
+
+.Respuesta
+[%collapsible]
+====
+    # groupadd Agua
+====
+
+* *Planta.*
+
+.Respuesta
+[%collapsible]
+====
+    # groupadd Planta
+====
+
+* *Fuego.*
+
+.Respuesta
+[%collapsible]
+====
+    # groupadd Fuego
+====
+
+* *Dragon.*
+
+.Respuesta
+[%collapsible]
+====
+    # groupadd Dragon
+====
+
+*Vuelve a revisar el archivo _/etc/group_*
+
+./etc/group
+image::actividades/grupos3.png["/etc/group"]
+
+* Agrega a Squirtle al grupo *Agua*.
+
+.Respuesta
+[%collapsible]
+====
+    # usermod -aG Agua Squirtle
+====
+
+* Agrega a Bolbasaur al grupo *Planta*.
+
+.Respuesta
+[%collapsible]
+====
+    # usermod -aG Plnata Bolbasaur
+====
+
+* Agrega a Charizar al grupo *Fuego*.
+
+.Respuesta
+[%collapsible]
+====
+    # usermod -aG Fuego Charizar
+====
+
+* Agrega a Dragonite al grupo *Dragon*.
+
+.Respuesta
+[%collapsible]
+====
+    # usermod -aG Dragon Dragonite
+====
+
+*Una vez más revisa el archivo /etc/group*
+
+./etc/group
+image::actividades/grupos4.png["/etc/group"]
+
+Crea un usuario que pueda pertenecer a cada uno de los grupos existentes y agregalo al grupo.
+(Agrega los opciones que consideres)
+
+Te puedes apoyar en la siguente página.
+
+.Wikidex
+link:URL[https://www.wikidex.net/wiki/Lista_de_Pok%C3%A9mon_por_tipo#Veneno]
+
+.Pista
+[%collapsible]
+====
+    # useradd 'nombreUsuario'
+    # usermod -aG 'grupo' 'nombreUsuario'
+====
+
+* Elimina al *Squirtel*
+
+* Agrega a *Charizar* al grupo *Dragon*.
+
+* Elimina al grupo *Agua*.
+
+* Crea al usuarios Ho-Oh (con las opciones que consideres)
+* Agrega a Ho-Oh a los grupos *Fuego* y *Dragon* en una sola instrucción.
+
+.Respuesta
+[%collapsible]
+====
+    # usermod -a Fuego Dragon
+====
+
