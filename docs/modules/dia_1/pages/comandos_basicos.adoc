@@ -213,7 +213,7 @@ Ejemplo:
 El comando *cp* (CoPy) lo utilizamos para copiar archivos y directorios.
 
 ----
-       $ cp [opcion] 'origen' 'destino'
+       $ cp [opcion] 'archivo/directorio' 'destino'
 ----
 |===
 |Comando        | Descripción
