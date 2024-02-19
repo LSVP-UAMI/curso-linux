@@ -45,7 +45,7 @@ image::bienvenida/yoltla.jpg[align=center]
 ** Optimización de aplicaciones científicas
 ** Se imparten cursos
 
-=== Instructores para este curso
+== Instructores para este curso
 
 Los miembros del laboratorio que van a dar este curso
 
@@ -55,7 +55,7 @@ Los miembros del laboratorio que van a dar este curso
 * Luis Fernando Torres Hernández
 * Omar Juárez Merino
 
-=== Demografía del curso
+== Demografía del curso
 Esta es la demografía para este curso
 ****
 image::bienvenida/demografia.png[align=center]
