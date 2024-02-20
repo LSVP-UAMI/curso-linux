@@ -17,7 +17,7 @@ _Permisos de Otros:_ Estos permisos indican los derechos de lectura, escritura y
 [%collapsible]
 ====
 1. $ ls -l
-2. $ls -la
+2. $ ls -la
 ====
 
 Para conocer los permisos de archivo en específico ejecutamos:
@@ -87,7 +87,7 @@ Primero creamos un directorio.
 
 Descargemos el material.
 ----
-    $ sudo cp -r /mnt/material-curso/user 'directorio' 
+    $ sudo cp -r /tmp/material-curso/user 'directorio' 
 ----
 
 Dentro del directorio _user_ encontraras dos directorio:
@@ -102,7 +102,7 @@ Ingresemos en el directorios Perros.
     $ cd Perros
 -----
 
-¿Como se muestran los permisos del contenido del directorio.
+¿Como se muestran los permisos del contenido del directorio?.
 
 .Respuesta
 [%collapsible]

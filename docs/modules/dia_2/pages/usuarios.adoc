@@ -132,11 +132,6 @@ Cuando se ejecuta el comando *sudo*, generalmente se pedirá que ingreses tu con
 
 Es importante usar *sudo* con precaución, ya que los comandos con privilegios elevados pueden afectar el sistema y los archivos críticos. Solo debes de ejecutar comandos con *sudo* si estás seguro de lo que estás haciendo y comprender las implicaciones de tus acciones.
 
-Por ejemplo, cuando se ejecuta el comando ´sudo -i´, el sistema te pedirá la contraseña  del usuario actual que tiene permisos de sudo para confirmar que estás autorizado para realizar operaciones con privilegios de superusuario, después de ingresar la contraseña, se abrirá un nuevo shell con privilegios de superusuario. (Es importante usarlo con precaución, ya que las acciones realizadas con privilegios de superusuario pueden tener consecuencias graves del sistema).
-
-
-Nota: Si no estas seguro de las operaciones que estas realizando con superusuario puedes cerrar la sesión de superusuario con 'exit' o 'ctrl+d', tan pronto hayas completado las tareas que requieren privilegios elevados para minimizar los riesgos de seguridad.
-
 Un consejo es revisar las propiedades de los archivos. + 
 ¿Con qué comando desplegamos el contenido de un directorio en forma de lista?
 

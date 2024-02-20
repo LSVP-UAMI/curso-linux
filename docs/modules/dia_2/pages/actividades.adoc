@@ -9,7 +9,7 @@
 .Respuesta
 [%collapsible]
 ====
-    # useradd Squirtle
+    $ sudo useradd Squirtle
 ====
 
 * Charizard, establece su directorio personal. 
@@ -17,7 +17,7 @@
 .Respuesta
 [%collapsible]
 ====
-    # useradd -m Charizar
+    $ sudo useradd -m Charizar
 ====
 
 * Dragonite, establece su directorio personal , shell de usuario, ID = 2001
@@ -25,7 +25,7 @@
 .Respuesta
 [%collapsible]
 ====
-    #  useradd -m -s /bin/bash -u 2001 Dragonite
+    $ sudo useradd -m -s /bin/bash -u 2001 Dragonite
 ====
 
 * Bulbasaur, establece su directorio personal ID = 3043 y crea un grupo con su mismo nombre.
@@ -33,13 +33,13 @@
 .Respuesta
 [%collapsible]
 ====
-    # useradd -m -u 3043 -U Bulbasaur
+    $ sudo useradd -m -u 3043 -U Bulbasaur
 ====
 
 *Revisa los documentos*
 
 * /etc/passwd
-* /etc/groups
+* /etc/group
 
 ./etc/passwd
 image::actividades/passwd2.png["/etc/passwd"]
@@ -69,8 +69,8 @@ Asigna una contraseña a *Charizard* y *Bulbasaur*.
 .Respuesta
 [%collapsible]
 ====
-    # passwd Charizard
-    # passwd Bulbasaur
+    $ sudo passwd Charizard
+    $ sudo passwd Bulbasaur
 ====
 
 
@@ -83,7 +83,7 @@ Crea los siguientes grupos:
 .Respuesta
 [%collapsible]
 ====
-    # groupadd Agua
+    $ sudo groupadd Agua
 ====
 
 * *Planta.*
@@ -91,7 +91,7 @@ Crea los siguientes grupos:
 .Respuesta
 [%collapsible]
 ====
-    # groupadd Planta
+    $ sudo groupadd Planta
 ====
 
 * *Fuego.*
@@ -99,7 +99,7 @@ Crea los siguientes grupos:
 .Respuesta
 [%collapsible]
 ====
-    # groupadd Fuego
+    $ sudo groupadd Fuego
 ====
 
 * *Dragon.*
@@ -107,7 +107,7 @@ Crea los siguientes grupos:
 .Respuesta
 [%collapsible]
 ====
-    # groupadd Dragon
+    $ sudo groupadd Dragon
 ====
 
 *Vuelve a revisar el archivo _/etc/group_*
@@ -120,7 +120,7 @@ image::actividades/grupos3.png["/etc/group"]
 .Respuesta
 [%collapsible]
 ====
-    # usermod -aG Agua Squirtle
+    $ sudo usermod -aG Agua Squirtle
 ====
 
 * Agrega a Bolbasaur al grupo *Planta*.
@@ -128,7 +128,7 @@ image::actividades/grupos3.png["/etc/group"]
 .Respuesta
 [%collapsible]
 ====
-    # usermod -aG Plnata Bolbasaur
+    $ sudo usermod -aG Plnata Bolbasaur
 ====
 
 * Agrega a Charizar al grupo *Fuego*.
@@ -136,7 +136,7 @@ image::actividades/grupos3.png["/etc/group"]
 .Respuesta
 [%collapsible]
 ====
-    # usermod -aG Fuego Charizar
+    $ sudo usermod -aG Fuego Charizar
 ====
 
 * Agrega a Dragonite al grupo *Dragon*.
@@ -144,7 +144,7 @@ image::actividades/grupos3.png["/etc/group"]
 .Respuesta
 [%collapsible]
 ====
-    # usermod -aG Dragon Dragonite
+    $ sudo usermod -aG Dragon Dragonite
 ====
 
 *Una vez más revisa el archivo /etc/group*
@@ -163,8 +163,8 @@ link:URL[https://www.wikidex.net/wiki/Lista_de_Pok%C3%A9mon_por_tipo#Veneno]
 .Pista
 [%collapsible]
 ====
-    # useradd 'nombreUsuario'
-    # usermod -aG 'grupo' 'nombreUsuario'
+    $ sudo useradd 'nombreUsuario'
+    $ sudo usermod -aG 'grupo' 'nombreUsuario'
 ====
 
 * Elimina al *Squirtel*
@@ -179,6 +179,6 @@ link:URL[https://www.wikidex.net/wiki/Lista_de_Pok%C3%A9mon_por_tipo#Veneno]
 .Respuesta
 [%collapsible]
 ====
-    # usermod -a Fuego Dragon
+    $ sudo usermod -a Fuego Dragon
 ====
 
