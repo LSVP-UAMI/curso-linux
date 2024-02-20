@@ -1,4 +1,6 @@
 * Día 3
 ** xref:procesos.adoc[Procesos]
- *** xref:anexos/procesos.adoc[Anexos]
-//** xref:instalacion.adoc[Instalación]
+** xref:pipes.adoc[Pipes]
+** xref:filtrado.adoc[Filtrado]
+*** xref:anexos/procesos.adoc[Anexos]
+

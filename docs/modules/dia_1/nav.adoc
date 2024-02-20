@@ -3,5 +3,3 @@
 ** xref:sistema_archivos.adoc[Sistema de archivos]
 ** xref:comandos_basicos.adoc[Comandos básicos]
 ** xref:actividades.adoc[Actividades]
-** xref:instalacion.adoc[Instalación]
-** xref:anexos.adoc[Anexos]

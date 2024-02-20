@@ -4,7 +4,7 @@ version: febrero-2024
 nav:
 - modules/ROOT/nav.adoc
 - modules/dia_1/nav.adoc
-# - modules/dia_2/nav.adoc
+- modules/dia_2/nav.adoc
 # - modules/dia_3/nav.adoc
 # - modules/dia_4/nav.adoc
 - modules/anexos/nav.adoc
