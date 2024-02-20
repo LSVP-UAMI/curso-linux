@@ -249,7 +249,7 @@ Con *mv* (MoVe) también podemos renombrar un archivo o directorio.
 *rmdir* (ReMove DIRectory) lo utilizaremos para eliminar directorios vacíos, es decir, aquellos que no contengan subdirectorio ni archivos.
 
 ----
-       $ rm [opcion] 'directorioVacio'
+       $ rmdir [opcion] 'directorioVacio'
 ----
 
 === Eliminar archivos _(rm)_

@@ -33,7 +33,6 @@ El primer bit indica el tipo de archivo. Generalmente se puede tratar de los sig
 | -  | Se trata de un archivo regular.
 | d  | Se trata de un directorio.
 | l  | Se trata de un enlace simbólico.
-| b  | Se trata de un enlace simbólico.
 |===
 El resto de los 9 bits a continuación representan los permisos del propietario del archivo o directorio, los del grupo al que pertenece este usuario y los del resto de usuario.
 |===
