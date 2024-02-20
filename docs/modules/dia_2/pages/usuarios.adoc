@@ -186,7 +186,7 @@ Aunque *useradd* da la opción *-p* para asigna contraseña al usuario que se es
 
 Para asignar contraseña a un usuario utilizamos el comando *passwd*
 ----
-    $ passwd [opción] usuario
+    # passwd [opción] usuario
 ----
 
 |===
@@ -200,6 +200,10 @@ Para asignar contraseña a un usuario utilizamos el comando *passwd*
 | -w +
  --warndays    | Avisa al usuario que la contraseña esta apunto de caducar.
 |===
+[NOTE, caption=Nota]
+====
+Se necesitan permisos de super usuario.
+====
 
 La contraseña debe contener de 6 a 8 caracteres, incluyendo uno o más caracteres de los siguientes conjuntos.
 
@@ -213,12 +217,10 @@ La contraseña debe contener de 6 a 8 caracteres, incluyendo uno o más caracter
 
 Ejemplo:
 ----
-$ passwd vulpix
-
-$ sudo passwd vulpix
-Introduce una nueva contraseña UNIX:
-Vuelve a introducir la nueva contraseña UNIX:
-passwd: Se ha cambiado la contraseña con éxito.
+    # sudo passwd vulpix
+    Introduce una nueva contraseña UNIX:
+    Vuelve a introducir la nueva contraseña UNIX:
+    passwd: Se ha cambiado la contraseña con éxito.
 ----
 
 == Eliminar Usuarios    
@@ -229,7 +231,7 @@ Se requieren permisos de superusuario
 ====
 
 ----
-    $ userdel [opciones] usuario
+    $ sudo userdel [opciones] usuario
 ----
 |===
 | Opcion        | Descripción
@@ -243,7 +245,7 @@ Actividad
 Para crear un nuevo grupo usaremos el comando *groupadd*
 
 ----
-$ groupadd [OPCIONES] ‘nombreGrupo’
+    $ sudo groupadd [OPCIONES] ‘nombreGrupo’
 ----
 |===
 | Opción            | Descripción
@@ -279,6 +281,7 @@ $ sudo usermod -G volador,dragon,fuego charizard
 ----
 
 Con qué comando se sabe a cuántos grupos permanece un usuario.
+
 .Respuestas
 [%collapsible]
 ====
