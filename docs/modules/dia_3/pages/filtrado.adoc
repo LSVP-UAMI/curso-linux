@@ -109,14 +109,13 @@ head -n 1 datos.csv
 De modo que el ejercicio se resuelve de la siguiente manera.
 [source,shell]
 ----
-cut -d "," -f N datos.csv | head
+cut -d "," -f 2,6 datos.csv | head
 ----
-donde N es campo que se desea mostrar.(N = 2 y N = 6 respectivamente).
 ====
 
 == Sort
 *sort* ordena las líneas de un archivo, para esto podemos indicar los 
-campos que se usaran para el ordenamiento y la forma en la que se ordenaran.
+campos que se usaran para el ordenamiento y la forma en la que se ordenarán.
 
 Opciones de *sort*.
 [cols="1,4"]
@@ -128,7 +127,18 @@ Opciones de *sort*.
 |===
 
 === Práctica
-Muestra la segunda columna por orden alfabético.
+* Considerando el nombre de los pokémon, ordena los datos en orden alfábetico.
+
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+----
+sort -t ',' -k 2 datos.csv
+----
+====
+
+* Muestra la segunda columna por orden alfabético.
 
 .Respuesta
 [%collapsible]
@@ -147,15 +157,16 @@ Utilizando el archivo *heroes_information.csv*, obtener lo siguiente:
 1. ¿Cuál es el número de personajes que aparecen en el archivo?
 2. ¿Cuántas mujeres hay(Female)? ¿Y cuántos hombres(Male)?
 3. Obtener únicamente las columnas con el nombre de los personajes (name) y su raza (race).
-4. ¿Qué tipo de personajes hay más? Buenos (good), malos (bad) o neutrales (neutral)
-5. Mostrar todas las editoriales de los personajes
+4. ¿Qué tipo de personajes hay más? ¿Buenos (good), malos (bad) o neutrales (neutral)?
+5. Mostrar todas las editoriales de los personajes (sin repetirlas).
 6. Mostrar qué personajes que no tiene la información de su editorial (mostrar columnas de personaje y editorial).
-7. Mostrar la cantidad de mujeres buenas y la cantidad de malas.
+7. Mostrar los personajes que sean mujeres y a la vez buenos (mostrar las columnas de nombre, genero y Alignment).
+8. Mostrar los personajes que sean mujeres y a la vez de la editorial Marvel Comics (mostrar las columnas de nombre, genero y editorial).
 
 .Respuestas
 [%collapsible]
 ====
-* Número de personajes
+* Número de personajes: 734
 [source,shell]
 ----
 wc -l heroes_information.csv 
@@ -164,24 +175,24 @@ wc -l heroes_information.csv
 * Número de mujeres
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep -c Female 
+grep -c Female heroes_information.csv
 ----
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep Female | wc -l
+grep Female heroes_information.csv | wc -l
 ----
 
 * Número de hombres
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep -c Male 
+grep -c Male heroes_information.csv
 ----
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 2,3 | grep Male | wc -l
+grep Male heroes_information.csv | wc -l
 ----
 
-* Nombres de personajes 
+* Nombres y raza de personajes 
 [source,shell]
 ----
 tail -n 734 heroes_information.csv | cut -d , -f 2,5
@@ -202,13 +213,13 @@ tail -n 734 heroes_information.csv | cut -d , -f 2,8 | grep '""'
 * Cantidad de mujeres buenas
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 3,10 | grep Female | grep -c good
+cut -d , -f 2,3,10 heroes_information.csv | grep Female | grep good
 ----
 
-*Cantidad de mujeres malas
+*Cantidad de mujeres de Marvel Comics
 [source,shell]
 ----
-tail -n 734 heroes_information.csv | cut -d , -f 3,10 | grep Female | grep -c bad
+cut -d , -f 2,3,8 heroes_information.csv | grep Female | grep "Marvel Comics"
 ----
 
 ====
