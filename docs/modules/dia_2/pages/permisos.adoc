@@ -42,11 +42,11 @@ El resto de los 9 bits a continuación representan los permisos del propietario 
 | -  | No tiene permiso de lectura, escritura o ejecución. 
 |===
 
-.Representación de los permisos de un archivo
+.Representación de los permisos de un archivo.
 image::permisos/permisosPer.png["Representación de los permisos de un archivo"]
 
 == Representación numérica 
-En este caso se sustituye en grupos de 3 bits (_r_, _w_ y _x_) por un 1 ó 0, dependiendo de si se da o no el permiso, al final, del número en binario obtenido, lo representamos en número decimal para representar las diferentes combinaciones (rwx).
+En este caso se sustituye en grupos de 3 bits (_r_, _w_ y _x_) por un 1 ó 0, dependiendo de si se da o no el permiso, al final, del número en binario obtenido, lo representamos en número decimal para representar las diferentes combinaciones (r w x).
 
 |===
 | Permisos  | Binario   | Decimal
@@ -115,7 +115,7 @@ Ingresemos en el directorios Perros.
 ./user/Perros
 image::permisos/perrosPermisos.png["/user/Perros"]
 
-Aquí tenemos un error, los archivos de este directorio no necesitan perimsos de ejecución, vamos a solucionarlo.
+Aquí tenemos un error, los archivos de este directorio no necesitan permisos de ejecución, vamos a solucionarlo.
 
 == Modificar los permisos de un archivo/directorio _(chmod)_
 El comando *chmod* se utiliza para cambiar los permisos de archivos y directorios. 
