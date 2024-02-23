@@ -191,12 +191,12 @@ Para los ejercicios primero copiamos el directorio _/tmp/material-curso/dia4_ a 
 
 ----
 $ cd
-$ cp -r /tmp/material-curso/dia_4 .
+$ cp -r /tmp/material-curso/dia4 .
 ----
 
 * Realizar un script que haga lo siguiente:
 
-    .. Busque archivos con nombre _conejo_ dentro del directorio _dia_4/scripts_ y muestrelos utilizando el comando *find*.
+    .. Busque archivos con nombre _conejo_ dentro del directorio _dia4/scripts_ y muestrelos utilizando el comando *find*.
 
 .Pista
 [%collapsible]
