@@ -187,7 +187,7 @@ El shell ejecuta el `COMANDO_1`:
 
 == Ejercicios.
 
-Para los ejercicios primero copiamos el directorio _/tmp/material-curso/dia_4_ a nuestro home:
+Para los ejercicios primero copiamos el directorio _/tmp/material-curso/dia4_ a nuestro home:
 
 ----
 $ cd
