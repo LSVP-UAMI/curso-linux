@@ -1,0 +1,169 @@
+= Instalación
+
+:table-caption: Tabla
+:figure-caption: Figura
+
+== Compilación
+En el pasado de Linux si alguien necesitaba software especifico que no estuviera en el sistema, este debía ser compilado a partir del código fuente.
+
+Por fortuna en la actualidad la mayoria del software que podemos instalar en Linux es distribuido mediante paquetes.
+
+=== Ventajas y desventajas de compilar los programas
+
+==== Ventajas
+* Los programas pueden ser adaptados a nuestras necesidades.
+* Podemos instalar versiones especificas.
+* Podemos tener múltiples versiones instaladas al mismo tiempo.
+* Podemos optimizar los programas para nuestro hardware.
+
+==== Desventajas
+* Se necesitan conocimientos específicos para compilar.
+* Se vuelve complicado administrar todos los programas que instalamos 
+de esta forma.
+* Se necesita experiencia para optimizar los programas.
+* Se necesita tener mucho tiempo libre para hacer pruebas.
+
+[#manejador_paquetes]
+== ¿Siempre tengo que compilar los programas que uso?
+Debido a los problemas que tiene compilar los programas con el tiempo 
+surgieron los manejadores de paquetes, estos hacen más fácil la tarea 
+de administrar los programas que instalamos.
+
+Un paquete incluye todos los archivos necesarios para la ejecución de 
+un programa, esto incluye binarios previamente compilados, información 
+sobre las dependencias y archivos de configuración.
+
+Los paquetes también incluyen scripts que pueden ser ejecutados durante
+cualquier punto de la instalación.
+
+Los manejadores de paquetes tienen un modelo de dependencias, esto garantiza
+que todas las librerías y otros programas de los que depende un paquete sean 
+instalados previamente. 
+
+=== No todas las distribuciones Linux usan los mismos paquetes
+En Linux hay dos principales formatos de paquetes que son usados por 
+la mayoría de las distribuciones son *rpm* y *deb*.
+
+*rpm* fue creado para RedHat y es heredado por todas las distribuciones basadas 
+en esta. De la misma forma *deb* es el formato de Debian, y es compartido 
+por sus derivadas.
+
+Cada uno de estos formatos tiene una herramienta encargada de instalar 
+y desinstalar los paquetes. Para *rpm* el instalador de paquetes es *rpm*
+y *dpkg* es el respectivo de *deb*.
+
+==== Comandos básicos
+Instalar un paquete
+[source,shell]
+rpm -i nombre_del_paquete.rpm
+dpkg --install nombre_del_paquete.deb
+
+Desinstalar un paquete
+[source,shell]
+rpm -e nombre_del_paquete
+dpkg --remove nombre_del_paquete
+
+Listar los paquetes instalados
+[source,shell]
+rpm -qa
+dpkg -l
+
+==== Práctica
+Instala los paquetes ``sl`` y ``nsnake`` que se encuentra en el directorio 
+``/tmp/material/debs``
+
+.Pista
+[%collapsible]
+====
+Puede ser necesario instalar primero el paquete ``libncurses6``
+====
+
+=== ¿De dónde vienen los paquetes?
+Un repositorio es un servidor que funciona como un almacén de paquetes,
+los repositorios son mantenidos por el equipo desarrollador de cada 
+distribución, de esta forma controlan las versiones de cada paquete para
+asegurarse de que son compatibles entre sí. 
+
+Por lo general las distribuciones tienen una versión de cada paquete para 
+cada tipo de arquitectura a la que dan soporte (64-bits, 32-bits, arm,
+etc), también suelen almacenar varias versiones del mismo paquete.
+
+=== Manejadores de paquetes de alto nivel
+Los manejadores de alto nivel ayudan a hacer más simple las tareas 
+de buscar y descargar paquetes, instalar dependencias de forma automática 
+y hacer actualizaciones de paquetes.
+
+Este tipo de manejadores de paquetes se conecta con los repositorios de
+la distribución para buscar y descargar los paquetes que queremos instalar,
+además puede consultar si hay versiones más recientes de los paquetes
+que tenemos instalados para que estos sean actualizados.
+
+Otra de sus funciones es que pueden consultar en que paquete se encuentra
+algún archivo en específico, 
+
+Los manejadores de paquetes para las principales distribuciones son los
+siguientes.
+
+Para *RedHat* y derivadas.
+[source,shell]
+yum
+
+Para *Debian* y derivadas.
+[source,shell]
+apt
+
+Para *Arch* y derivadas.
+[source,shell]
+pacman
+
+==== Comandos básicos
+Buscar un paquete en los repositorios.
+[source,shell]
+yum search nombre_del_paquete
+apt search nombre_del_paquete
+pacman -Ss nombre_del_paquete
+
+Instalar un paquete desde los repositorios.
+[source,shell]
+yum install nombre_del_paquete
+apt install nombre_del_paquete
+pacman -S nomre_del_paquete
+
+Desinstalar un paquete.
+[source,shell]
+yum remove nombre_del_paquete
+apt remove nombre_del_paquete
+pacman -R nombre_del_paquete
+
+Actualizar todos los paquetes instalados.
+[source,shell]
+apt update && apt upgrade
+yum update
+pacman -Su
+
+Buscar un archivo dentro de los paquetes de los repositorios.
+[source,shell]
+yum provides nombre_del_archivo
+apt-file search nombre_del_archivo
+pacman -F nombre_del_archivo
+
+==== Práctica
+Instala los paquetes ``moon-buggy`` y ``cowsay`` desde los repositorios.
+
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+apt install moon-buggy
+apt install cowsay 
+==== 
+
+////
+=== Práctica
+Compila e instala los programas *cmatrix* y *sl* desde el código.
+
+Descarga el codigo usando.
+[source,shell]
+git clone https://github.com/abishekvashok/cmatrix.git
+git clone https://github.com/mtoyoda/sl.git
+////

@@ -1,4 +1,8 @@
 * Día 2
+** xref:instalacion.adoc[Instalación]
 ** xref:usuarios.adoc[Usuarios]
 ** xref:permisos.adoc[Permisos]
-*** xref:anexos/permisos.adoc[Anexos]
+** xref:actividades.adoc[Actividades]
+** xref:anexos[Anexos]
+*** xref:anexos/instalacion.adoc[Instalación]
+*** xref:anexos/permisos.adoc[Permisos]

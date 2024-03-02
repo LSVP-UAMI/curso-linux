@@ -1,0 +1,225 @@
+= Comandos de filtrado
+
+En linux trabajamos mucho con archivos de texto, debido a esto tenemos
+a nuestra disposición una variedad de comandos que ayudan a filtrar la
+información que se encuentra en este tipo de archivos.
+
+== Obtengamos un poco de información de los archivos.
+El comando *wc* cuenta líneas, palabras o caracteres dentro de un archivo.
+
+Opciones 
+[cols="1,4"]
+|===
+|`-c` | Muestra el total de caracteres.
+|`-w` | Muestra el total de palabras.
+|`-l` | Muestra el total de líneas.
+|===
+
+=== Práctica
+Para estas prácticas se utilizará el archivo datos.csv.
+
+Muestra el total de líneas, palabras y caractéres dentro del archivo de datos.
+
+
+== ¿Cómo filtrar información?
+*grep* es un comando de unix que nos permite filtrar líneas de un 
+archivo de texto, *grep* busca patrones de texto en cada línea y solo 
+muestra las líneas en las que encuentra el patrón.
+
+Por lo general estos patrones son cadenas de texto pero no se limitan 
+solo a patrones de este tipo.
+
+Forma de uso.
+[source,shell]
+----
+grep [opciones] patron [archivo]
+grep [opciones] [-e patron]... [-f archivo]... [archivo]
+----
+
+Algunas opciones de *grep*
+[cols="1,5"]
+|===
+|`-i` +
+`--ignore-case`| Ignora si las letras son mayúsculas o minúsculas.
+|`-v` +
+`--invert-`| En lugar de mostrar las líneas que coinciden los patrones, 
+muestra las líneas que no coinciden.
+|===
+
+=== Prácticas
+
+1. Filtra las lineas del archivo de datos que copiaste para que solo muestre las lineas que contienen la palabra "Fire".
+2. Muestra el total de lineas dentro del archivo de datos que contienen la palabra water.
+
+.Respuesta
+[%collapsible]
+====
+Primero filtramos "water" en el archivo y lo pasamos al comando *wc* con la opción *-l*
+[source,shell]
+----
+grep water datos.csv | wc -l
+----
+====
+
+
+== Head y Tail
+*head* y *tail* son comandos que muestran solo las primeras y las últimas 
+líneas de un archivo respectivamente.
+
+Opción importante
+[cols="1,5"]
+|===
+|`-n` *N* | Muestra *N* líneas.
+|===
+
+=== Práctica 
+. Muestra las líneas de la 5 a la 10 del archivo de datos.
+. Muestra la penúltima línea del archivo de datos.
+
+== Cut
+*cut* es un comando que se usa en archivos que contienen diferentes 
+campos en cada línea, y nos permite mostrar solo los campos seleccionados,
+para que *cut* funcione es necesario que los campos estén separados por 
+un carácter especifico.
+
+Opciones importantes.
+[cols="1,5"]
+|===
+|`-d` *D* | De esta forma indicamos que *D* delimita los campos dentro del archivo.
+|`-f` *F* | De esta forma indicamos cuales son los campos que queremos mostrar. *F* es una lista de números.
+|===
+
+=== Práctica
+Muestra el segundo y sexto campo de las primeras 10 líneas del archivo de datos.
+
+.Pista
+[%collapsible]
+====
+Primero averigua qué carácter se usa para separar los campos en el archivo mencionado.
+====
+
+.Respuesta
+[%collapsible]
+====
+De la siguiente manera podemos ve que se usan comas como separador de campos:
+[source,shell]
+----
+head -n 1 datos.csv
+----
+De modo que el ejercicio se resuelve de la siguiente manera.
+[source,shell]
+----
+cut -d "," -f 2,6 datos.csv | head
+----
+====
+
+== Sort
+*sort* ordena las líneas de un archivo, para esto podemos indicar los 
+campos que se usaran para el ordenamiento y la forma en la que se ordenarán.
+
+Opciones de *sort*.
+[cols="1,4"]
+|===
+|`-k` *K*| *K* es la lista de campos usados en el ordenamiento.
+|`-t` *T*| *T* es el separador de campos.
+|`-n` | Ordena las líneas en orden numérico.
+|`-r` | Usa el orden inverso.
+|===
+
+=== Práctica
+* Considerando el nombre de los pokémon, ordena los datos en orden alfábetico.
+
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+----
+sort -t ',' -k 2 datos.csv
+----
+====
+
+* Muestra la segunda columna por orden alfabético.
+
+.Respuesta
+[%collapsible]
+====
+[source,shell]
+----
+tail -n 800 datos.csv | cut -d ',' -f 2 | sort
+----
+====
+
+
+== Ejemplos prácticos
+
+Utilizando el archivo *heroes_information.csv*, obtener lo siguiente:
+
+1. ¿Cuál es el número de personajes que aparecen en el archivo?
+2. ¿Cuántas mujeres hay(Female)? ¿Y cuántos hombres(Male)?
+3. Obtener únicamente las columnas con el nombre de los personajes (name) y su raza (race).
+4. ¿Qué tipo de personajes hay más? ¿Buenos (good), malos (bad) o neutrales (neutral)?
+5. Mostrar todas las editoriales de los personajes (sin repetirlas).
+6. Mostrar qué personajes que no tiene la información de su editorial (mostrar columnas de personaje y editorial).
+7. Mostrar los personajes que sean mujeres y a la vez buenos (mostrar las columnas de nombre, genero y Alignment).
+8. Mostrar los personajes que sean mujeres y a la vez de la editorial Marvel Comics (mostrar las columnas de nombre, genero y editorial).
+
+.Respuestas
+[%collapsible]
+====
+* Número de personajes: 734
+[source,shell]
+----
+wc -l heroes_information.csv 
+----
+
+* Número de mujeres
+[source,shell]
+----
+grep -c Female heroes_information.csv
+----
+[source,shell]
+----
+grep Female heroes_information.csv | wc -l
+----
+
+* Número de hombres
+[source,shell]
+----
+grep -c Male heroes_information.csv
+----
+[source,shell]
+----
+grep Male heroes_information.csv | wc -l
+----
+
+* Nombres y raza de personajes 
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,5
+----
+
+* Editoriales de los personajes.
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 8 | sort -u
+----
+
+* Personaje sin editorial.
+[source,shell]
+----
+tail -n 734 heroes_information.csv | cut -d , -f 2,8 | grep '""'
+----
+
+* Cantidad de mujeres buenas
+[source,shell]
+----
+cut -d , -f 2,3,10 heroes_information.csv | grep Female | grep good
+----
+
+*Cantidad de mujeres de Marvel Comics
+[source,shell]
+----
+cut -d , -f 2,3,8 heroes_information.csv | grep Female | grep "Marvel Comics"
+----
+
+====
